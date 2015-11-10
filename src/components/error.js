@@ -13,10 +13,8 @@ export default class ErrorDialog extends Component {
     return (
       <div>
         <div className={`fixed-bottomleft z10 col3 offcanvas-bottom animate pad2 active`}>
-          <div className='fill-orange round'>
-            <div className='pad1 small quiet'>
-              <strong className='icon alert'>{error}</strong>
-            </div>
+          <div className='fill-orange round pad1 small quiet'>
+            <strong className='icon alert'>{error}</strong>
           </div>
         </div>
       </div>

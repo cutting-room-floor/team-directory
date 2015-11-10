@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { validateMapboxEmail, normalizeTel } from '../utils';
+import ReactDOM from 'react-dom';
 import linkState from 'react-link-state';
 
 export default class Form extends Component {
@@ -16,8 +17,7 @@ export default class Form extends Component {
   }
 
   submittedData() {
-    // - Redirect to the home page
-    this.transitionTo('index');
+    this.transitionTo('index'); // Redirect to the home page
   }
 
   verify(e) {
@@ -34,9 +34,20 @@ export default class Form extends Component {
   }
 
   exists(value) {
-    return this.props.team.some((user) => {
-      return user.github === value;
+    var { people } = this.props;
+    return people.some((user) => {
+      return user.github.toLowerCase() === value.toLowerCase();
     });
+  }
+
+  formData() {
+    const { data } = this.props;
+    let formData = [];
+
+    for (const p in data) {
+      formData = formData.concat(data[p].data);
+    }
+    return formData;
   }
 
   onSubmit(e) {
@@ -146,7 +157,7 @@ export default class Form extends Component {
   }
 
   checkboxOnChange(e) {
-    const group = React.findDOMNode(this.refs[e.target.name]).getElementsByTagName('input');
+    const group = ReactDOM.findDOMNode(this.refs[e.target.name]).getElementsByTagName('input');
     const checked = [];
     Array.prototype.forEach.call(group, (el) => {
       if (el.checked) checked.push(el.id);
@@ -158,7 +169,7 @@ export default class Form extends Component {
   }
 
   addGroupOnChange(e) {
-    const group = React.findDOMNode(this.refs[e.target.name]).getElementsByTagName('div');
+    const group = ReactDOM.findDOMNode(this.refs[e.target.name]).getElementsByTagName('div');
     const groupSet = [];
 
     Array.prototype.forEach.call(group, (el) => {
@@ -291,7 +302,7 @@ export default class Form extends Component {
             className='col12'
             placeholder={d.label}
             required={d.required}
-            onChange={this.verify}
+            onChange={this.verify.bind(this)}
             defaultValue={this.state.github}
           />}
           {type === 'hidden' && <input
@@ -347,7 +358,7 @@ export default class Form extends Component {
     };
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit.bind(this)}>
         {data.map(renderSection)}
         <fieldset className='col12 clearfix'>
           <div className='col8 pad2x'>
@@ -370,5 +381,6 @@ export default class Form extends Component {
 Form.propTypes = {
   data: PropTypes.array.isRequired,
   setError: PropTypes.func.isRequired,
+  people: PropTypes.array.isRequired,
   user: PropTypes.array
 }

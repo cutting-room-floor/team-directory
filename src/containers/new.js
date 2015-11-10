@@ -17,7 +17,10 @@ class NewUser extends Component {
     return (
       <DocumentTitle title={'New | Team listing'}>
         {data.form.length ? <div>
-          <Form setError={setError} data={data.form} />
+          <Form
+            people={data.people}
+            setError={setError}
+            data={data.form} />
         </div> : <div>
           <div className='center'>
             <h2>No form data found.</h2>
