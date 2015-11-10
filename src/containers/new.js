@@ -8,12 +8,11 @@ import Form from '../components/form';
 
 class NewUser extends Component {
   render() {
-
-    console.log(this.props);
-
     return (
       <DocumentTitle title={'New | Team listing'}>
-        New user page
+        <div>
+          New user page
+        </div>
       </DocumentTitle>
     );
   }

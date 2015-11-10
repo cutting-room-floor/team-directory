@@ -1,7 +1,7 @@
 import * as types from '../constants/action_types.js';
 
 const initialState = {
-  options: {},
+  form: [],
   people: [],
   message: '',
   error: ''
