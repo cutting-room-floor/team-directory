@@ -17,7 +17,6 @@
   }, {
     "key": "sex",
     "label": "Gender",
-    "required": true,
     "type": "radio",
     "fields": [{
       "key": "xy",
@@ -29,12 +28,10 @@
   }, {
     "key": "birthday",
     "label": "Birthday",
-    "required": true,
     "type": "date"
   }, {
     "key": "office",
     "label": "Office",
-    "required": true,
     "type": "radio",
     "fields": [{
       "key": "dc",
@@ -77,8 +74,7 @@
   }],
   "Social links": [{
     "key": "twitter",
-    "label": "Twitter username",
-    "required": true
+    "label": "Twitter username"
   }, {
     "key": "github",
     "label": "Github username",
