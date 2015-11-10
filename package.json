@@ -1,0 +1,61 @@
+{
+  "name": "team-directory",
+  "version": "1.0.0",
+  "description": "A rolodex",
+  "main": "index.js",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "scripts": {
+    "start": "budo index.js --serve=dist/team-directory.js --live -d | bistre",
+    "build": "browserify index.js | uglifyjs -c -m > dist/team-directory.js",
+    "test": "npm run lint && browserify test/test.js | smokestack -b firefox | tap-status",
+    "lint": "eslint --no-eslintrc -c .eslintrc index.js src test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mapbox/team-directory.git"
+  },
+  "keywords": [
+    "directory",
+    "rolodex",
+    "contacts"
+  ],
+  "author": "mapbox",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/mapbox/team-directory/issues"
+  },
+  "homepage": "https://github.com/mapbox/team-directory#readme",
+  "devDependencies": {
+    "babel-core": "^5.8.25",
+    "babel-plugin-object-assign": "^1.2.1",
+    "babelify": "^6.3.0",
+    "bistre": "^1.0.1",
+    "browserify": "^11.2.0",
+    "budo": "^6.0.2",
+    "eslint": "^1.7.2",
+    "eslint-plugin-react": "^3.6.3",
+    "smokestack": "^3.4.1",
+    "tap-status": "^1.0.1"
+  },
+  "dependencies": {
+    "filesaver.js": "^0.2.0",
+    "google-client-api": "^1.0.4",
+    "history": "^1.12.5",
+    "js-base64": "^2.1.9",
+    "octokat": "^0.4.13",
+    "react": "^0.14.0",
+    "react-document-title": "^2.0.1",
+    "react-dom": "^0.14.0",
+    "react-modal": "^0.6.1",
+    "react-redux": "^3.0.1",
+    "react-router": "^1.0.0-rc3",
+    "redux": "^3.0.2",
+    "redux-simple-router": "0.0.7",
+    "redux-thunk": "^1.0.0",
+    "vcf": "^0.2.0"
+  }
+}

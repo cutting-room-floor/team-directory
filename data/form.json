@@ -1,0 +1,100 @@
+{
+  "basic": [{
+    "key": "admin",
+    "type": "hidden"
+  }, {
+    "key": "fname",
+    "label": "First name",
+    "required": true
+  }, {
+    "key": "lname",
+    "label": "Last name",
+    "required": true
+  }, {
+    "key": "sex",
+    "label": "Gender",
+    "required": true,
+    "type": "radio",
+    "fields": [{
+      "key": "xy",
+      "label": "Male"
+    }, {
+      "key": "xx",
+      "label": "Female"
+    }]
+  }, {
+    "key": "email",
+    "label": "Email (Mapbox account)",
+    "required": true
+  }, {
+    "key": "cell",
+    "label": "Mobile",
+    "required": true
+  }, {
+    "key": "homeaddress",
+    "label": "Home Address",
+    "type": "textarea"
+  }, {
+    "key": "office",
+    "label": "Office",
+    "required": true,
+    "type": "radio",
+    "fields": [{
+      "key": "dc",
+      "label": "DC"
+    }, {
+      "key": "sf",
+      "label": "SF"
+    }, {
+      "key": "ayacucho",
+      "label": "Peru"
+    }, {
+      "key": "bengaluru",
+      "label": "India"
+    }]
+  }, {
+    "key": "birthday",
+    "label": "Birthday",
+    "required": true,
+    "type": "date"
+  }, {
+    "key": "teams",
+    "label": "Teams",
+    "required": true,
+    "type": "checkbox",
+    "fields": [{
+      "key": "business",
+      "label": "Business"
+    }, {
+      "key": "data",
+      "label": "Data"
+    }, {
+      "key": "design",
+      "label": "Design"
+    }, {
+      "key": "directions",
+      "label": "Directions"
+    }, {
+      "key": "engineering",
+      "label": "Engineering"
+    }, {
+      "key": "operations",
+      "label": "Operations"
+    }, {
+      "key": "support",
+      "label": "Support"
+    }]
+  }],
+  "links": [{
+    "key": "twitter",
+    "label": "Twitter username",
+    "required": true
+  }, {
+    "key": "github",
+    "label": "Github username",
+    "required": true
+  }, {
+    "key": "foursquare",
+    "label": "Foursquare username"
+  }]
+}

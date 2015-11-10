@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+  <link href='../dist/team-directory.css' rel='stylesheet' />
+</head>
+<body>
+  <div id='app'></div>
+  <script src='./dist/team-directory.js'></script>
+  <script>
+    TeamDirectory(document.getElementById('app'), {
+      GitHubToken: localStorage.getItem('GitHubToken'),
+      org: 'mapbox',
+      repo: 'team-directory',
+      data: {
+        people: 'people.json',
+        form: 'data/form.json',
+        links: 'data/links.json'
+      }
+    });
+  </script>
+</body>
+</html>

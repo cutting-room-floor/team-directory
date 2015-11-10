@@ -1,0 +1,33 @@
+{
+  "social": [{
+    "key": "cell",
+    "icon": "mobile",
+    "label": "Cell",
+    "url": "tel:"
+  }, {
+    "key": "email",
+    "icon": "mail",
+    "label": "Email",
+    "url": "mailto:"
+  }, {
+    "key": "github",
+    "icon": "github",
+    "label": "GitHub",
+    "url": "https://github.com/"
+  }, {
+    "key": "twitter",
+    "icon": "twitter",
+    "label": "Twitter",
+    "url": "https://twitter.com/"
+  }, {
+    "key": "foursquare",
+    "icon": "foursquare",
+    "label": "Foursquare",
+    "url": "https://foursquare.com/"
+  }, {
+    "key": "osm",
+    "icon": "osm",
+    "label": "OpenStreetMap",
+    "url": "http://openstreetmap.org/user/"
+  }]
+}
