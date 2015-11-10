@@ -208,7 +208,6 @@ export default class Form extends Component {
       if (length === 2) return 6;
       if (length === 3) return 4;
       if (length === 4) return 3;
-      if (length === 5) return 'fifths';
       if (length > 4 || length === 1) return 12;
     };
 
@@ -223,7 +222,7 @@ export default class Form extends Component {
             name={this.key}
             id={field.key}
             defaultChecked={component.state[this.key] === field.key}
-            onChange={component.radioOnChange}
+            onChange={component.radioOnChange.bind(component)}
           />
           <label htmlFor={field.key} className={labelClass}>{field.label}</label>
         </div>
@@ -242,7 +241,7 @@ export default class Form extends Component {
             name={this.key}
             id={field.key}
             defaultChecked={component.state[this.key].indexOf(field.key) > -1}
-            onChange={component.checkboxOnChange}
+            onChange={component.checkboxOnChange.bind(component)}
           />
           <label htmlFor={field.key} className={labelClass}>{field.label}</label>
         </div>
@@ -258,7 +257,7 @@ export default class Form extends Component {
             name={this.key}
             placeholder='Name'
             defaultValue={field.name}
-            onChange={component.addGroupOnChange}
+            onChange={component.addGroupOnChange.bind(component)}
           />
           <input
             type='text'
@@ -266,7 +265,7 @@ export default class Form extends Component {
             className='col6'
             placeholder='Value'
             defaultValue={field.value}
-            onChange={component.addGroupOnChange}
+            onChange={component.addGroupOnChange.bind(component)}
           />
         </div>
       );

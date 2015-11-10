@@ -12,7 +12,7 @@
     "required": true
   }, {
     "key": "email",
-    "label": "Email (Mapbox account)",
+    "label": "Email",
     "required": true
   }, {
     "key": "sex",
@@ -27,9 +27,10 @@
       "label": "Female"
     }]
   }, {
-    "key": "cell",
-    "label": "Mobile",
-    "required": true
+    "key": "birthday",
+    "label": "Birthday",
+    "required": true,
+    "type": "date"
   }, {
     "key": "office",
     "label": "Office",
@@ -49,17 +50,12 @@
       "label": "India"
     }]
   }, {
-    "key": "birthday",
-    "label": "Birthday",
-    "required": true,
-    "type": "date"
-  }, {
     "key": "homeaddress",
     "label": "Home Address",
     "type": "textarea"
   }, {
     "key": "teams",
-    "label": "Teams",
+    "label": "Teams (check all that apply)",
     "required": true,
     "type": "checkbox",
     "fields": [{
