@@ -1,5 +1,5 @@
 {
-  "basic": [{
+  "Basic information": [{
     "key": "admin",
     "type": "hidden"
   }, {
@@ -9,6 +9,10 @@
   }, {
     "key": "lname",
     "label": "Last name",
+    "required": true
+  }, {
+    "key": "email",
+    "label": "Email (Mapbox account)",
     "required": true
   }, {
     "key": "sex",
@@ -22,10 +26,6 @@
       "key": "xx",
       "label": "Female"
     }]
-  }, {
-    "key": "email",
-    "label": "Email (Mapbox account)",
-    "required": true
   }, {
     "key": "cell",
     "label": "Mobile",
@@ -54,6 +54,10 @@
     "required": true,
     "type": "date"
   }, {
+    "key": "homeaddress",
+    "label": "Home Address",
+    "type": "textarea"
+  }, {
     "key": "teams",
     "label": "Teams",
     "required": true,
@@ -62,14 +66,8 @@
       "key": "business",
       "label": "Business"
     }, {
-      "key": "data",
-      "label": "Data"
-    }, {
       "key": "design",
       "label": "Design"
-    }, {
-      "key": "directions",
-      "label": "Directions"
     }, {
       "key": "engineering",
       "label": "Engineering"
@@ -80,12 +78,8 @@
       "key": "support",
       "label": "Support"
     }]
-  }, {
-    "key": "homeaddress",
-    "label": "Home Address",
-    "type": "textarea"
   }],
-  "links": [{
+  "Social links": [{
     "key": "twitter",
     "label": "Twitter username",
     "required": true
