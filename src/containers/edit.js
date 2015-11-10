@@ -4,6 +4,11 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
 class EditUser extends Component {
+  componentWillMount() {
+    // TODO Handle redirection here
+    // if a user is not eligible to edit this document.
+  }
+
   render() {
     return (
       <div>

@@ -31,7 +31,7 @@ export function setForm(form) {
 }
 
 export function setOptions(options) {
-  client = new Octokat({ token: options.token });
+  client = new Octokat({ token: options.GitHubToken });
   repo = client.repos(options.org, options.repo);
   config = Object.assign({}, config, options);
 }
@@ -39,15 +39,24 @@ export function setOptions(options) {
 export function loadForm() {
   return (dispatch) => {
     repo.contents(config.data.form).read()
-      .then((data) => {
-        data = JSON.parse(data);
-        console.log('form.json', data);
+      .then((res) => {
+        res = JSON.parse(res);
+        let data = [];
+        for (const prop in res) {
+          data.push({
+            section: prop,
+            data: res[prop]
+          });
+        }
+
+        dispatch(setForm(data));
       })
       .catch((err) => {
-        dispatch(setPeople([]));
-      });
 
-    dispatch(setPeople([]));
+        console.log('whats the error?', err);
+
+        dispatch(setForm([]));
+      });
   };
 }
 
@@ -58,14 +67,11 @@ export function loadPeople(query) {
   return (dispatch) => {
     repo.contents(config.data.people).read()
       .then((data) => {
-        data = JSON.parse(data);
-        console.log('people.json', data);
+        dispatch(setPeople(JSON.parse(data)));
       })
       .catch((err) => {
         dispatch(setPeople([]));
       });
-
-    dispatch(setPeople([]));
   };
 }
 

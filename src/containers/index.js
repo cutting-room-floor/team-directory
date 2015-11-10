@@ -16,7 +16,7 @@ class Index extends Component {
       <DocumentTitle title={'Team listing'}>
         {people.length ? <div>
           <Listing data={[]} />
-        </div> : <div className='center'> 
+        </div> : <div className='center'>
           <h2>No users.</h2>
           <div className='pad2y'>
             <Link className='button pad4x' to={'/new'}>Create one?</Link>

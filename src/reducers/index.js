@@ -17,7 +17,7 @@ export default function data(state = initialState, action) {
 
     case types.FORM:
       return Object.assign({}, state, {
-      people: action.form
+      form: action.form
     });
 
     case types.MESSAGE:
