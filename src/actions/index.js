@@ -2,6 +2,27 @@ import * as types from '../constants/action_types';
 import Octokat from 'octokat';
 let client, repo, config = {};
 
+function setActor(actor) {
+  return {
+    type: types.ACTOR,
+    actor
+  };
+}
+
+function setPeople(people) {
+  return {
+    type: types.PEOPLE,
+    people
+  };
+}
+
+function setForm(form) {
+  return {
+    type: types.FORM,
+    form
+  };
+}
+
 export function setMessage(message) {
   return {
     type: types.MESSAGE,
@@ -16,20 +37,6 @@ export function setError(error) {
   };
 }
 
-export function setPeople(people) {
-  return {
-    type: types.PEOPLE,
-    people
-  };
-}
-
-export function setForm(form) {
-  return {
-    type: types.FORM,
-    form
-  };
-}
-
 export function setOptions(options) {
   client = new Octokat({ token: options.GitHubToken });
   repo = client.repos(options.org, options.repo);
@@ -38,24 +45,27 @@ export function setOptions(options) {
 
 export function loadForm() {
   return (dispatch) => {
-    repo.contents(config.data.form).read()
-      .then((res) => {
-        res = JSON.parse(res);
-        let data = [];
-        for (const prop in res) {
-          data.push({
-            section: prop,
-            data: res[prop]
+
+    client.user.fetch()
+      .then((user) => {
+        dispatch(setActor(user));
+        repo.contents(config.data.form).read()
+          .then((res) => {
+            res = JSON.parse(res);
+            let data = [];
+            for (const prop in res) {
+              data.push({
+                section: prop,
+                data: res[prop]
+              });
+            }
+
+            dispatch(setForm(data));
+          })
+          .catch((err) => {
+            console.log('whats the error?', err);
+            dispatch(setForm([]));
           });
-        }
-
-        dispatch(setForm(data));
-      })
-      .catch((err) => {
-
-        console.log('whats the error?', err);
-
-        dispatch(setForm([]));
       });
   };
 }

@@ -31,10 +31,6 @@
     "label": "Mobile",
     "required": true
   }, {
-    "key": "homeaddress",
-    "label": "Home Address",
-    "type": "textarea"
-  }, {
     "key": "office",
     "label": "Office",
     "required": true,
@@ -84,6 +80,10 @@
       "key": "support",
       "label": "Support"
     }]
+  }, {
+    "key": "homeaddress",
+    "label": "Home Address",
+    "type": "textarea"
   }],
   "links": [{
     "key": "twitter",
@@ -96,5 +96,9 @@
   }, {
     "key": "foursquare",
     "label": "Foursquare username"
+  }, {
+    "key": "other-links",
+    "type": "add",
+    "label": "Other links"
   }]
 }
