@@ -23,10 +23,32 @@ export function setPeople(people) {
   };
 }
 
+export function setForm(form) {
+  return {
+    type: types.FORM,
+    form
+  };
+}
+
 export function setOptions(options) {
   client = new Octokat({ token: options.token });
   repo = client.repos(options.org, options.repo);
   config = Object.assign({}, config, options);
+}
+
+export function loadForm() {
+  return (dispatch) => {
+    repo.contents(config.data.form).read()
+      .then((data) => {
+        data = JSON.parse(data);
+        console.log('form.json', data);
+      })
+      .catch((err) => {
+        dispatch(setPeople([]));
+      });
+
+    dispatch(setPeople([]));
+  };
 }
 
 export function loadPeople(query) {
@@ -37,7 +59,7 @@ export function loadPeople(query) {
     repo.contents(config.data.people).read()
       .then((data) => {
         data = JSON.parse(data);
-        console.log('Data', data);
+        console.log('people.json', data);
       })
       .catch((err) => {
         dispatch(setPeople([]));

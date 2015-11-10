@@ -3,18 +3,21 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
+import DocumentTitle from 'react-document-title';
+import Form from '../components/form';
+
 class NewUser extends Component {
   render() {
+
+    console.log(this.props);
+
     return (
-      <div>
+      <DocumentTitle title={'New | Team listing'}>
         New user page
-      </div>
+      </DocumentTitle>
     );
   }
 }
-
-NewUser.propTypes = {
-};
 
 function mapStateToProps(state) {
   return state;

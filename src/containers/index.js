@@ -15,7 +15,7 @@ class Index extends Component {
     return (
       <DocumentTitle title={'Team listing'}>
         {people.length ? <div>
-          The index page
+          <Listing data={[]} />
         </div> : <div className='center'> 
           <h2>No users.</h2>
           <div className='pad2y'>

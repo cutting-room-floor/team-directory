@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class Listing extends Component {
+export default class Form extends Component {
   render() {
     return (
       <div>
-        Listing goes here.
+        Form goes here
       </div>
     );
   }
 }
 
-Listing.propTypes = {
+Form.propTypes = {
   data: PropTypes.array.isRequired,
 };
