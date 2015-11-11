@@ -268,7 +268,7 @@ export default class Form extends Component {
       // if (d.key === 'payroll' && !this.admin) return;
       return (
         <fieldset id={d.key} key={i} className={`col6 pad1x ${hidden}`}>
-          <label>{d.label} {d.required && <sup title='Field is required'>*</sup>}</label>
+          <label>{d.label} {d.required && <span className='question' title='Field is required'>*</span>}</label>
           {type === 'textarea' && <textarea
             className='col12'
             placeholder={d.label}
