@@ -71,7 +71,7 @@ export function setOptions(options) {
 export function addUser(obj, cb) {
   return (dispatch, getState) => {
     const { options, people } = getState().directory;
-    repo.contents(options.data.people).fetch().then((res) => {
+    repo.contents(options.people).fetch().then((res) => {
 
       const dataFromGitHub = JSON.parse(Base64.decode(res.content));
       dataFromGitHub.push(obj); // New record
@@ -83,7 +83,7 @@ export function addUser(obj, cb) {
         sha: res.sha
       };
 
-      repo.contents(options.data.people).add(putData)
+      repo.contents(options.people).add(putData)
         .then(() => {
           dispatch(setPeople(dataFromGitHub));
           cb(null);
@@ -95,7 +95,7 @@ export function addUser(obj, cb) {
 export function loadForm() {
   return (dispatch, getState) => {
     const { options } = getState().directory;
-    repo.contents(options.data.form).read()
+    repo.contents(options.form).read()
       .then((res) => {
         res = JSON.parse(res);
         let data = [];
@@ -123,7 +123,7 @@ export function loadPeople(query) {
     client.user.fetch()
       .then((user) => {
         dispatch(setActor(user));
-        repo.contents(options.data.people).read()
+        repo.contents(options.people).read()
           .then((data) => {
             dispatch(setPeople(JSON.parse(data)));
           })

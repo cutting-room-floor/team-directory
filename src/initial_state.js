@@ -7,11 +7,8 @@ const initialState = {
   options: {
     org: '',
     repo: '',
-    data: {
-      people: '',
-      form: '',
-      links: ''
-    }
+    people: '',
+    form: ''
   },
   actor: {},
   form: [],
