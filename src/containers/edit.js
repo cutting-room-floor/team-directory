@@ -3,36 +3,46 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
+import DocumentTitle from 'react-document-title';
+import Form from '../components/form';
+
 class EditUser extends Component {
   componentWillMount() {
-    // TODO Handle redirection here
-    // if a user is not eligible to edit this document.
+    const { loadForm, directory } = this.props;
+    if (!directory.form.length) loadForm();
   }
 
-  // User removal TODO pass this to Form
-  onDelete() {
-    const { setError } = this.props;
-    const user = this.getParams().user;
-    const prompt = window.prompt('Are you sure? Enter their GitHub username to continue');
-
-    if (prompt === user) {
-      actions.destroyUser(this.getParams().user);
-    } else {
-      actions.setError('GitHub account name was not entered correctly.');
-    }
+  updateUser(obj) {
+    const { addUser } = this.props;
+    addUser(obj, (err) => {
+      console.log('Added user', err);
+    });
   }
 
   render() {
+    const { directory, setError } = this.props;
+    const { validators, normalizers, people, form } = directory;
+
     return (
-      <div>
-        Edit page
-      </div>
+      <DocumentTitle title={'Edit | Team listing'}>
+        {directory.form.length ? <div>
+          <Form
+            people={people}
+            setError={setError}
+            normalizers={normalizers}
+            validators={validators}
+            onSubmit={this.updateUser.bind(this)}
+            data={form} />
+        </div> : <div>
+          <div className='center'>
+            <h2>No form directory found.</h2>
+            <p>Check your configuration settings.</p>
+          </div>
+        </div>}
+      </DocumentTitle>
     );
   }
 }
-
-EditUser.propTypes = {
-};
 
 function mapStateToProps(state) {
   return state;

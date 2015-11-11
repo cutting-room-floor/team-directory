@@ -7,7 +7,7 @@ export default class Repo extends Component {
     return (
       <DocumentTitle title='Not found | Us'>
       <div className='center'>
-        <h1 className='block space-bottom2'>Page not found</h1>
+        <h2 className='block space-bottom2'>Page not found</h2>
         <Link
           className='button pad4x'
           to='/'>

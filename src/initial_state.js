@@ -4,6 +4,8 @@ import VCard from 'vcf';
 import { Base64 } from 'js-base64';
 
 const initialState = {
+  message: '',
+  error: '',
   options: {
     org: '',
     repo: '',
@@ -13,9 +15,7 @@ const initialState = {
   actor: {},
   form: [],
   links: [],
-  people: [],
-  message: '',
-  error: ''
+  people: []
 };
 
 function vCard(d) {
