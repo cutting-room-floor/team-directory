@@ -14,12 +14,16 @@ class NewUser extends Component {
 
   render() {
     const { data, setError } = this.props;
+    const { validators, normalizers } = this.props.data.options;
+
     return (
       <DocumentTitle title={'New | Team listing'}>
         {data.form.length ? <div>
           <Form
             people={data.people}
             setError={setError}
+            normalizers={normalizers}
+            validators={validators}
             data={data.form} />
         </div> : <div>
           <div className='center'>

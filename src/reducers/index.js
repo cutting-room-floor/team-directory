@@ -1,7 +1,17 @@
 import * as types from '../constants/action_types.js';
 
 const initialState = {
-  options: {},
+  options: {
+    org: '',
+    repo: '',
+    data: {
+      people: '',
+      form: '',
+      links: ''
+    },
+    validators: () => {},
+    links: () => {}
+  },
   actor: {},
   form: [],
   people: [],

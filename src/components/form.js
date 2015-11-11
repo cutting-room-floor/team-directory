@@ -53,7 +53,7 @@ export default class Form extends Component {
   onSubmit(e) {
     e.preventDefault();
     const data = this.state;
-    const { setError } = this.props;
+    const { setError, validators, normalizers } = this.props;
 
     // - Check that GitHub username does not exist.
     if (this.exists(this.state.github) && !this.props.user) {
@@ -382,5 +382,7 @@ Form.propTypes = {
   data: PropTypes.array.isRequired,
   setError: PropTypes.func.isRequired,
   people: PropTypes.array.isRequired,
-  user: PropTypes.array
+  user: PropTypes.array,
+  validators: PropTypes.func,
+  normalizers: PropTypes.func
 }
