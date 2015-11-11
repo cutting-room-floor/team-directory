@@ -1,3 +1,6 @@
+export const VALIDATORS = 'VALIDATORS';
+export const NORMALIZERS = 'NORMALIZERS';
+
 export const OPTIONS = 'OPTIONS';
 export const ACTOR = 'ACTOR';
 export const PEOPLE = 'PEOPLE';

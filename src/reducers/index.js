@@ -8,10 +8,10 @@ const initialState = {
       people: '',
       form: '',
       links: ''
-    },
-    validators: function(d, c) { return c(null); },
-    normalizers: function(d, c) { return c(d); }
+    }
   },
+  validators: function(d, c) { return c(null); },
+  normalizers: function(d, c) { return c(d); },
   actor: {},
   form: [],
   people: [],
@@ -21,6 +21,16 @@ const initialState = {
 
 export default function data(state = initialState, action) {
   switch (action.type) {
+
+    case types.VALIDATORS:
+      return Object.assign({}, state, {
+      validators: action.validators
+    });
+
+    case types.NORMALIZERS:
+      return Object.assign({}, state, {
+      normalizers: action.normalizers
+    });
 
     case types.OPTIONS:
       return Object.assign({}, state, {

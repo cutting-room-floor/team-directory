@@ -17,19 +17,17 @@ import Index from './containers/index';
 import Edit from './containers/edit';
 import New from './containers/new';
 import NotFound from './components/notfound';
-import { setOptions } from './actions';
+import { setOptions, setValidators, setNormalizers } from './actions';
 
-const reducer = combineReducers(Object.assign({}, { data: reducers }, {
+const reducer = combineReducers(Object.assign({}, { directory: reducers }, {
   routing: routeReducer
 }));
 
-const finalCreateStore = applyMiddleware(thunk)(createStore);
+const store = applyMiddleware(thunk)(createStore)(reducer);
+const history = createBrowserHistory();
 
 export default class TeamDirectory {
   constructor(id, options) {
-    const store = finalCreateStore(reducer);
-    const history = createBrowserHistory();
-
     syncReduxAndRouter(history, store);
     options = options || {};
 
@@ -52,5 +50,13 @@ export default class TeamDirectory {
       </Provider>,
       container
     );
+  }
+
+  validators(fn) {
+    store.dispatch(setValidators(fn));
+  }
+
+  normalizers(fn) {
+    store.dispatch(setNormalizers(fn));
   }
 }

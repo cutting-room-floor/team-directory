@@ -9,21 +9,7 @@
   <div id='app'></div>
   <script src='./dist/team-directory.js'></script>
   <script>
-    function normalizeTel(val) {
-      if (!val) return false;
-      val = val.replace(/[^\d+]/g, ''); // Remove non-numericals except +
-      if (val.indexOf('+') !== 0) {
-        val = (val.indexOf('1') === 0) ? '+' + val : '+1' + val;
-      }
-      return val;
-    }
-
-    function validateMapboxEmail(email) {
-      var re = /^([\w-]+(?:\.[\w-]+)*)@mapbox.com/i;
-      return re.test(email);
-    }
-
-    TeamDirectory(document.getElementById('app'), {
+    var Directory = TeamDirectory(document.getElementById('app'), {
       GitHubToken: localStorage.getItem('GitHubToken'),
       org: 'mapbox',
       repo: 'team-directory',
@@ -31,47 +17,6 @@
         people: 'people.json',
         form: 'data/form.json',
         links: 'data/links.json'
-      },
-      validators: function(data, cb) {
-
-        // Valid mobile number was passed.
-        if (isNaN(parseInt(data.cell, 10))) {
-          return cb('Mobile number must be a valid number');
-        }
-
-        // - Check Other => City rule
-        if (data.office === 'other' && !data.city) {
-          return cb('You selected "Other" under "Mapbox Office" which requires the "City" field to be filled out.');
-        }
-
-        // - Check Peru => DNI record
-        if (data.office === 'ayacucho' && !data.dni) {
-          return cb('Because you selected "Peru" as your home office, please provide a value for "DNI Number"');
-        }
-
-        if (!validateMapboxEmail(data.email)) {
-          return cb(data.email + ' should be a valid @mapbox email');
-        }
-
-        // Validation passed.
-        return cb(null);
-      },
-      normalizers: function(data, cb) {
-        for (const key in data) {
-          if (typeof data[key] === 'string') {
-
-            // Normalize telephone number.
-            if (data.cell) data.cell = normalizeTel(data.cell);
-
-            // Lowercase github username.
-            if (key === 'github') data[key] = data[key].toLowerCase();
-
-            // - Remove any superflous @ character + trim string.
-            data[key] = data[key].trim().replace(/^@/, '');
-          }
-        }
-
-        return cb(data);
       }
     });
   </script>

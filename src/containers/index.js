@@ -10,12 +10,12 @@ import Listing from '../components/listing';
 
 class Index extends Component {
   render() {
-    const { people } = this.props.data;
+    const { people } = this.props.directory;
 
     return (
       <DocumentTitle title={'Team listing'}>
         {people.length ? <div>
-          <Listing data={[]} />
+          <Listing directory={[]} />
         </div> : <div className='center'>
           <h2>No users.</h2>
           <div className='pad2y'>

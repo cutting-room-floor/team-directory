@@ -8,26 +8,26 @@ import Form from '../components/form';
 
 class NewUser extends Component {
   componentWillMount() {
-    const { loadForm, data } = this.props;
-    if (!data.form.length) loadForm();
+    const { loadForm, directory } = this.props;
+    if (!directory.form.length) loadForm();
   }
 
   render() {
-    const { data, setError } = this.props;
-    const { validators, normalizers } = this.props.data.options;
+    const { directory, setError } = this.props;
+    const { validators, normalizers, people, form } = directory;
 
     return (
       <DocumentTitle title={'New | Team listing'}>
-        {data.form.length ? <div>
+        {directory.form.length ? <div>
           <Form
-            people={data.people}
+            people={people}
             setError={setError}
             normalizers={normalizers}
             validators={validators}
-            data={data.form} />
+            data={form} />
         </div> : <div>
           <div className='center'>
-            <h2>No form data found.</h2>
+            <h2>No form directory found.</h2>
             <p>Check your configuration settings.</p>
           </div>
         </div>}

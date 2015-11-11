@@ -37,6 +37,20 @@ export function setError(error) {
   };
 }
 
+export function setValidators(validators) {
+  return {
+    type: types.VALIDATORS,
+    validators
+  };
+}
+
+export function setNormalizers(normalizers) {
+  return {
+    type: types.NORMALIZERS,
+    normalizers
+  };
+}
+
 export function setOptions(options) {
   client = new Octokat({ token: options.GitHubToken });
   repo = client.repos(options.org, options.repo);
@@ -49,7 +63,7 @@ export function setOptions(options) {
 
 export function loadForm() {
   return (dispatch, getState) => {
-    const { options } = getState().data;
+    const { options } = getState().directory;
     client.user.fetch()
       .then((user) => {
         dispatch(setActor(user));
@@ -79,7 +93,7 @@ export function loadPeople(query) {
   const sort = (query && query.sort) ? query.sort : 'name';
 
   return (dispatch, getState) => {
-    const { options } = getState().data;
+    const { options } = getState().directory;
     repo.contents(options.data.people).read()
       .then((data) => {
         dispatch(setPeople(JSON.parse(data)));

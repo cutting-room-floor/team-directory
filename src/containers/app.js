@@ -19,8 +19,8 @@ class App extends Component {
   }
 
   render() {
-    const { children, data, dismissModal, dismissError } = this.props;
-    const { message, error, people } = data;
+    const { children, directory, dismissModal, dismissError } = this.props;
+    const { message, error, people } = directory;
     const loading = people.length ? 'loading' : '';
 
     return (
