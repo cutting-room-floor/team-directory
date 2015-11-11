@@ -9,8 +9,8 @@ const initialState = {
       form: '',
       links: ''
     },
-    validators: () => {},
-    links: () => {}
+    validators: function(d, c) { return c(null); },
+    normalizers: function(d, c) { return c(d); }
   },
   actor: {},
   form: [],

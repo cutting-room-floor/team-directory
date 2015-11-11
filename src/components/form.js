@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { validateMapboxEmail, normalizeTel } from '../utils';
 import ReactDOM from 'react-dom';
 import linkState from 'react-link-state';
 
@@ -85,56 +84,35 @@ export default class Form extends Component {
       return setError('Missing required fields: ' + requiredList);
     }
 
-    // Valid mobile number was passed.
-    if (isNaN(parseInt(data.cell, 10))) {
-      return setError('Mobile number must be a valid number');
-    }
+    // Validate
+    validators(data, (err) => {
+      if (err) return setError(err);
 
-    // - Check Other => City rule
-    if (data.office === 'other' && !data.city) {
-      return setError('You selected "Other" under "Mapbox Office" which requires the "City" field to be filled out.');
-    }
+      // Normalize
+      for (const key in data) {
 
-    // - Check Peru => DNI record
-    if (data.office === 'ayacucho' && !data.dni) {
-      return setError('Because you selected "Peru" as your home office, please provide a value for "DNI Number"');
-    }
+        // Remove unfilled values
+        if (!data[key]) delete data[key];
 
-    if (!validateMapboxEmail(data.email)) {
-      return setError(data.email + ' should be a valid @mapbox email');
-    }
+        if (typeof data[key] === 'object') {
 
-    // - Normalize everything.
-    for (const key in data) {
-
-      // Remove unfilled values
-      if (!data[key]) delete data[key];
-
-      if (typeof data[key] === 'string') {
-
-        // Normalize telephone number.
-        if (data.cell) data.cell = normalizeTel(data.cell);
-
-        // Lowercase github username.
-        if (key === 'github') data[key] = data[key].toLowerCase();
-
-        // - Remove any superflous @ character + trim string.
-        data[key] = data[key].trim().replace(/^@/, '');
-      } else if (typeof data[key] === 'object') {
-        // - Trim input.
-        // data[key] = this.trimInArray(data[key]);
-        data[key] = data[key].filter((d) => {
-          let hasValue;
-          for (let prop in d) {
-            if (d[prop]) hasValue = true;
-          }
-          return hasValue;
-        });
+          // Object structures (provided by "Add" inputs).
+          // Ensure a value was filled. Otherwise remove it.
+          data[key] = data[key].filter((d) => {
+            let hasValue;
+            for (let prop in d) {
+              if (d[prop]) hasValue = true;
+            }
+            return hasValue;
+          });
+        }
       }
-    }
 
-    // - Submit!
-    actions.submitUserData(data);
+      // Client normalization
+      normalizers(data, (res) => {
+        actions.submitUserData(res); // Submit!
+      });
+    });
   }
 
   destroyUser(e) {
@@ -261,7 +239,7 @@ export default class Form extends Component {
 
     const renderAddGroup = function(component, field, i) {
       return (
-        <div className='col12 clearfix' key={i}>
+        <div style={{marginBottom: '1px'}} className='col12 clearfix' key={i}>
           <input
             type='text'
             className='col6'
@@ -337,8 +315,8 @@ export default class Form extends Component {
             {linkState(this, d.key).value && linkState(this, d.key).value.map(renderAddGroup.bind(d, this))}
             <button
               name={d.key}
-              onClick={this.addtoAddGroup}
-              className='button icon plus round-bottom col12'>
+              onClick={this.addtoAddGroup.bind(this)}
+              className='button icon plus col12'>
               Add
             </button>
           </fieldset>}
