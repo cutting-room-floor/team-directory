@@ -10,7 +10,7 @@ export default class Repo extends Component {
         <h1 className='block space-bottom2'>Page not found</h1>
         <Link
           className='button pad4x'
-          to='index'>
+          to='/'>
           Back home?
         </Link>
       </div>

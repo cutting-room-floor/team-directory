@@ -14,6 +14,7 @@ const initialState = {
   normalizers: function(d, c) { return c(d); },
   actor: {},
   form: [],
+  links: [],
   people: [],
   message: '',
   error: ''
@@ -60,6 +61,11 @@ export default function data(state = initialState, action) {
     case types.ERROR:
       return Object.assign({}, state, {
       error: action.error
+    });
+
+    case types.LINKS:
+      return Object.assign({}, state, {
+      links: action.links
     });
 
     default:

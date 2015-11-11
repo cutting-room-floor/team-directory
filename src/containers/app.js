@@ -12,12 +12,6 @@ class App extends Component {
     this.props.loadPeople();
   }
 
-  componentDidMount() {
-    require('google-client-api')().then((gapi) => {
-      gapi.client.setApiKey(process.env.GOOGLE_APIKEY);
-    });
-  }
-
   render() {
     const { children, directory, dismissModal, dismissError } = this.props;
     const { message, error } = directory;

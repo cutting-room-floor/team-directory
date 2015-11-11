@@ -24,6 +24,13 @@ function setForm(form) {
   };
 }
 
+function setLinks(links) {
+  return {
+    type: types.LINKS,
+    links
+  };
+}
+
 export function setMessage(message) {
   return {
     type: types.MESSAGE,
@@ -86,29 +93,40 @@ export function addUser(obj, cb) {
   }
 }
 
+export function loadLinks() {
+  return (dispatch, getState) => {
+    const { options } = getState().directory;
+    repo.contents(options.data.links).read()
+      .then((res) => {
+        res = JSON.parse(res);
+        console.log(res);
+        // dispatch(setLinks(data));
+      })
+      .catch((err) => {
+        console.log('whats the error?', err);
+        dispatch(setLinks([]));
+      });
+  };
+}
+
 export function loadForm() {
   return (dispatch, getState) => {
     const { options } = getState().directory;
-    client.user.fetch()
-      .then((user) => {
-        dispatch(setActor(user));
-        repo.contents(options.data.form).read()
-          .then((res) => {
-            res = JSON.parse(res);
-            let data = [];
-            for (const prop in res) {
-              data.push({
-                section: prop,
-                data: res[prop]
-              });
-            }
-
-            dispatch(setForm(data));
-          })
-          .catch((err) => {
-            console.log('whats the error?', err);
-            dispatch(setForm([]));
+    repo.contents(options.data.form).read()
+      .then((res) => {
+        res = JSON.parse(res);
+        let data = [];
+        for (const prop in res) {
+          data.push({
+            section: prop,
+            data: res[prop]
           });
+        }
+        dispatch(setForm(data));
+      })
+      .catch((err) => {
+        console.log('whats the error?', err);
+        dispatch(setForm([]));
       });
   };
 }
@@ -119,12 +137,16 @@ export function loadPeople(query) {
 
   return (dispatch, getState) => {
     const { options } = getState().directory;
-    repo.contents(options.data.people).read()
-      .then((data) => {
-        dispatch(setPeople(JSON.parse(data)));
-      })
-      .catch((err) => {
-        dispatch(setPeople([]));
+    client.user.fetch()
+      .then((user) => {
+        dispatch(setActor(user));
+        repo.contents(options.data.people).read()
+          .then((data) => {
+            dispatch(setPeople(JSON.parse(data)));
+          })
+          .catch((err) => {
+            dispatch(setPeople([]));
+          });
       });
   };
 }

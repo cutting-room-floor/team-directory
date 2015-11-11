@@ -43,9 +43,9 @@
   },
   "dependencies": {
     "filesaver.js": "^0.2.0",
-    "google-client-api": "^1.0.4",
     "history": "^1.12.5",
     "js-base64": "^2.1.9",
+    "md5-jkmyers": "0.0.1",
     "octokat": "^0.4.13",
     "react": "^0.14.0",
     "react-document-title": "^2.0.1",
