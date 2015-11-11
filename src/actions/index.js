@@ -24,13 +24,6 @@ function setForm(form) {
   };
 }
 
-function setLinks(links) {
-  return {
-    type: types.LINKS,
-    links
-  };
-}
-
 export function setMessage(message) {
   return {
     type: types.MESSAGE,
@@ -52,6 +45,12 @@ export function setValidators(validators) {
   };
 }
 
+export function setListingRenderer(listingTemplate) {
+  return {
+    type: types.LISTING_TEMPLATE,
+    listingTemplate
+  };
+}
 export function setNormalizers(normalizers) {
   return {
     type: types.NORMALIZERS,
@@ -93,22 +92,6 @@ export function addUser(obj, cb) {
   }
 }
 
-export function loadLinks() {
-  return (dispatch, getState) => {
-    const { options } = getState().directory;
-    repo.contents(options.data.links).read()
-      .then((res) => {
-        res = JSON.parse(res);
-        console.log(res);
-        // dispatch(setLinks(data));
-      })
-      .catch((err) => {
-        console.log('whats the error?', err);
-        dispatch(setLinks([]));
-      });
-  };
-}
-
 export function loadForm() {
   return (dispatch, getState) => {
     const { options } = getState().directory;
@@ -145,6 +128,7 @@ export function loadPeople(query) {
             dispatch(setPeople(JSON.parse(data)));
           })
           .catch((err) => {
+            console.log('An error occurred', err);
             dispatch(setPeople([]));
           });
       });

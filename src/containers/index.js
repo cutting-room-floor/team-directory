@@ -6,23 +6,27 @@ import * as actions from '../actions';
 
 import DocumentTitle from 'react-document-title';
 
-import Listing from '../components/listing';
-
 class Index extends Component {
-  componentWillMount() {
-    const { loadLinks, directory } = this.props;
-    if (!directory.links.length) loadLinks();
-  }
-
   render() {
-    const { people, links } = this.props.directory;
+    const { people, listingTemplate } = this.props.directory;
 
     return (
       <DocumentTitle title={'Team listing'}>
         {people.length ? <div>
-          <Listing
-            links={links}
-            data={people} />
+          {people.map((d, index) => {
+            return (
+              <div key={index} className='clip small contain mobile-cols pad0y col12 clearfix keyline-bottom no-last-keyline'>
+                <div className='space pin-topright quiet pad1y'>
+                  <a
+                    className='quiet'
+                    href={`edit/${d.github}`}>
+                    Edit
+                  </a>
+                </div>
+                {listingTemplate(d)}
+              </div>
+            );
+          })}
         </div> : <div className='center'>
           <h2>No users.</h2>
           <div className='pad2y'>

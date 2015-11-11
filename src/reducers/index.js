@@ -1,27 +1,13 @@
 import * as types from '../constants/action_types.js';
-
-const initialState = {
-  options: {
-    org: '',
-    repo: '',
-    data: {
-      people: '',
-      form: '',
-      links: ''
-    }
-  },
-  validators: function(d, c) { return c(null); },
-  normalizers: function(d, c) { return c(d); },
-  actor: {},
-  form: [],
-  links: [],
-  people: [],
-  message: '',
-  error: ''
-};
+import initialState from '../initial_state.js';
 
 export default function data(state = initialState, action) {
   switch (action.type) {
+
+    case types.LISTING_TEMPLATE:
+      return Object.assign({}, state, {
+      listingTemplate: action.listingTemplate
+    });
 
     case types.VALIDATORS:
       return Object.assign({}, state, {
@@ -61,11 +47,6 @@ export default function data(state = initialState, action) {
     case types.ERROR:
       return Object.assign({}, state, {
       error: action.error
-    });
-
-    case types.LINKS:
-      return Object.assign({}, state, {
-      links: action.links
     });
 
     default:

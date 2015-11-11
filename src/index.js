@@ -59,4 +59,8 @@ export default class TeamDirectory {
   normalizers(fn) {
     store.dispatch(setNormalizers(fn));
   }
+
+  listingTemplate(fn) {
+    store.dispatch(setListingTemplate(fn));
+  }
 }
