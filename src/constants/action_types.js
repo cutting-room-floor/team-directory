@@ -1,3 +1,4 @@
+export const OPTIONS = 'OPTIONS';
 export const ACTOR = 'ACTOR';
 export const PEOPLE = 'PEOPLE';
 export const FORM = 'FORM';

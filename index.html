@@ -17,6 +17,12 @@
         people: 'people.json',
         form: 'data/form.json',
         links: 'data/links.json'
+      },
+      validators: function(data, cb) {
+        console.log('gets to validation!', data);
+      },
+      normalizers: function(data, cb) {
+        console.log('gets to normalize!', data);
       }
     });
   </script>

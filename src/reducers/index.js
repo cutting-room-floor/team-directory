@@ -1,6 +1,7 @@
 import * as types from '../constants/action_types.js';
 
 const initialState = {
+  options: {},
   actor: {},
   form: [],
   people: [],
@@ -10,6 +11,11 @@ const initialState = {
 
 export default function data(state = initialState, action) {
   switch (action.type) {
+
+    case types.OPTIONS:
+      return Object.assign({}, state, {
+      options: action.options
+    });
 
     case types.ACTOR:
       return Object.assign({}, state, {

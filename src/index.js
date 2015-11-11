@@ -32,13 +32,15 @@ export default class TeamDirectory {
 
     syncReduxAndRouter(history, store);
     options = options || {};
-    setOptions(options);
+
+    // Sets options passed from client
+    store.dispatch(setOptions(options));
 
     const container = typeof id === 'string' ?
       document.getElementById(id) : id;
 
     render(
-      <Provider store={store} >
+      <Provider store={store}>
         <Router history={history}>
           <Route path='/' component={App}>
             <IndexRoute component={Index} />

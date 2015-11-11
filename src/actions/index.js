@@ -40,16 +40,20 @@ export function setError(error) {
 export function setOptions(options) {
   client = new Octokat({ token: options.GitHubToken });
   repo = client.repos(options.org, options.repo);
-  config = Object.assign({}, config, options);
+
+  return {
+    type: types.OPTIONS,
+    options
+  }
 }
 
 export function loadForm() {
-  return (dispatch) => {
-
+  return (dispatch, getState) => {
+    const { options } = getState().data;
     client.user.fetch()
       .then((user) => {
         dispatch(setActor(user));
-        repo.contents(config.data.form).read()
+        repo.contents(options.data.form).read()
           .then((res) => {
             res = JSON.parse(res);
             let data = [];
@@ -74,8 +78,9 @@ export function loadPeople(query) {
   const filter = (query && query.filter) ? query.filter : null;
   const sort = (query && query.sort) ? query.sort : 'name';
 
-  return (dispatch) => {
-    repo.contents(config.data.people).read()
+  return (dispatch, getState) => {
+    const { options } = getState().data;
+    repo.contents(options.data.people).read()
       .then((data) => {
         dispatch(setPeople(JSON.parse(data)));
       })

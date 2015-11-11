@@ -12,7 +12,7 @@ export default class ErrorDialog extends Component {
     const { error, dismissError } = this.props;
     return (
       <div>
-        <div className={`fixed-bottomleft z10 col3 offcanvas-bottom animate pad2 active`}>
+        <div className={`fixed-bottomleft z10 col3 offcanvas-bottom animate pad1 active`}>
           <div className='fill-orange round pad1 small quiet'>
             <strong className='icon alert'>{error}</strong>
           </div>
