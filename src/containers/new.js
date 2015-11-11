@@ -12,6 +12,13 @@ class NewUser extends Component {
     if (!directory.form.length) loadForm();
   }
 
+  addNewUser(obj) {
+    const { addUser } = this.props;
+    addUser(obj, (err) => {
+      console.log('Added user', err);
+    });
+  }
+
   render() {
     const { directory, setError } = this.props;
     const { validators, normalizers, people, form } = directory;
@@ -24,6 +31,7 @@ class NewUser extends Component {
             setError={setError}
             normalizers={normalizers}
             validators={validators}
+            onSubmit={this.addNewUser.bind(this)}
             data={form} />
         </div> : <div>
           <div className='center'>

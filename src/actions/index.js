@@ -1,5 +1,6 @@
 import * as types from '../constants/action_types';
 import Octokat from 'octokat';
+import { Base64 } from 'js-base64';
 let client, repo, config = {};
 
 function setActor(actor) {
@@ -58,6 +59,30 @@ export function setOptions(options) {
   return {
     type: types.OPTIONS,
     options
+  }
+}
+
+export function addUser(obj, cb) {
+  return (dispatch, getState) => {
+    const { options, people } = getState().directory;
+    repo.contents(options.data.people).fetch().then((res) => {
+
+      const dataFromGitHub = JSON.parse(Base64.decode(res.content));
+      dataFromGitHub.push(obj); // New record
+
+      const payload = JSON.stringify(dataFromGitHub, null, 2) + '\n';
+      const putData = {
+        message: 'Created ' + obj.github,
+        content: Base64.encode(payload),
+        sha: res.sha
+      };
+
+      repo.contents(options.data.people).add(putData)
+        .then(() => {
+          dispatch(setPeople(dataFromGitHub));
+          cb(null);
+        }).catch((err) => { cb(err); });
+    });
   }
 }
 

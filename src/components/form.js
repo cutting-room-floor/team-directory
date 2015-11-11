@@ -52,7 +52,7 @@ export default class Form extends Component {
   onSubmit(e) {
     e.preventDefault();
     const data = this.state;
-    const { setError, validators, normalizers } = this.props;
+    const { setError, onSubmit, validators, normalizers } = this.props;
 
     // - Check that GitHub username does not exist.
     if (this.exists(this.state.github) && !this.props.user) {
@@ -110,22 +110,9 @@ export default class Form extends Component {
 
       // Client normalization
       normalizers(data, (res) => {
-        actions.submitUserData(res); // Submit!
+        onSubmit(res); // Submit!
       });
     });
-  }
-
-  destroyUser(e) {
-    e.preventDefault();
-    const { setError } = this.props;
-    const user = this.getParams().user;
-    const prompt = window.prompt('Are you sure? Enter their GitHub username to continue');
-
-    if (prompt === user) {
-      actions.destroyUser(this.getParams().user);
-    } else {
-      actions.setError('GitHub account name was not entered correctly.');
-    }
   }
 
   radioOnChange(e) {
@@ -184,7 +171,7 @@ export default class Form extends Component {
   }
 
   render() {
-    const { data, user } = this.props;
+    const { data, user, onDelete } = this.props;
 
     /*
     this.admin = (this.props.profile.admin && // User is an admin
@@ -343,7 +330,7 @@ export default class Form extends Component {
             &nbsp;
             {user && <button
               className='button fill-red icon close pad2x'
-              onClick={this.destroyUser}>
+              onClick={onDelete}>
               Delete user
             </button>}
           </div>
@@ -359,7 +346,9 @@ export default class Form extends Component {
 Form.propTypes = {
   data: PropTypes.array.isRequired,
   setError: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   people: PropTypes.array.isRequired,
+  onDelete: PropTypes.func,
   user: PropTypes.array,
   validators: PropTypes.func,
   normalizers: PropTypes.func

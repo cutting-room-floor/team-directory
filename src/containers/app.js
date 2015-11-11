@@ -20,40 +20,37 @@ class App extends Component {
 
   render() {
     const { children, directory, dismissModal, dismissError } = this.props;
-    const { message, error, people } = directory;
-    const loading = people.length ? 'loading' : '';
+    const { message, error } = directory;
 
     return (
       <div className='contain min-containment'>
-        <div className={`${loading}`}>
-          <nav className='col12 fill-navy dark z10'>
-            <div className='limiter'>
-              <nav className='primary'>
-                <Link
-                  className='strong animate pad2y pad0x'
-                  to={`/`}>
-                  Team listing
-                </Link>
-                <Link
-                  className='strong animate pad2y pad0x'
-                  to={'/new'}>
-                  New member
-                </Link>
-              </nav>
-            </div>
-          </nav>
-          <div className='limiter pad4y'>
-            {children}
+        <nav className='col12 fill-navy dark z10'>
+          <div className='limiter'>
+            <nav className='primary'>
+              <Link
+                className='strong animate pad2y pad0x'
+                to={`/`}>
+                Team listing
+              </Link>
+              <Link
+                className='strong animate pad2y pad0x'
+                to={'/new'}>
+                New member
+              </Link>
+            </nav>
           </div>
-          {error && <ErrorDialog
-            dismissError={dismissError}
-            error={error}>
-            </ErrorDialog>}
-          {message && <Modal
-            onModalClose={dismissModal}>
-            This is a modal
-          </Modal>}
+        </nav>
+        <div className='limiter pad4y'>
+          {children}
         </div>
+        {error && <ErrorDialog
+          dismissError={dismissError}
+          error={error}>
+          </ErrorDialog>}
+        {message && <Modal
+          onModalClose={dismissModal}>
+          This is a modal
+        </Modal>}
       </div>
     );
   }
