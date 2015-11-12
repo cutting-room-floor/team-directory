@@ -12,10 +12,10 @@ const initialState = {
     people: '',
     form: ''
   },
-  actor: {},
-  user: {},
   form: [],
   links: [],
+  actor: null,
+  user: null,
   people: null
 };
 

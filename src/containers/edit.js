@@ -61,6 +61,7 @@ class EditUser extends Component {
   render() {
     const { directory, setError, routeParams } = this.props;
     const { validators, normalizers, people, actor, user, form } = directory;
+    const parts = (form.length && user);
 
     return (
       <DocumentTitle title={`Edit ${routeParams.user} | Team listing`}>
@@ -68,7 +69,7 @@ class EditUser extends Component {
           <div className='fill-light pad2y pad2x round-top quiet dark'>
             <h3 className='icon account'>{`Edit ${routeParams.user}`}</h3>
           </div>
-        {directory.form.length ? <div>
+        {parts ? <div>
           <Form
             people={people}
             actor={actor}
