@@ -15,5 +15,35 @@
     "twitter": "fallsemo",
     "github": "tristen",
     "foursquare": "fallsemo"
+  },
+  {
+    "fname": "Freddie",
+    "lname": "Hubbard",
+    "email": "freddiehubbard@gmail.com",
+    "sex": "xy",
+    "birthday": "1938-10-01",
+    "office": "sf",
+    "homeaddress": "123 St",
+    "teams": [
+      "design"
+    ],
+    "twitter": "freddiehubbard",
+    "github": "freddiehubbard",
+    "foursquare": "freddiehubbard"
+  },
+  {
+    "fname": "Miles",
+    "lname": "Davis",
+    "email": "milesdavis@gmail.com",
+    "sex": "xy",
+    "birthday": "1928-03-11",
+    "office": "dc",
+    "homeaddress": "123 St",
+    "teams": [
+      "design"
+    ],
+    "twitter": "milesdavis",
+    "github": "milesdavis",
+    "foursquare": "milesdavis"
   }
 ]
