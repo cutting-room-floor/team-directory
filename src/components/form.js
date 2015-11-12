@@ -235,6 +235,9 @@ export default class Form extends Component {
     const addFields = function(d, i) {
       const type = (d.type) ? d.type : 'text';
       const hidden = (type === 'hidden') ? 'hidden' : false;
+      const defaultRenderer = (type === 'text' ||
+                               type ==='date' ||
+                               type === 'number');
 
       if (d.admin && !actor.admin) return;
       return (
@@ -249,20 +252,6 @@ export default class Form extends Component {
           {type === 'hidden' && <input
             type={type}
             className='hidden'
-            valueLink={linkState(this, d.key)}
-          />}
-          {type === 'text' && <input
-            type={type}
-            className='col12'
-            placeholder={d.label}
-            required={d.required}
-            valueLink={linkState(this, d.key)}
-          />}
-          {type === 'date' && <input
-            type={type}
-            className='col12'
-            placeholder={d.label}
-            required={d.required}
             valueLink={linkState(this, d.key)}
           />}
           {type === 'radio' && <fieldset
@@ -283,6 +272,13 @@ export default class Form extends Component {
               Add
             </button>
           </fieldset>}
+          {defaultRenderer && <input
+            type={type}
+            className='col12'
+            placeholder={d.label}
+            required={d.required}
+            valueLink={linkState(this, d.key)}
+          />}
         </fieldset>
       );
     }.bind(this);
