@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 export default class Filter extends Component {
 
   componentWillUnmount() {
-    this.props.filter(null);
+    // this.props.filter(null);
   }
 
   sort(e) {

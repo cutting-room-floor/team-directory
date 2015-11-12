@@ -113,6 +113,8 @@ class Index extends Component {
               </div>
             </div>
             <Filter
+              sortKeys={[]}
+              filterKeys={[]}
               filter={peopleFilter}
               sort={peopleSort} />
           </div>}
