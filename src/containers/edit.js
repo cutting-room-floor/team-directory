@@ -2,15 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
+import { updatePath } from 'redux-simple-router';
 
 import DocumentTitle from 'react-document-title';
 import Form from '../components/form';
 
 class EditUser extends Component {
   componentWillMount() {
-    const { loadForm, directory, loadUser, routeParams } = this.props;
+    const { loadForm, directory, loadUser, reRoute, routeParams } = this.props;
+    const { actor } = directory;
+    const username = routeParams.user;
+    if (!actor.admin || username.toLowerCase() !== actor.login.toLowerCase()) reRoute('/404');
     if (!directory.form.length) loadForm();
-    loadUser(routeParams.user);
+    loadUser(username);
   }
 
   removeUser() {
@@ -73,7 +77,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(Object.assign({}, actions, { reRoute: updatePath }), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditUser);
