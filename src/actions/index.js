@@ -186,17 +186,26 @@ export function loadPeople(query) {
 
   return (dispatch, getState) => {
     const { options } = getState().directory;
-    client.user.fetch()
-      .then((user) => {
-        dispatch(setActor(user));
-        repo.contents(options.people).read()
-          .then((data) => {
-            dispatch(setPeople(JSON.parse(data)));
-          })
-          .catch((err) => {
-            console.log('An error occurred', err);
-            dispatch(setPeople([]));
+    repo.contents(options.people).read()
+      .then((data) => {
+        data = JSON.parse(data);
+
+        client.user.fetch()
+          .then((user) => {
+
+            data.forEach((d) => {
+              if (d.github.toLowerCase() === user.login.toLowerCase() && d.admin) {
+                user.admin = true;
+              }
+            });
+
+            dispatch(setActor(user));
+            dispatch(setPeople(data));
           });
+      })
+      .catch((err) => {
+        console.log('An error occurred', err);
+        dispatch(setPeople([]));
       });
   };
 }
