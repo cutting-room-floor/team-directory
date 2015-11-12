@@ -114,6 +114,20 @@ export function loadForm() {
   };
 }
 
+export function loadUser(u) {
+  return (dispatch, getState) => {
+    const { people } = getState().directory;
+    const user = people.filter((d) => {
+      return u.toLowerCase() === d.github.toLowerCase();
+    })[0];
+
+    dispatch({
+      type: types.USER,
+      user
+    });
+  };
+}
+
 export function loadPeople(query) {
   const filter = (query && query.filter) ? query.filter : null;
   const sort = (query && query.sort) ? query.sort : 'name';

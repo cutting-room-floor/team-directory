@@ -13,9 +13,10 @@ const initialState = {
     form: ''
   },
   actor: {},
+  user: {},
   form: [],
   links: [],
-  people: []
+  people: null
 };
 
 function vCard(d) {

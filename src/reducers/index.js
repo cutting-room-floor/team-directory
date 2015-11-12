@@ -29,6 +29,11 @@ export default function data(state = initialState, action) {
       actor: action.actor
     });
 
+    case types.USER:
+      return Object.assign({}, state, {
+      user: action.user
+    });
+
     case types.PEOPLE:
       return Object.assign({}, state, {
       people: action.people

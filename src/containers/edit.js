@@ -8,8 +8,9 @@ import Form from '../components/form';
 
 class EditUser extends Component {
   componentWillMount() {
-    const { loadForm, directory } = this.props;
+    const { loadForm, directory, loadUser, routeParams } = this.props;
     if (!directory.form.length) loadForm();
+    loadUser(routeParams.user);
   }
 
   updateUser(obj) {
@@ -21,13 +22,14 @@ class EditUser extends Component {
 
   render() {
     const { directory, setError } = this.props;
-    const { validators, normalizers, people, form } = directory;
+    const { validators, normalizers, people, user, form } = directory;
 
     return (
       <DocumentTitle title={'Edit | Team listing'}>
         {directory.form.length ? <div>
           <Form
             people={people}
+            user={user}
             setError={setError}
             normalizers={normalizers}
             validators={validators}

@@ -349,7 +349,7 @@ Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   people: PropTypes.array.isRequired,
   onDelete: PropTypes.func,
-  user: PropTypes.array,
+  user: PropTypes.object,
   validators: PropTypes.func,
   normalizers: PropTypes.func
 }

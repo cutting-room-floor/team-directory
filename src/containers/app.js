@@ -14,7 +14,7 @@ class App extends Component {
 
   render() {
     const { children, directory, dismissModal, dismissError } = this.props;
-    const { message, error } = directory;
+    const { message, error, people } = directory;
 
     return (
       <div className='contain min-containment'>
@@ -34,9 +34,9 @@ class App extends Component {
             </nav>
           </div>
         </nav>
-        <div className='limiter pad4y'>
+        {people && <div className='limiter pad4y'>
           {children}
-        </div>
+        </div>}
         {error && <ErrorDialog
           dismissError={dismissError}
           error={error}>
