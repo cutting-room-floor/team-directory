@@ -9,12 +9,14 @@ import ErrorDialog from '../components/error';
 
 class App extends Component {
   componentWillMount() {
-    this.props.loadPeople();
+    const { loadPeople, loadForm } = this.props;
+    loadPeople();
+    loadForm();
   }
 
   render() {
     const { children, directory, dismissModal, dismissError } = this.props;
-    const { message, error, people } = directory;
+    const { message, error, people, form } = directory;
 
     const modalStyle = {
       overlay: {
@@ -31,7 +33,7 @@ class App extends Component {
         top: '0',
         right: '0',
         left: '0',
-        padding: '0px',
+        padding: '0',
         bottom: 'auto',
         width: '400px',
         border: 'none',
@@ -65,7 +67,7 @@ class App extends Component {
             </nav>
           </div>
         </nav>
-        {people && <div className='limiter pad4y'>
+        {people && form && <div className='limiter pad4y'>
           {children}
         </div>}
         {error && <ErrorDialog

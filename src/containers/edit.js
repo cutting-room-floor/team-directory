@@ -9,15 +9,13 @@ import Form from '../components/form';
 
 class EditUser extends Component {
   componentWillMount() {
-    const { loadForm, directory, loadUser, reRoute, routeParams } = this.props;
+    const { directory, loadUser, reRoute, routeParams } = this.props;
     const { actor } = directory;
     const username = routeParams.user;
 
     if (!actor.admin) {
       if (username.toLowerCase() !== actor.login.toLowerCase()) reRoute('/404');
     }
-
-    if (!directory.form.length) loadForm();
 
     loadUser(username);
   }
@@ -39,6 +37,8 @@ class EditUser extends Component {
             reRoute(`/`);
           }
         });
+
+        // TODO Emit a remove event.
       });
     } else {
       setError('GitHub account name was not entered correctly.');

@@ -7,11 +7,6 @@ import DocumentTitle from 'react-document-title';
 import Form from '../components/form';
 
 class NewUser extends Component {
-  componentWillMount() {
-    const { loadForm, directory } = this.props;
-    if (!directory.form.length) loadForm();
-  }
-
   addNewUser(obj) {
     const { addUser, setMessage, setError, reRoute } = this.props;
     addUser(obj, (err) => {

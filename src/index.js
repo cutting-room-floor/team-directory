@@ -63,4 +63,20 @@ export default class TeamDirectory {
   listingTemplate(fn) {
     store.dispatch(setListingTemplate(fn));
   }
+
+  /*
+   * Subscribe to a specified event with a listener function the latter gets
+   * the data object that was passed to `fire` and additionally `target` and
+   * `type` properties
+   *
+   * @param {string} type Event type
+   * @param {Function} listener Function to be called when the event is fired
+   * @returns this
+  */
+  on(type, fn) {
+    this._events = this._events || {};
+    this._events[type] = this._events[type] || [];
+    this._events[type].push(fn);
+    return this;
+  }
 }

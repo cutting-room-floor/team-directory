@@ -215,6 +215,9 @@ export function loadPeople(query) {
   };
 }
 
+export function peopleSort() {}
+export function peopleFilter() {}
+
 export function dismissError() {
   return (dispatch) => {
     dispatch(setError(''));
