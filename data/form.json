@@ -30,6 +30,22 @@
     "label": "Birthday",
     "type": "date"
   }, {
+    "key": "call",
+    "label": "Mobile number",
+    "type": "number"
+  }, {
+    "key": "admin",
+    "label": "Grant admin access?",
+    "admin": true,
+    "type": "radio",
+    "fields": [{
+      "key": true,
+      "label": "True"
+    }, {
+      "key": false,
+      "label": "False"
+    }]
+  }, {
     "key": "office",
     "label": "Office",
     "type": "radio",
@@ -79,18 +95,6 @@
     "key": "github",
     "label": "Github username",
     "required": true
-  }, {
-    "key": "admin",
-    "label": "Grant admin access?",
-    "admin": true,
-    "type": "radio",
-    "fields": [{
-      "key": true,
-      "label": "True"
-    }, {
-      "key": false,
-      "label": "False"
-    }]
   }, {
     "key": "foursquare",
     "label": "Foursquare username"
