@@ -32,6 +32,11 @@ export function setMessage(message) {
 }
 
 export function setError(error) {
+
+  console.log('AND THE ERROR ISSSS', error);
+  console.log(typeof error);
+
+
   return {
     type: types.ERROR,
     error

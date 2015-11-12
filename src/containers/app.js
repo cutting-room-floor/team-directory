@@ -16,6 +16,35 @@ class App extends Component {
     const { children, directory, dismissModal, dismissError } = this.props;
     const { message, error, people } = directory;
 
+    const modalStyle = {
+      overlay: {
+        backgroundColor:'rgba(0,0,0,0.5)',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+      },
+      content: {
+        background: '#fff',
+        position: 'absolute',
+        top: '0',
+        right: '0',
+        left: '0',
+        padding: '0px',
+        bottom: 'auto',
+        width: '400px',
+        border: 'none',
+        overflow: 'hidden',
+        WebkitOverflowScrolling: 'touch',
+        borderRadius: '3px',
+        outline: 'none',
+        marginTop: '40px',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      }
+    };
+
     return (
       <div className='contain min-containment'>
         <nav className='col12 fill-navy dark z10'>
@@ -41,10 +70,20 @@ class App extends Component {
           dismissError={dismissError}
           error={error}>
           </ErrorDialog>}
-        {message && <Modal
-          onModalClose={dismissModal}>
-          This is a modal
-        </Modal>}
+        <Modal
+          isOpen={!!message}
+          style={modalStyle}
+          onRequestClose={dismissModal}>
+          <div className='clearfix'>
+            <div className='pad4x pad2y'>
+              <h3>{message.title}</h3>
+              <p className='space-top1 quiet'>{message.content}</p>
+            </div>
+            <div className='col12 clearfix fill-light pad4x pad2y center'>
+              <button onClick={message.onClickHandler} className='button pad4x animate'>{message.action}</button>
+            </div>
+          </div>
+        </Modal>
       </div>
     );
   }

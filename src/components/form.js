@@ -15,10 +15,6 @@ export default class Form extends Component {
     }, {});
   }
 
-  submittedData() {
-    this.transitionTo('index'); // Redirect to the home page
-  }
-
   exists(value) {
     var { people } = this.props;
     return people.some((user) => {
@@ -49,7 +45,7 @@ export default class Form extends Component {
 
     // - Check that GitHub username does not exist.
     if (this.exists(data.github) && !user) {
-      return setError('User "' + data.github + '" already exists.');
+      return setError(`User ${data.github} already exists.`);
     }
 
     // - Check all the required fields.
@@ -74,7 +70,7 @@ export default class Form extends Component {
         return memo;
       }, []).join(', ');
 
-      return setError('Missing required fields: ' + requiredList);
+      return setError(`Missing required fields ${requiredList}`);
     }
 
     // Validate

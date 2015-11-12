@@ -18,14 +18,22 @@ class EditUser extends Component {
   }
 
   removeUser() {
-    const { removeUser, routeParams, setError } = this.props;
+    const { removeUser, routeParams, setMessage, setError, reRoute } = this.props;
     const user = routeParams.user;
     const prompt = window.prompt('Are you sure? Enter their GitHub username to continue');
 
     if (prompt === user) {
       removeUser(user, (err) => {
         if (err) return setError(err);
-        console.log('Removed user', err);
+        setMessage({
+          title: `${user} removed.`,
+          content: 'Record has been saved.',
+          action: 'Okay',
+          onClickHandler: () => {
+            setMessage('');
+            reRoute(`/`);
+          }
+        });
       });
     } else {
       setError('GitHub account name was not entered correctly.');
@@ -33,9 +41,15 @@ class EditUser extends Component {
   }
 
   editUser(obj) {
-    const { updateUser, setError } = this.props;
+    const { updateUser, setMessage, setError } = this.props;
     updateUser(obj, (err) => {
       if (err) return setError(err);
+      setMessage({
+        title: `${obj.github} updated!`,
+        content: 'Record has been saved.',
+        action: 'Okay',
+        onClickHandler: () => { setMessage(''); }
+      });
     });
   }
 

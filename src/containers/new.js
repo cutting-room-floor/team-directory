@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { updatePath } from 'redux-simple-router';
 import * as actions from '../actions';
-
 import DocumentTitle from 'react-document-title';
 import Form from '../components/form';
 
@@ -13,10 +13,18 @@ class NewUser extends Component {
   }
 
   addNewUser(obj) {
-    const { addUser, setError } = this.props;
+    const { addUser, setMessage, setError, reRoute } = this.props;
     addUser(obj, (err) => {
       if (err) return setError(err);
-      console.log('Added user', err);
+      setMessage({
+        title: `${obj.github} created!`,
+        content: 'Record has been saved.',
+        action: 'Okay',
+        onClickHandler: () => {
+          setMessage('');
+          reRoute(`/edit/${obj.github}`);
+        }
+      });
     });
   }
 
@@ -56,7 +64,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(Object.assign({}, actions, { reRoute: updatePath }), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewUser);
