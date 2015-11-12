@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import Modal from 'react-modal';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
@@ -50,13 +50,15 @@ class App extends Component {
         <nav className='col12 fill-navy dark z10'>
           <div className='limiter'>
             <nav className='primary'>
-              <Link
+              <IndexLink
                 className='strong animate pad2y pad0x'
-                to={`/`}>
+                activeClassName='active'
+                to='/'>
                 Team listing
-              </Link>
+              </IndexLink>
               <Link
                 className='strong animate pad2y pad0x'
+                activeClassName='active'
                 to={'/new'}>
                 New member
               </Link>
