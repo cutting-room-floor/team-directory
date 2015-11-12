@@ -9,6 +9,11 @@ export default function data(state = initialState, action) {
       listingTemplate: action.listingTemplate
     });
 
+    case types.STATS_TEMPLATE:
+      return Object.assign({}, state, {
+      statsTemplate: action.statsTemplate
+    });
+
     case types.VALIDATORS:
       return Object.assign({}, state, {
       validators: action.validators

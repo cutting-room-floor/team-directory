@@ -1,5 +1,6 @@
 export const VALIDATORS = 'VALIDATORS';
 export const NORMALIZERS = 'NORMALIZERS';
+export const STATS_TEMPLATE = 'STATS_TEMPLATE';
 export const LISTING_TEMPLATE = 'LISTING_TEMPLATE';
 export const OPTIONS = 'OPTIONS';
 export const USER = 'USER';

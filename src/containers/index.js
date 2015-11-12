@@ -8,8 +8,24 @@ import { saveAs } from 'filesaver.js';
 import { Base64 } from 'js-base64';
 import Filter from '../components/filter';
 import DocumentTitle from 'react-document-title';
+import Modal from 'react-modal';
+import modalStyle from '../modal_style'
 
 class Index extends Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = { showStats: false };
+  }
+
+  showModal(e) {
+    e.preventDefault();
+    this.setState({ showStats: true });
+  }
+
+  dismissModal() {
+    this.setState({ showStats: false });
+  }
 
   downloadCSV(e) {
     e.preventDefault();
@@ -73,16 +89,24 @@ class Index extends Component {
 
   render() {
     const { directory, peopleFilter, peopleSort } = this.props;
-    const { people, actor, listingTemplate } = directory;
+    const { people, actor, listingTemplate, statsTemplate } = directory;
 
     return (
       <DocumentTitle title={'Team listing'}>
         {people.length ? <div>
+
+          {statsTemplate && <Modal
+            isOpen={this.state.showStats}
+            style={modalStyle}
+            onRequestClose={this.dismissModal.bind(this)}>
+            {statsTemplate(people)}
+          </Modal>}
+
           {(people.length > 1) && <div>
             <div className='col12 clearfix space-bottom2'>
               <div className='text-right col12'>
                 <div className='pill'>
-                  <a href='#' className='short icon graph button pad4x'>Team stats</a>
+                  {statsTemplate && <a href='#' onClick={this.showModal.bind(this)} className='short icon graph button pad4x'>Team stats</a>}
                   {actor.admin && <a href='#' onClick={this.downloadCSV.bind(this)} className='short icon down button loud pad4x'>Download as CSV</a>}
                   <a href={this.downloadContacts()} className='short button loud icon down pad4x'>Download contacts</a>
                 </div>
@@ -107,6 +131,7 @@ class Index extends Component {
               </div>
             );
           })}
+
         </div> : <div className='center'>
           <h2>No users.</h2>
           <div className='pad2y'>

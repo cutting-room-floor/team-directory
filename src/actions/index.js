@@ -50,6 +50,13 @@ export function setValidators(validators) {
   };
 }
 
+export function setStatsRenderer(statsTemplate) {
+  return {
+    type: types.STATS_TEMPLATE,
+    statsTemplate
+  };
+}
+
 export function setListingRenderer(listingTemplate) {
   return {
     type: types.LISTING_TEMPLATE,

@@ -64,6 +64,10 @@ export default class TeamDirectory {
     store.dispatch(setListingTemplate(fn));
   }
 
+  statsTemplate(fn) {
+    store.dispatch(setStatsTemplate(fn));
+  }
+
   /*
    * Subscribe to a specified event with a listener function the latter gets
    * the data object that was passed to `fire` and additionally `target` and

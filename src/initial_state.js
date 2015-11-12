@@ -31,29 +31,60 @@ function vCard(d) {
 }
 
 const links = [{
-  "key": "cell",
-  "icon": "mobile",
-  "label": "Cell",
-  "url": "tel:"
+  key: 'cell',
+  icon: 'mobile',
+  label: 'Cell',
+  url: 'tel:'
 }, {
-  "key": "email",
-  "icon": "mail",
-  "label": "Email",
-  "url": "mailto:"
+  key: 'email',
+  icon: 'mail',
+  label: 'Email',
+  url: 'mailto:'
 }, {
-  "key": "github",
-  "icon": "github",
-  "label": "GitHub",
-  "url": "https://github.com/"
+  key: 'github',
+  icon: 'github',
+  label: 'GitHub',
+  url: 'https://github.com/'
 }, {
-  "key": "twitter",
-  "icon": "twitter",
-  "label": "Twitter",
-  "url": "https://twitter.com/"
+  key: 'twitter',
+  icon: 'twitter',
+  label: 'Twitter',
+  url: 'https://twitter.com/'
 }];
 
 initialState.validators = function(d, c) { return c(null); };
 initialState.normalizers = function(d, c) { return c(d); };
+
+initialState.statsTemplate = function(people) {
+
+  const f = people.filter((_) => {
+    return _.sex === 'xx';
+  }).length;
+
+  const stats = [
+    { name: 'Total team', value: people.length },
+    { name: 'Women', value: (f / people.length * 100).toFixed(1) + '%' },
+    { name: 'Men', value: ((people.length - f) / people.length * 100).toFixed(1) + '%' }
+  ];
+
+  return (
+    <div className='fill-white pad4'>
+      <div className='col12 space-bottom1'>
+        <h2>Team stats</h2>
+      </div>
+      <div className='keyline-all round listing'>
+        {stats.map((stat, i) => {
+          return (
+            <div key={i} className='pad1 col12 clearfix mobile-cols keyline-bottom'>
+              <strong className='col6'>{stat.name}</strong>
+              <span className='col6 text-right'>{stat.value}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 initialState.listingTemplate = function(d) {
   return (
