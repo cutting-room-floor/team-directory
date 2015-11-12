@@ -48,7 +48,7 @@ export default class Form extends Component {
     const { setError, onSubmit, user, validators, normalizers } = this.props;
 
     // - Check that GitHub username does not exist.
-    if (this.exists(data.github && !user)) {
+    if (this.exists(data.github) && !user) {
       return setError('User "' + data.github + '" already exists.');
     }
 

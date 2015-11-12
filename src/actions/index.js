@@ -98,14 +98,10 @@ export function updateUser(obj, cb) {
     const { options, people } = getState().directory;
     repo.contents(options.people).fetch().then((res) => {
 
-      const dataFromGitHub = JSON.parse(Base64.decode(res.content));
-      let pos;
-
-      dataFromGitHub.forEach((d, i) => {
-        if (obj.github.toLowerCase() === d.github.toLowerCase()) pos = i;
+      const dataFromGitHub = JSON.parse(Base64.decode(res.content)).map((d) => {
+        if (obj.github.toLowerCase() === d.github.toLowerCase()) d = obj;
+        return d;
       });
-
-      dataFromGitHub[i] = obj; // New record
 
       const payload = JSON.stringify(dataFromGitHub, null, 2) + '\n';
       const putData = {
