@@ -24,7 +24,6 @@ function vCard(d) {
   const card = (new VCard())
     .set('N', d.lname + ';' + d.fname, nameIsAscii ? {} : {charset: 'UTF-8'})
     .set('EMAIL', d.email)
-    .set('ORG', 'Mapbox')
     .set('TEL', d.cell)
     .toString();
 

@@ -1,5 +1,7 @@
-body          { overflow-y:scroll; }
+body      { overflow-y:scroll; }
+form > fieldset { margin:0; }
 .space-right0 { margin-right:5px; }
+form fieldset:first-child,
 .no-last-keyline:last-child { border:none; }
 .question { cursor:help; }
 .square4 {

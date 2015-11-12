@@ -80,6 +80,10 @@
     "label": "Github username",
     "required": true
   }, {
+    "key": "exclusive",
+    "label": "Special access field",
+    "admin": true
+  }, {
     "key": "foursquare",
     "label": "Foursquare username"
   }, {

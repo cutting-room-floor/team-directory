@@ -25,20 +25,25 @@ class NewUser extends Component {
 
     return (
       <DocumentTitle title={'New | Team listing'}>
-        {directory.form.length ? <div>
-          <Form
-            people={people}
-            setError={setError}
-            normalizers={normalizers}
-            validators={validators}
-            onSubmit={this.addNewUser.bind(this)}
-            data={form} />
-        </div> : <div>
-          <div className='center'>
-            <h2>No form directory found.</h2>
-            <p>Check your configuration settings.</p>
+        <div>
+          <div className='fill-light pad2y pad2x round-top quiet dark'>
+            <h3 className='icon account'>{`Create new member`}</h3>
           </div>
-        </div>}
+          {directory.form.length ? <div>
+            <Form
+              people={people}
+              setError={setError}
+              normalizers={normalizers}
+              validators={validators}
+              onSubmit={this.addNewUser.bind(this)}
+              data={form} />
+          </div> : <div>
+            <div className='center'>
+              <h2>No form directory found.</h2>
+              <p>Check your configuration settings.</p>
+            </div>
+          </div>}
+        </div>
       </DocumentTitle>
     );
   }

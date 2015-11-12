@@ -51,6 +51,7 @@ export function setListingRenderer(listingTemplate) {
     listingTemplate
   };
 }
+
 export function setNormalizers(normalizers) {
   return {
     type: types.NORMALIZERS,
@@ -88,7 +89,62 @@ export function addUser(obj, cb) {
           dispatch(setPeople(dataFromGitHub));
           cb(null);
         }).catch((err) => { cb(err); });
-    });
+    }).catch((err) => { cb(err); });
+  }
+}
+
+export function updateUser(obj, cb) {
+  return (dispatch, getState) => {
+    const { options, people } = getState().directory;
+    repo.contents(options.people).fetch().then((res) => {
+
+      const dataFromGitHub = JSON.parse(Base64.decode(res.content));
+      let pos;
+
+      dataFromGitHub.forEach((d, i) => {
+        if (obj.github.toLowerCase() === d.github.toLowerCase()) pos = i;
+      });
+
+      dataFromGitHub[i] = obj; // New record
+
+      const payload = JSON.stringify(dataFromGitHub, null, 2) + '\n';
+      const putData = {
+        message: 'Updated ' + obj.github,
+        content: Base64.encode(payload),
+        sha: res.sha
+      };
+
+      repo.contents(options.people).add(putData)
+        .then(() => {
+          dispatch(setPeople(dataFromGitHub));
+          cb(null);
+        }).catch((err) => { cb(err); });
+    }).catch((err) => { cb(err); });
+  }
+}
+
+export function removeUser(username, cb) {
+  return (dispatch, getState) => {
+    const { options, people } = getState().directory;
+    repo.contents(options.people).fetch().then((res) => {
+
+      const dataFromGitHub = JSON.parse(Base64.decode(res.content)).filter((d) => {
+        return username.toLowerCase() !== d.github.toLowerCase();
+      });
+
+      const payload = JSON.stringify(dataFromGitHub, null, 2) + '\n';
+      const putData = {
+        message: 'Removed ' + username,
+        content: Base64.encode(payload),
+        sha: res.sha
+      };
+
+      repo.contents(options.people).add(putData)
+        .then(() => {
+          dispatch(setPeople(dataFromGitHub));
+          cb(null);
+        }).catch((err) => { cb(err); });
+      }).catch((err) => { cb(err); });
   }
 }
 

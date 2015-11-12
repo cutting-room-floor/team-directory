@@ -19,19 +19,6 @@ export default class Form extends Component {
     this.transitionTo('index'); // Redirect to the home page
   }
 
-  verify(e) {
-    const { setError } = this.props;
-    const value = e.target.value.toLowerCase();
-
-    if (this.exists(value) && !this.props.user) {
-      setError('User "' + value + '" already exists.');
-    }
-
-    this.setState({
-      github: value
-    });
-  }
-
   exists(value) {
     var { people } = this.props;
     return people.some((user) => {
@@ -49,14 +36,20 @@ export default class Form extends Component {
     return formData;
   }
 
+  onDelete(e) {
+    const { onDelete, user } = this.props;
+    e.preventDefault();
+    onDelete();
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const data = this.state;
-    const { setError, onSubmit, validators, normalizers } = this.props;
+    const { setError, onSubmit, user, validators, normalizers } = this.props;
 
     // - Check that GitHub username does not exist.
-    if (this.exists(this.state.github) && !this.props.user) {
-      return setError('User "' + this.state.github + '" already exists.');
+    if (this.exists(data.github && !user)) {
+      return setError('User "' + data.github + '" already exists.');
     }
 
     // - Check all the required fields.
@@ -262,20 +255,12 @@ export default class Form extends Component {
             required={d.required}
             valueLink={linkState(this, d.key)}
           />}
-          {d.key === 'github' && <input
-            type={type}
-            className='col12'
-            placeholder={d.label}
-            required={d.required}
-            onChange={this.verify.bind(this)}
-            defaultValue={this.state.github}
-          />}
           {type === 'hidden' && <input
             type={type}
             className='hidden'
             valueLink={linkState(this, d.key)}
           />}
-          {type === 'text' && d.key !== 'github' && <input
+          {type === 'text' && <input
             type={type}
             className='col12'
             placeholder={d.label}
@@ -313,7 +298,7 @@ export default class Form extends Component {
 
     const renderSection = function(section, i) {
       return (
-        <fieldset className='fill-grey round pad1x pad2y' key={i}>
+        <fieldset className='fill-grey keyline-top pad1x pad4y' key={i}>
           <h2 className='block pad1x space-bottom1'>{section.section}</h2>
           <fieldset className='col12 clearfix'>
             {section.data.map(addFields)}
@@ -325,16 +310,16 @@ export default class Form extends Component {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
         {data.map(renderSection)}
-        <fieldset className='col12 clearfix'>
-          <div className='col8 pad2x'>
+        <fieldset className='fill-light pad2 round-bottom clearfix quiet dark'>
+          <div className='col8'>
             &nbsp;
             {user && <button
               className='button fill-red icon close pad2x'
-              onClick={onDelete}>
+              onClick={this.onDelete.bind(this)}>
               Delete user
             </button>}
           </div>
-          <div className='col4 pad2x'>
+          <div className='col4'>
             <input type='submit' className='button col12' />
           </div>
         </fieldset>
