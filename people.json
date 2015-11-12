@@ -22,5 +22,17 @@
       "design"
     ],
     "github": "tristen"
+  },
+  {
+    "fname": "Tristen",
+    "lname": "Brown",
+    "email": "tristen.brown@gmail.com",
+    "sex": "xy",
+    "office": "dc",
+    "homeaddress": "3524A 14TH ST NW",
+    "teams": [
+      "design"
+    ],
+    "github": "tristen"
   }
 ]
