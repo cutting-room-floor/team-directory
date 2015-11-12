@@ -1,8 +1,8 @@
 [
   {
+    "admin": "false",
     "fname": "Tristen",
     "lname": "Brown",
-    "admin": true,
     "email": "tristen.brown@gmail.com",
     "sex": "xy",
     "birthday": "1981-11-26",
