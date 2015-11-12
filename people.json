@@ -1,6 +1,6 @@
 [
   {
-    "admin": "false",
+    "admin": true,
     "fname": "Tristen",
     "lname": "Brown",
     "email": "tristen.brown@gmail.com",
