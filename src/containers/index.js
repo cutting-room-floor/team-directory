@@ -8,21 +8,22 @@ import DocumentTitle from 'react-document-title';
 
 class Index extends Component {
   render() {
-    const { people, listingTemplate } = this.props.directory;
+    const { people, actor, listingTemplate } = this.props.directory;
 
     return (
       <DocumentTitle title={'Team listing'}>
         {people.length ? <div>
           {people.map((d, index) => {
+            const access = (actor.admin || d.github.toLowerCase() === actor.login.toLowerCase()) ? true : false;
             return (
               <div key={index} className='clip small contain mobile-cols pad0y col12 clearfix keyline-bottom no-last-keyline'>
-                <div className='space pin-topright quiet pad1y'>
+                {access && <div className='space pin-topright quiet pad1y'>
                   <a
                     className='quiet'
                     href={`edit/${d.github}`}>
                     Edit
                   </a>
-                </div>
+                </div>}
                 {listingTemplate(d)}
               </div>
             );
