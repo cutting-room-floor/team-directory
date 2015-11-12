@@ -12,8 +12,13 @@ class EditUser extends Component {
     const { loadForm, directory, loadUser, reRoute, routeParams } = this.props;
     const { actor } = directory;
     const username = routeParams.user;
-    if (!actor.admin || username.toLowerCase() !== actor.login.toLowerCase()) reRoute('/404');
+
+    if (!actor.admin) {
+      if (username.toLowerCase() !== actor.login.toLowerCase()) reRoute('/404');
+    }
+
     if (!directory.form.length) loadForm();
+
     loadUser(username);
   }
 

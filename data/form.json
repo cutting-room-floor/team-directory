@@ -81,7 +81,7 @@
     "required": true
   }, {
     "key": "admin",
-    "label": "Enable admin access",
+    "label": "Grant admin access?",
     "admin": true,
     "type": "radio",
     "fields": [{

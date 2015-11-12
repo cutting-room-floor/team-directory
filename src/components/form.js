@@ -106,7 +106,10 @@ export default class Form extends Component {
 
   radioOnChange(e) {
     const obj = {};
-    obj[e.target.name] = e.target.id;
+    let val = e.target.id;
+    if (val === 'true') val = true;
+    if (val === 'false') val = false;
+    obj[e.target.name] = val;
     this.setState(obj);
   }
 
