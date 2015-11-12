@@ -20,6 +20,7 @@ class EditUser extends Component {
 
     if (prompt === user) {
       removeUser(user, (err) => {
+        if (err) return setError(err);
         console.log('Removed user', err);
       });
     } else {
@@ -28,15 +29,15 @@ class EditUser extends Component {
   }
 
   editUser(obj) {
-    const { updateUser } = this.props;
+    const { updateUser, setError } = this.props;
     updateUser(obj, (err) => {
-      console.log('Updated user', err);
+      if (err) return setError(err);
     });
   }
 
   render() {
     const { directory, setError, routeParams } = this.props;
-    const { validators, normalizers, people, user, form } = directory;
+    const { validators, normalizers, people, actor, user, form } = directory;
 
     return (
       <DocumentTitle title={`Edit ${routeParams.user} | Team listing`}>
@@ -47,6 +48,7 @@ class EditUser extends Component {
         {directory.form.length ? <div>
           <Form
             people={people}
+            actor={actor}
             user={user}
             setError={setError}
             normalizers={normalizers}

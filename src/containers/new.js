@@ -13,15 +13,16 @@ class NewUser extends Component {
   }
 
   addNewUser(obj) {
-    const { addUser } = this.props;
+    const { addUser, setError } = this.props;
     addUser(obj, (err) => {
+      if (err) return setError(err);
       console.log('Added user', err);
     });
   }
 
   render() {
     const { directory, setError } = this.props;
-    const { validators, normalizers, people, form } = directory;
+    const { validators, normalizers, actor, people, form } = directory;
 
     return (
       <DocumentTitle title={'New | Team listing'}>
@@ -31,6 +32,7 @@ class NewUser extends Component {
           </div>
           {directory.form.length ? <div>
             <Form
+              actor={actor}
               people={people}
               setError={setError}
               normalizers={normalizers}

@@ -164,14 +164,7 @@ export default class Form extends Component {
   }
 
   render() {
-    const { data, user, onDelete } = this.props;
-
-    /*
-    this.admin = (this.props.profile.admin && // User is an admin
-                  this.props.user && // Existing user was passed as prop
-                  this.props.user.github !== this.props.profile.github) ? // Profile does not match currently edited profile
-                   true : false;
-    */
+    const { data, actor, user, onDelete } = this.props;
 
     const colN = function(length) {
       if (length === 2) return 6;
@@ -244,8 +237,7 @@ export default class Form extends Component {
       const type = (d.type) ? d.type : 'text';
       const hidden = (type === 'hidden') ? 'hidden' : false;
 
-      // fields accessible by admin status only
-      // if (d.key === 'payroll' && !this.admin) return;
+      if (d.admin && !actor.admin) return;
       return (
         <fieldset id={d.key} key={i} className={`col6 pad1x ${hidden}`}>
           <label>{d.label} {d.required && <span className='question' title='Field is required'>*</span>}</label>
@@ -333,6 +325,7 @@ Form.propTypes = {
   setError: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   people: PropTypes.array.isRequired,
+  actor: PropTypes.object.isRequired,
   onDelete: PropTypes.func,
   user: PropTypes.object,
   validators: PropTypes.func,
