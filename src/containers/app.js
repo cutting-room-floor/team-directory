@@ -18,9 +18,11 @@ class App extends Component {
   render() {
     const { children, directory, dismissModal, dismissError } = this.props;
     const { message, error, people, form } = directory;
+    const fetched = people && form;
+    const loading = fetched ? '' : 'loading';
 
     return (
-      <div className='contain min-containment'>
+      <div className={`contain min-containment ${loading}`}>
         <nav className='col12 fill-navy dark z10'>
           <div className='limiter'>
             <nav className='primary'>
@@ -39,7 +41,7 @@ class App extends Component {
             </nav>
           </div>
         </nav>
-        {people && form && <div className='limiter pad4y'>
+        {fetched && <div className='limiter pad4y'>
           {children}
         </div>}
         {error && <ErrorDialog
