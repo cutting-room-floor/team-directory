@@ -89,7 +89,7 @@ class Index extends Component {
   }
 
   render() {
-    const { directory, peopleFilter, peopleSort, reRoute } = this.props;
+    const { directory, peopleFilter, peopleSort, reRoute, location} = this.props;
     const { people, filterList, actor, options, listingTemplate, statsTemplate } = directory;
 
     return (
@@ -117,6 +117,7 @@ class Index extends Component {
               sortKeys={[]}
               updatePath={reRoute}
               filter={peopleFilter}
+              query={location.query}
               sort={peopleSort} />
           </div>}
           {filterList.map((d, index) => {

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Route } from 'react-router';
 
 export default class Filter extends Component {
 
@@ -6,8 +7,14 @@ export default class Filter extends Component {
     super(props, context);
   }
 
+  componentWillMount() {
+    const { query, filter } = this.props;
+    if (query.filter) filter(query.filter);
+  }
+
   componentWillUnmount() {
-    // this.props.filter(null);
+    const { query, filter } = this.props;
+    if (query.filter) filter(null);
   }
 
   sort(e) {
@@ -19,32 +26,27 @@ export default class Filter extends Component {
   }
 
   filter(e) {
-    const { filter } = this.props;
-    const value = encodeURIComponent(e.target.value);
-
-    // const query = this.getQuery();
-    // query.filter = value;
-    // this.replaceWith(this.getPathname(), {}, query);
-
-    // console.log('value', e.target.value);
+    const { filter, updatePath, query } = this.props;
+    const value = encodeURIComponent(e.target.value.trim());
+    updatePath(query.sort ? `/?filter=${value}&sort=${query.sort}` : `/?filter=${value}`);
     filter(value);
   }
 
   render() {
+    const { query } = this.props;
+    const filterValue = (query.filter) ? decodeURIComponent(query.filter) : '';
+
     /*
     // TODO use the filter variable to populate "value" in input
-    const query = this.getQuery();
     const sort = (query.sort) ? query.sort : 'name';
-    const filter = (query.filter) ? decodeURIComponent(query.filter) : '';
     */
 
     const sort = 'name';
-    const filter = '';
 
     return (
       <div className='with-icon space-bottom1'>
         <span className='icon search'></span>
-        <input onChange={this.filter.bind(this)} className='col12' placeholder='filter' type='text' />
+        <input onChange={this.filter.bind(this)} className='col12' placeholder='filter' type='text' value={filterValue} />
         <div className='pin-right pad0x'>
           <form onChange={this.sort.bind(this)} className='rounded-toggle'>
             <input id='name' type='radio' name='sort-toggle' value='name' defaultChecked={sort === 'name'} />
@@ -61,6 +63,7 @@ export default class Filter extends Component {
 Filter.propTypes = {
   sortKeys: PropTypes.array.isRequired,
   updatePath: PropTypes.func.isRequired,
+  query: PropTypes.object.isRequired,
   filter: PropTypes.func.isRequired,
   sort: PropTypes.func
 };
