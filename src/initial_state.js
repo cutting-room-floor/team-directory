@@ -54,11 +54,37 @@ const links = [{
   url: 'https://twitter.com/'
 }];
 
-initialState.validators = function(d, c) { return c(null); };
-initialState.normalizers = function(d, c) { return c(d); };
+initialState.validators = function(d, c) { return c(null); }; // no-op
+initialState.normalizers = function(d, c) { return c(d); }; // no-op
+
+initialState.sorts = [{
+    key: 'name',
+    sort: function(people) {
+      return people.sort((a, b) => {
+        a = new Date(a.birthday).getTime();
+        b = new Date(b.birthday).getTime();
+        return b - a;
+      });
+    }
+  }, {
+    key: 'date',
+    sort: function(people) {
+      return people.sort((a, b) => {
+        a = (a.lname) ? a.lname.split(' ') : '';
+        b = (b.lname) ? b.lname.split(' ') : '';
+        a = a[1] ? a[1] : a[0];
+        b = b[1] ? b[1] : b[0];
+        return a.localeCompare(b);
+      });
+    }
+}];
+
+initialState.sortKeys = initialState.sorts.reduce((memo, sort) => {
+  memo.push(sort.key);
+  return memo;
+}, []);
 
 initialState.statsTemplate = function(people) {
-
   const f = people.filter((_) => {
     return _.sex === 'xx';
   }).length;

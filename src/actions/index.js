@@ -198,9 +198,6 @@ export function loadUser(u) {
 }
 
 export function loadPeople(query) {
-  const filter = (query && query.filter) ? query.filter : null;
-  const sort = (query && query.sort) ? query.sort : 'name';
-
   return (dispatch, getState) => {
     const { options } = getState().directory;
     repo.contents(options.people).read()
@@ -224,11 +221,17 @@ export function loadPeople(query) {
       .catch((err) => {
         dispatch(setError(err));
         dispatch(setPeople([]));
+        dispatch(setFilter([]));
       });
   };
 }
 
-export function peopleSort() {}
+export function peopleSort(sortIndex) {
+  return (dispatch, getState) => {
+    const { sorts, filterList } = getState().directory;
+    dispatch(setFilter(sorts[sortIndex].sort(filterList)));
+  }
+}
 
 export function peopleFilter(query) {
   return (dispatch, getState) => {
@@ -256,6 +259,28 @@ export function peopleFilter(query) {
       dispatch(setFilter(people));
     }
   }
+}
+
+function sorts(sorts) {
+  return {
+    type: types.SORTS,
+    sorts
+  };
+}
+
+function sortKeys() {
+  return {
+    type: types.SORT_KEYS,
+    sortKeys
+  };
+}
+
+export function setSorts(sorts) {
+  dispatch(sorts(sorts));
+  dispatch(sortKeys(sorts.reduce((memo, sort) => {
+    memo.push(sort.key);
+    return memo;
+  }, [])));
 }
 
 export function dismissError() {

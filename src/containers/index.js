@@ -90,7 +90,7 @@ class Index extends Component {
 
   render() {
     const { directory, peopleFilter, peopleSort, reRoute, location} = this.props;
-    const { people, filterList, actor, options, listingTemplate, statsTemplate } = directory;
+    const { people, filterList, sortKeys, actor, options, listingTemplate, statsTemplate } = directory;
 
     return (
       <DocumentTitle title={'Team listing'}>
@@ -114,7 +114,7 @@ class Index extends Component {
               </div>
             </div>
             <Filter
-              sortKeys={[]}
+              sortKeys={sortKeys}
               updatePath={reRoute}
               filter={peopleFilter}
               query={location.query}

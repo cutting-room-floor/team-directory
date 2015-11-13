@@ -52,6 +52,10 @@ export default class TeamDirectory {
     );
   }
 
+  sorts(fn) {
+    store.dispatch(setSorts(fn));
+  }
+
   validators(fn) {
     store.dispatch(setValidators(fn));
   }

@@ -49,6 +49,16 @@ export default function data(state = initialState, action) {
       filterList: action.filterList
     });
 
+    case types.SORTS:
+      return Object.assign({}, state, {
+      sorts: action.sorts
+    });
+
+    case types.SORT_KEYS:
+      return Object.assign({}, state, {
+      sortKeys: action.sortKeys
+    });
+
     case types.FORM:
       return Object.assign({}, state, {
       form: action.form

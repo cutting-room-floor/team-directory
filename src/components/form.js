@@ -301,7 +301,7 @@ export default class Form extends Component {
           <div className='col8'>
             &nbsp;
             {user && <button
-              className='button fill-red icon close pad2x'
+              className='button fill-red pad2x'
               onClick={this.onDelete.bind(this)}>
               Delete user
             </button>}

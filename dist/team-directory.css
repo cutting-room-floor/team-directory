@@ -72,10 +72,10 @@ form fieldset:first-child,
     }
 
 .pill .set12:first-of-type > * {
-  border-radius:3px 3px 0 0; 
+  border-radius:3px 3px 0 0;
   }
 .pill .set12:last-of-type > * {
-  border-radius:0 0 3px 3px; 
+  border-radius:0 0 3px 3px;
   }
 .pill .set12 > * {
   text-align:left;
@@ -104,21 +104,26 @@ nav.primary a {
     box-shadow:inset 0 -5px 0 #3887be;
     }
 
-.ReactModal__Overlay--after-open {
-  opacity: 1;
-  transition:opacity 150ms ease-out;
+.rounded-toggle label {
+  cursor:pointer;
+  vertical-align:top;
+  display:inline-block;
+  border-radius:16px;
+  padding:3px 10px;
+  font-size:12px;
+  line-height:20px;
   }
-.ReactModal__Overlay--before-close {
-  opacity:0;
-  }
+  .rounded-toggle > span {
+    padding:0;
+    }
 
 @media only screen and (max-width:640px) {
   .link a { padding:2.5px 0; }
   .pill:not(.mobile-cols) .react:first-of-type > * {
-    border-radius:3px 3px 0 0; 
+    border-radius:3px 3px 0 0;
     }
   .pill:not(.mobile-cols) .react:last-of-type > * {
-    border-radius:0 0 3px 3px; 
+    border-radius:0 0 3px 3px;
     }
   .pill:not(.mobile-cols) .react > * {
     width:100%;
