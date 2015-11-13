@@ -6,6 +6,7 @@ export const OPTIONS = 'OPTIONS';
 export const USER = 'USER';
 export const ACTOR = 'ACTOR';
 export const PEOPLE = 'PEOPLE';
+export const FILTER_LIST = 'FILTER_LIST';
 export const FORM = 'FORM';
 export const MESSAGE = 'MESSAGE';
 export const ERROR = 'ERROR';

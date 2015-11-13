@@ -10,13 +10,15 @@ const initialState = {
     org: '',
     repo: '',
     people: '',
-    form: ''
+    form: '',
+    filterKeys: ['github']
   },
   form: [],
   links: [],
   actor: null,
   user: null,
-  people: null
+  people: null,
+  filterList: null
 };
 
 function vCard(d) {

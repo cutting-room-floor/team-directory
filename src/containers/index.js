@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import VCard from 'vcf';
 import { saveAs } from 'filesaver.js';
 import { Base64 } from 'js-base64';
+import { updatePath } from 'redux-simple-router';
 import Filter from '../components/filter';
 import DocumentTitle from 'react-document-title';
 import Modal from 'react-modal';
@@ -88,8 +89,8 @@ class Index extends Component {
   }
 
   render() {
-    const { directory, peopleFilter, peopleSort } = this.props;
-    const { people, actor, listingTemplate, statsTemplate } = directory;
+    const { directory, peopleFilter, peopleSort, reRoute } = this.props;
+    const { people, filterList, actor, options, listingTemplate, statsTemplate } = directory;
 
     return (
       <DocumentTitle title={'Team listing'}>
@@ -114,11 +115,11 @@ class Index extends Component {
             </div>
             <Filter
               sortKeys={[]}
-              filterKeys={[]}
+              updatePath={reRoute}
               filter={peopleFilter}
               sort={peopleSort} />
           </div>}
-          {people.map((d, index) => {
+          {filterList.map((d, index) => {
             const access = (actor.admin || d.github.toLowerCase() === actor.login.toLowerCase()) ? true : false;
             return (
               <div key={index} className='clip small contain mobile-cols pad0y col12 clearfix keyline-bottom no-last-keyline'>
@@ -150,7 +151,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(Object.assign({}, actions, { reRoute: updatePath }), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

@@ -17,6 +17,13 @@ function setPeople(people) {
   };
 }
 
+function setFilter(filterList) {
+  return {
+    type: types.FILTER_LIST,
+    filterList
+  };
+}
+
 function setForm(form) {
   return {
     type: types.FORM,
@@ -32,11 +39,7 @@ export function setMessage(message) {
 }
 
 export function setError(error) {
-
-  console.log('AND THE ERROR ISSSS', error);
-  console.log(typeof error);
-
-
+  if (typeof error === 'object') error = JSON.parse(error.message).message;
   return {
     type: types.ERROR,
     error
@@ -172,7 +175,7 @@ export function loadForm() {
         dispatch(setForm(data));
       })
       .catch((err) => {
-        console.log('whats the error?', err);
+        dispatch(setError(err));
         dispatch(setForm([]));
       });
   };
@@ -212,18 +215,26 @@ export function loadPeople(query) {
             });
 
             dispatch(setActor(user));
+            dispatch(setFilter(data));
             dispatch(setPeople(data));
           });
       })
       .catch((err) => {
-        console.log('An error occurred', err);
+        dispatch(setError(err));
         dispatch(setPeople([]));
       });
   };
 }
 
 export function peopleSort() {}
-export function peopleFilter() {}
+
+export function peopleFilter(query) {
+  return (dispatch, getState) => {
+    const { options, people } = getState().directory;
+    console.log(options.filterKeys);
+    console.log('Filter people!', query);
+  }
+}
 
 export function dismissError() {
   return (dispatch) => {

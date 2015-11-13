@@ -3,6 +3,11 @@ import debounce from 'lodash.debounce';
 
 export default class Filter extends Component {
 
+  constructor(props, context) {
+    super(props, context);
+    this.filter = debounce(this.filter, 100);
+  }
+
   componentWillUnmount() {
     // this.props.filter(null);
   }
@@ -16,14 +21,14 @@ export default class Filter extends Component {
   }
 
   filter(e) {
+    const { filter } = this.props;
     const value = encodeURIComponent(e.target.value);
-    const query = this.getQuery();
-    query.filter = value;
 
-    debounce(() => {
-      // this.replaceWith(this.getPathname(), {}, query);
-      this.props.filter(value);
-    }, 10);
+    // const query = this.getQuery();
+    // query.filter = value;
+    // this.replaceWith(this.getPathname(), {}, query);
+
+    filter(value);
   }
 
   render() {
@@ -55,7 +60,7 @@ export default class Filter extends Component {
 
 Filter.propTypes = {
   sortKeys: PropTypes.array.isRequired,
-  filterKeys: PropTypes.array.isRequired,
+  updatePath: PropTypes.func.isRequired,
   filter: PropTypes.func.isRequired,
   sort: PropTypes.func
 };

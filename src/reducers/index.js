@@ -26,7 +26,7 @@ export default function data(state = initialState, action) {
 
     case types.OPTIONS:
       return Object.assign({}, state, {
-      options: action.options
+      options: Object.assign({}, state.options, action.options)
     });
 
     case types.ACTOR:
@@ -42,6 +42,11 @@ export default function data(state = initialState, action) {
     case types.PEOPLE:
       return Object.assign({}, state, {
       people: action.people
+    });
+
+    case types.FILTER_LIST:
+      return Object.assign({}, state, {
+      filterList: action.filterList
     });
 
     case types.FORM:
