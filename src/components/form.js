@@ -16,8 +16,8 @@ export default class Form extends Component {
   }
 
   exists(value) {
-    var { people } = this.props;
-    return people.some((user) => {
+    var { team } = this.props;
+    return team.some((user) => {
       return user.github.toLowerCase() === value.toLowerCase();
     });
   }
@@ -319,7 +319,7 @@ Form.propTypes = {
   data: PropTypes.array.isRequired,
   setError: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  people: PropTypes.array.isRequired,
+  team: PropTypes.array.isRequired,
   actor: PropTypes.object.isRequired,
   onDelete: PropTypes.func,
   user: PropTypes.object,

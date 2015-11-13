@@ -1043,7 +1043,7 @@ textarea {
 .pad1  { padding:10px; }
 .pad2  { padding:20px; }
 .pad4  { padding:40px; }
-.pad4  { padding:80px; }
+.pad8  { padding:80px; }
 
 .pad0x { padding-left: 5px; padding-right: 5px;}
 .pad1x { padding-left: 10px; padding-right: 10px;}

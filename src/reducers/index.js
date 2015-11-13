@@ -39,9 +39,9 @@ export default function data(state = initialState, action) {
       user: action.user
     });
 
-    case types.PEOPLE:
+    case types.TEAM:
       return Object.assign({}, state, {
-      people: action.people
+      team: action.team
     });
 
     case types.FILTER_LIST:

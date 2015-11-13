@@ -12,10 +12,10 @@ function setActor(actor) {
   };
 }
 
-function setPeople(people) {
+function setTeam(team) {
   return {
-    type: types.PEOPLE,
-    people
+    type: types.TEAM,
+    team
   };
 }
 
@@ -88,8 +88,8 @@ export function setOptions(options) {
 
 export function addUser(obj, cb) {
   return (dispatch, getState) => {
-    const { options, people } = getState().directory;
-    repo.contents(options.people).fetch().then((res) => {
+    const { options, team } = getState().directory;
+    repo.contents(options.team).fetch().then((res) => {
 
       const dataFromGitHub = JSON.parse(Base64.decode(res.content));
       dataFromGitHub.push(obj); // New record
@@ -101,9 +101,10 @@ export function addUser(obj, cb) {
         sha: res.sha
       };
 
-      repo.contents(options.people).add(putData)
+      repo.contents(options.team).add(putData)
         .then(() => {
-          dispatch(setPeople(dataFromGitHub));
+          dispatch(setFilter(dataFromGitHub));
+          dispatch(setTeam(dataFromGitHub));
           cb(null);
         }).catch((err) => { cb(err); });
     }).catch((err) => { cb(err); });
@@ -112,8 +113,8 @@ export function addUser(obj, cb) {
 
 export function updateUser(obj, cb) {
   return (dispatch, getState) => {
-    const { options, people } = getState().directory;
-    repo.contents(options.people).fetch().then((res) => {
+    const { options, team } = getState().directory;
+    repo.contents(options.team).fetch().then((res) => {
 
       const dataFromGitHub = JSON.parse(Base64.decode(res.content)).map((d) => {
         if (obj.github.toLowerCase() === d.github.toLowerCase()) d = obj;
@@ -127,9 +128,10 @@ export function updateUser(obj, cb) {
         sha: res.sha
       };
 
-      repo.contents(options.people).add(putData)
+      repo.contents(options.team).add(putData)
         .then(() => {
-          dispatch(setPeople(dataFromGitHub));
+          dispatch(setFilter(dataFromGitHub));
+          dispatch(setTeam(dataFromGitHub));
           cb(null);
         }).catch((err) => { cb(err); });
     }).catch((err) => { cb(err); });
@@ -138,8 +140,8 @@ export function updateUser(obj, cb) {
 
 export function removeUser(username, cb) {
   return (dispatch, getState) => {
-    const { options, people } = getState().directory;
-    repo.contents(options.people).fetch().then((res) => {
+    const { options, team } = getState().directory;
+    repo.contents(options.team).fetch().then((res) => {
 
       const dataFromGitHub = JSON.parse(Base64.decode(res.content)).filter((d) => {
         return username.toLowerCase() !== d.github.toLowerCase();
@@ -152,9 +154,10 @@ export function removeUser(username, cb) {
         sha: res.sha
       };
 
-      repo.contents(options.people).add(putData)
+      repo.contents(options.team).add(putData)
         .then(() => {
-          dispatch(setPeople(dataFromGitHub));
+          dispatch(setFilter(dataFromGitHub));
+          dispatch(setTeam(dataFromGitHub));
           cb(null);
         }).catch((err) => { cb(err); });
       }).catch((err) => { cb(err); });
@@ -185,8 +188,8 @@ export function loadForm() {
 
 export function loadUser(u) {
   return (dispatch, getState) => {
-    const { people } = getState().directory;
-    const user = people.filter((d) => {
+    const { team } = getState().directory;
+    const user = team.filter((d) => {
       return u.toLowerCase() === d.github.toLowerCase();
     })[0];
 
@@ -197,10 +200,10 @@ export function loadUser(u) {
   };
 }
 
-export function loadPeople(query) {
+export function loadTeam(query) {
   return (dispatch, getState) => {
     const { options } = getState().directory;
-    repo.contents(options.people).read()
+    repo.contents(options.team).read()
       .then((data) => {
         data = JSON.parse(data);
 
@@ -215,31 +218,31 @@ export function loadPeople(query) {
 
             dispatch(setActor(user));
             dispatch(setFilter(data));
-            dispatch(setPeople(data));
+            dispatch(setTeam(data));
           });
       })
       .catch((err) => {
         dispatch(setError(err));
-        dispatch(setPeople([]));
+        dispatch(setTeam([]));
         dispatch(setFilter([]));
       });
   };
 }
 
-export function peopleSort(sortIndex) {
+export function teamSort(sortIndex) {
   return (dispatch, getState) => {
     const { sorts, filterList } = getState().directory;
     dispatch(setFilter(sorts[sortIndex].sort(filterList)));
   }
 }
 
-export function peopleFilter(query) {
+export function teamFilter(query) {
   return (dispatch, getState) => {
-    const { options, people } = getState().directory;
+    const { options, team } = getState().directory;
 
     if (query.length > 2) {
       query = decodeURIComponent(removeDiacritics(query.toLowerCase()));
-      dispatch(setFilter(people.filter((d) => {
+      dispatch(setFilter(team.filter((d) => {
         const contains = options.filterKeys.some((field) => {
           if (typeof field === 'object') {
 
@@ -256,7 +259,7 @@ export function peopleFilter(query) {
         return contains;
       })));
     } else {
-      dispatch(setFilter(people));
+      dispatch(setFilter(team));
     }
   }
 }

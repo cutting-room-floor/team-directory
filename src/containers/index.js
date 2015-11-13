@@ -30,7 +30,7 @@ class Index extends Component {
 
   downloadCSV(e) {
     e.preventDefault();
-    const { people, form } = this.props.directory;
+    const { team, form } = this.props.directory;
     let header = [];
 
     // Build a header from the key values in form
@@ -42,7 +42,7 @@ class Index extends Component {
 
     let csv = header.join(', ') + '\n';
 
-    people.forEach((d) => {
+    team.forEach((d) => {
       let user = [];
       header.forEach((h) => {
         let val = '';
@@ -71,13 +71,13 @@ class Index extends Component {
 
     saveAs(new Blob([csv], {
       type: 'text/csv;base64'
-    }), 'people.csv');
+    }), 'team.csv');
   }
 
   downloadContacts() {
     const { directory } = this.props;
     const card = [];
-    directory.people.forEach((d) => {
+    directory.team.forEach((d) => {
       card.push((new VCard())
         .set('N', d.lname + ';' + d.fname)
         .set('EMAIL', d.email)
@@ -89,21 +89,21 @@ class Index extends Component {
   }
 
   render() {
-    const { directory, peopleFilter, peopleSort, reRoute, location} = this.props;
-    const { people, filterList, sortKeys, actor, options, listingTemplate, statsTemplate } = directory;
+    const { directory, teamFilter, teamSort, reRoute, location} = this.props;
+    const { team, filterList, sortKeys, actor, options, listingTemplate, statsTemplate } = directory;
 
     return (
       <DocumentTitle title={'Team listing'}>
-        {people.length ? <div>
+        {team.length ? <div>
 
           {statsTemplate && <Modal
             isOpen={this.state.showStats}
             style={modalStyle}
             onRequestClose={this.dismissModal.bind(this)}>
-            {statsTemplate(people)}
+            {statsTemplate(team)}
           </Modal>}
 
-          {(people.length > 1) && <div>
+          {(team.length > 1) && <div>
             <div className='col12 clearfix space-bottom2'>
               <div className='text-right col12'>
                 <div className='pill'>
@@ -116,9 +116,9 @@ class Index extends Component {
             <Filter
               sortKeys={sortKeys}
               updatePath={reRoute}
-              filter={peopleFilter}
+              filter={teamFilter}
               query={location.query}
-              sort={peopleSort} />
+              sort={teamSort} />
           </div>}
           {filterList.map((d, index) => {
             const access = (actor.admin || d.github.toLowerCase() === actor.login.toLowerCase()) ? true : false;

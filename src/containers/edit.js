@@ -60,7 +60,7 @@ class EditUser extends Component {
 
   render() {
     const { directory, setError, routeParams } = this.props;
-    const { validators, normalizers, people, actor, user, form } = directory;
+    const { validators, normalizers, team, actor, user, form } = directory;
     const parts = (form.length && user);
 
     return (
@@ -71,7 +71,7 @@ class EditUser extends Component {
           </div>
         {parts ? <div>
           <Form
-            people={people}
+            team={team}
             actor={actor}
             user={user}
             setError={setError}

@@ -9,7 +9,7 @@ const initialState = {
   options: {
     org: '',
     repo: '',
-    people: '',
+    team: '',
     form: '',
     filterKeys: ['github']
   },
@@ -17,7 +17,7 @@ const initialState = {
   links: [],
   actor: null,
   user: null,
-  people: null,
+  team: null,
   filterList: null
 };
 
@@ -59,8 +59,8 @@ initialState.normalizers = function(d, c) { return c(d); }; // no-op
 
 initialState.sorts = [{
     key: 'name',
-    sort: function(people) {
-      return people.sort((a, b) => {
+    sort: function(team) {
+      return team.sort((a, b) => {
         a = new Date(a.birthday).getTime();
         b = new Date(b.birthday).getTime();
         return b - a;
@@ -68,8 +68,8 @@ initialState.sorts = [{
     }
   }, {
     key: 'date',
-    sort: function(people) {
-      return people.sort((a, b) => {
+    sort: function(team) {
+      return team.sort((a, b) => {
         a = (a.lname) ? a.lname.split(' ') : '';
         b = (b.lname) ? b.lname.split(' ') : '';
         a = a[1] ? a[1] : a[0];
@@ -84,15 +84,15 @@ initialState.sortKeys = initialState.sorts.reduce((memo, sort) => {
   return memo;
 }, []);
 
-initialState.statsTemplate = function(people) {
-  const f = people.filter((_) => {
+initialState.statsTemplate = function(team) {
+  const f = team.filter((_) => {
     return _.sex === 'xx';
   }).length;
 
   const stats = [
-    { name: 'Total team', value: people.length },
-    { name: 'Women', value: (f / people.length * 100).toFixed(1) + '%' },
-    { name: 'Men', value: ((people.length - f) / people.length * 100).toFixed(1) + '%' }
+    { name: 'Total team', value: team.length },
+    { name: 'Women', value: (f / team.length * 100).toFixed(1) + '%' },
+    { name: 'Men', value: ((team.length - f) / team.length * 100).toFixed(1) + '%' }
   ];
 
   return (

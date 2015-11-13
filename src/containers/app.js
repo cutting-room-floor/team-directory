@@ -10,15 +10,15 @@ import ErrorDialog from '../components/error';
 
 class App extends Component {
   componentWillMount() {
-    const { loadPeople, loadForm } = this.props;
-    loadPeople();
+    const { loadTeam, loadForm } = this.props;
+    loadTeam();
     loadForm();
   }
 
   render() {
     const { children, directory, dismissModal, dismissError } = this.props;
-    const { message, error, people, form } = directory;
-    const fetched = people && form;
+    const { message, error, team, form } = directory;
+    const fetched = team && form;
     const loading = fetched ? '' : 'loading';
 
     return (
@@ -70,7 +70,7 @@ class App extends Component {
 App.propTypes = {
   children: PropTypes.node,
   dismissModal: PropTypes.func,
-  loadPeople: PropTypes.func.isRequired,
+  loadTeam: PropTypes.func.isRequired,
   message: PropTypes.string
 };
 

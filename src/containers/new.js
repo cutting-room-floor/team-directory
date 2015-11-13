@@ -25,7 +25,7 @@ class NewUser extends Component {
 
   render() {
     const { directory, setError } = this.props;
-    const { validators, normalizers, actor, people, form } = directory;
+    const { validators, normalizers, actor, team, form } = directory;
 
     return (
       <DocumentTitle title={'New | Team listing'}>
@@ -36,7 +36,7 @@ class NewUser extends Component {
           {directory.form.length ? <div>
             <Form
               actor={actor}
-              people={people}
+              team={team}
               setError={setError}
               normalizers={normalizers}
               validators={validators}
