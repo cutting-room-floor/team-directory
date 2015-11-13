@@ -1,6 +1,8 @@
 import * as types from '../constants/action_types';
 import Octokat from 'octokat';
 import { Base64 } from 'js-base64';
+import diacritics from 'diacritics';
+const removeDiacritics = diacritics.remove;
 let client, repo, config = {};
 
 function setActor(actor) {
@@ -231,8 +233,28 @@ export function peopleSort() {}
 export function peopleFilter(query) {
   return (dispatch, getState) => {
     const { options, people } = getState().directory;
-    console.log(options.filterKeys);
-    console.log('Filter people!', query);
+
+    if (query.length > 2) {
+      query = decodeURIComponent(removeDiacritics(query.toLowerCase()));
+      dispatch(setFilter(people.filter((d) => {
+        const contains = options.filterKeys.some((field) => {
+          if (typeof field === 'object') {
+
+            let value = '';
+            field.forEach(function(f) {
+              if (d[f]) value += d[f] + ' ';
+            });
+
+            return removeDiacritics(value.toLowerCase()).indexOf(query) > -1;
+          } else {
+            return d[field] && removeDiacritics(d[field].toLowerCase()).indexOf(query) > -1;
+          }
+        });
+        return contains;
+      })));
+    } else {
+      dispatch(setFilter(people));
+    }
   }
 }
 
