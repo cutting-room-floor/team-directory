@@ -6,11 +6,12 @@
     "email": "tristen.brown@gmail.com",
     "sex": "xy",
     "birthday": "1981-11-26",
-    "office": "dc",
+    "office": "sf",
     "homeaddress": "3524A 14TH ST NW",
     "teams": [
       "design",
-      "engineering"
+      "engineering",
+      "operations"
     ],
     "twitter": "fallsemo",
     "github": "tristen",
@@ -46,5 +47,19 @@
     "twitter": "milesdavis",
     "github": "milesdavis",
     "foursquare": "milesdavis"
+  },
+  {
+    "fname": "Ingrid",
+    "lname": "Jensen",
+    "email": "ingridJensen@gmail.com",
+    "sex": "xx",
+    "birthday": "1966-01-06",
+    "office": "ayacucho",
+    "teams": [
+      "design"
+    ],
+    "twitter": "ingridjensen",
+    "github": "ingridjensen",
+    "foursquare": "ingridjensen"
   }
 ]
