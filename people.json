@@ -47,5 +47,19 @@
     "twitter": "milesdavis",
     "github": "milesdavis",
     "foursquare": "milesdavis"
+  },
+  {
+    "fname": "Ingrid",
+    "lname": "Jensen",
+    "email": "ingridJensen@gmail.com",
+    "sex": "xx",
+    "birthday": "1966-01-06",
+    "office": "ayacucho",
+    "teams": [
+      "design"
+    ],
+    "twitter": "ingridjensen",
+    "github": "ingridjensen",
+    "foursquare": "ingridjensen"
   }
 ]
