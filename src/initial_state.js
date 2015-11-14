@@ -61,20 +61,20 @@ initialState.sorts = [{
     key: 'name',
     sort: function(team) {
       return team.sort((a, b) => {
-        a = new Date(a.birthday).getTime();
-        b = new Date(b.birthday).getTime();
-        return b - a;
+        a = (a.lname) ? a.lname.split(' ') : '';
+        b = (b.lname) ? b.lname.split(' ') : '';
+        a = a[1] ? a[1] : a[0];
+        b = b[1] ? b[1] : b[0];
+        return a.localeCompare(b);
       });
     }
   }, {
     key: 'date',
     sort: function(team) {
       return team.sort((a, b) => {
-        a = (a.lname) ? a.lname.split(' ') : '';
-        b = (b.lname) ? b.lname.split(' ') : '';
-        a = a[1] ? a[1] : a[0];
-        b = b[1] ? b[1] : b[0];
-        return a.localeCompare(b);
+        a = new Date(a.birthday).getTime();
+        b = new Date(b.birthday).getTime();
+        return b - a;
       });
     }
 }];
