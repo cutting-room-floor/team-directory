@@ -81,7 +81,7 @@ class EditUser extends Component {
             onSubmit={this.editUser.bind(this)}
             data={form} />
         </div> : <div>
-          <div className='center'>
+          <div className='center pad2y'>
             <h2>No form directory found.</h2>
             <p>Check your configuration settings.</p>
           </div>
