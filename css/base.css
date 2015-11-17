@@ -1065,7 +1065,7 @@ textarea {
 .keyline-bottom { border-bottom:1px solid rgba(0,0,0,0.10); }
 .keyline-left   { border-left:1px solid rgba(0,0,0,0.10); }
 
-/* Fixed containers
+/* Pinned containers
 ------------------------------------------------------- */
 .pin-top,
 .pin-right,
@@ -1086,6 +1086,81 @@ textarea {
   .pin-topright    { top:0; right:0; }
   .pin-topleft     { top:0; left:0; }
 
+/* Fixed containers
+------------------------------------------------------- */
+.fixed-top,
+.fixed-right,
+.fixed-bottom,
+.fixed-left,
+.fixed-topleft,
+.fixed-topright,
+.fixed-bottomleft,
+.fixed-bottomright {
+  position:fixed;
+  }
+  .fixed-bottom { right:0; bottom:0; left:0; }
+  .fixed-top    { top:0; right:0; left:0; }
+  .fixed-left   { top:0; bottom:0; left:0; }
+  .fixed-right  { top:0; right:0; bottom:0; }
+  .fixed-bottomright { bottom:0; right:0; }
+  .fixed-bottomleft  { bottom:0; left:0; }
+  .fixed-topright    { top:0; right:0; }
+  .fixed-topleft     { top:0; left:0; }
+
+/* Container Animations/Transitions
+-------------------------------------------------- */
+.animate {
+  -webkit-transition:all .125s;
+     -moz-transition:all .125s;
+      -ms-transition:all .125s;
+          transition:all .125s;
+  }
+
+.offcanvas-top    {
+  -webkit-transform:translateY(-100%);
+     -moz-transform:translateY(-100%);
+      -ms-transform:translateY(-100%);
+          transform:translateY(-100%);
+  }
+.offcanvas-right  {
+  -webkit-transform:translateX(100%);
+     -moz-transform:translateX(100%);
+      -ms-transform:translateX(100%);
+          transform:translateX(100%);
+  }
+.offcanvas-bottom {
+  -webkit-transform:translateY(100%);
+     -moz-transform:translateY(100%);
+      -ms-transform:translateY(100%);
+          transform:translateY(100%);
+  }
+.offcanvas-left   {
+  -webkit-transform:translateX(-100%);
+     -moz-transform:translateX(-100%);
+      -ms-transform:translateX(-100%);
+          transform:translateX(-100%);
+  }
+
+.offcanvas-top.active,
+.offcanvas-bottom.active,
+.offcanvas-top:target,
+.offcanvas-bottom:target {
+  -webkit-transform:translateY(0);
+     -moz-transform:translateY(0);
+      -ms-transform:translateY(0);
+          transform:translateY(0);
+  }
+
+.offcanvas-left.active,
+.offcanvas-right.active,
+.offcanvas-left:target,
+.offcanvas-right:target {
+  -webkit-transform:translateX(0);
+     -moz-transform:translateX(0);
+      -ms-transform:translateX(0);
+          transform:translateX(0);
+  }
+
 /* Markup free clearing
 Details: http://www.positioniseverything.net/easyclearing.html
 ------------------------------------------------------- */
@@ -1101,6 +1176,7 @@ Details: http://www.positioniseverything.net/easyclearing.html
 /* Color fills
 ------------------------------------------------------- */
 .fill-blue        { background-color:#3887be; }
+.fill-orange      { background-color:#f9886c; }
 .fill-navy        { background-color:#28353d; }
 .fill-navy-dark   { background-color:#222B30; }
 .fill-purple      { background-color:#8a8acb; }

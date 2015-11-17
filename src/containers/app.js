@@ -44,10 +44,10 @@ class App extends Component {
         {fetched && <div className='limiter pad4y'>
           {children}
         </div>}
-        {error && <ErrorDialog
+        <ErrorDialog
           dismissError={dismissError}
           error={error}>
-          </ErrorDialog>}
+          </ErrorDialog>
         <Modal
           isOpen={!!message}
           style={modalStyle}

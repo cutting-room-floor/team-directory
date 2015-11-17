@@ -1,3 +1,4 @@
+## Getting started
 
 ```html
 var Directory = TeamDirectory(document.getElementById('app'), {
@@ -8,3 +9,6 @@ var Directory = TeamDirectory(document.getElementById('app'), {
   form: 'data/form.json'
 });
 ```
+
+
+## Configuration
