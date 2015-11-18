@@ -1,10 +1,17 @@
 ## Getting started
 
-### Table of contents
+#### Table of contents
 
 - [Quick start](#quick-start)
 - [Initializing](#initializing)
   - [form.json](#formjson)
+  - [form.json types](#formjson-types)
+- [Advanced configuration](#advanced-configuration)
+  - [Sorts](#teamdirectorysorts)
+  - [Validators](#teamdirectoryvalidators)
+  - [Normalizers](#teamdirectorynormalizers)
+  - [Listing Template](#teamdirectorylistingtemplate)
+  - [Stats Template](#teamdirectorystatstemplate)
 
 ### Quick start
 
@@ -28,7 +35,7 @@ can be found [here](https://github.com/mapbox/team-directory/blob/master/index.h
 
 ### Initializing
 
-___`TeamDirectory(el, options)`___  
+___`TeamDirectory(el, options)`___
 - `el` (String or HTMLElement) of the container element the application should populate.
 - `options` are as follows:
 
@@ -80,9 +87,9 @@ as an object with specific key/value pairings. There are a few as follows:
 | fields | string | &#x2713; for some type attributes | Specific to checkboxes and radios, fields are an array of objects with `key` and `label` properties |
 | type | string | | If this value isnt provided, it defaults to 'text' See below for form types and their structures |
 
-### Form field types
+#### form.js types
 
-#### `add`
+##### `add`
 
 ```json
 {
@@ -95,7 +102,7 @@ as an object with specific key/value pairings. There are a few as follows:
 A unique form field for adding multiple entries.
 
 
-#### `textarea`
+##### `textarea`
 
 ```json
 {
@@ -107,7 +114,7 @@ A unique form field for adding multiple entries.
 
 `textarea` input type.
 
-#### `checkbox`
+##### `checkbox`
 
 ```json
 {
@@ -136,7 +143,7 @@ A unique form field for adding multiple entries.
 
 Checkbox input type.
 
-#### `radio`
+##### `radio`
 
 ```json
 {
@@ -161,7 +168,7 @@ Checkbox input type.
 
 Radio input type
 
-#### `number`
+##### `number`
 
 ```json
 {
@@ -173,7 +180,7 @@ Radio input type
 
 Number input type.
 
-#### `date`
+##### `date`
 
 ```json
 }
@@ -185,7 +192,7 @@ Number input type.
 
 Date input type.
 
-## Advanced configuration
+### Advanced configuration
 
 If you provide your own custom form data, you'll likely want to override
 existing functionality to suit your needs.
