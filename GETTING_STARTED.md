@@ -1,5 +1,11 @@
 ## Getting started
 
+### Table of contents
+
+- [Quick start](#quick-start)
+- [Initializing](#initializing)
+  - [form.json](#formjson)
+
 ### Quick start
 
 ```html
@@ -20,8 +26,9 @@ TeamDirectory(document.getElementById('app'), {
 FIll out the values above with your own credentials. An example configuration
 can be found [here](https://github.com/mapbox/team-directory/blob/master/index.html).
 
-### `TeamDirectory(el, options)`
+### Initializing
 
+___`TeamDirectory(el, options)`___  
 - `el` (String or HTMLElement) of the container element the application should populate.
 - `options` are as follows:
 
@@ -34,10 +41,11 @@ can be found [here](https://github.com/mapbox/team-directory/blob/master/index.h
 | form | String | &#x2713; | | the path and filename in `repo` where form data is read from |
 | filterKeys | Array | | `['github']` | An array of string keys that must correspond to a key property found in the form data. If an array is passed the two values are concatenated together (i.e. `['github', ['fname', 'lname']]`) |
 
-### A basic form.json document
+#### form.json
 
-Team Directory is designed for you to provide your own form data to a user to
-match your own needs. An example of a [form.json can be found here](https://github.com/mapbox/team-directory/blob/master/data/form.json) but at it's most basic the structure looks like this.
+Team Directory is designed for you to provide your own form data to meet your
+own needs. An example of a [form.json can be found here](https://github.com/mapbox/team-directory/blob/master/data/form.json) but at it's most basic the structure looks
+like this:
 
 ```json
 {
@@ -52,16 +60,16 @@ match your own needs. An example of a [form.json can be found here](https://gith
   }]
 }
 ```
-A couple notes:
+
+_A couple notes:_
 
 - __`Basic information`__ is the section name the form field belongs to. You can use any
 arbitrary name here or break form fields into any number of sections.
-- __GitHub__ is required. This is used in verification process to insure no
-duplicate unique users are added.
+- __GitHub__ is required. This is used in the verification process to insure no
+duplicate users is created.
 
-As you can see in the above form.json example, each form field is represented
-as an object with specific key/value pairings to describe it. The following keys
-are as follows:
+As you can see from the example json above, each form field is represented
+as an object with specific key/value pairings. There are a few as follows:
 
 
 | Option | Value | Required | Description |
@@ -69,11 +77,113 @@ are as follows:
 | key | String | &#x2713; | A unique key name |
 | label | String | | Form label shown above the field element |
 | required | Boolean | | If a form field is required the form won't submit for the user until a value has been passed. |
-| type | string | | If this value isnt provided, it defaults to 'text' See below for form types and their structures |
 | fields | string | &#x2713; for some type attributes | Specific to checkboxes and radios, fields are an array of objects with `key` and `label` properties |
+| type | string | | If this value isnt provided, it defaults to 'text' See below for form types and their structures |
 
-### form types
+### Form field types
 
+#### `add`
+
+```json
+{
+  "key": "other-links",
+  "label": "Other links",
+  "type": "add"
+}
+```
+
+A unique form field for adding multiple entries.
+
+
+#### `textarea`
+
+```json
+{
+  "key": "adress",
+  "label": "Home address",
+  "type": "textarea"
+{
+```
+
+`textarea` input type.
+
+#### `checkbox`
+
+```json
+{
+  "key": "teams",
+  "label": "Teams (check all that apply)",
+  "required": true,
+  "type": "checkbox",
+  "fields": [{
+    "key": "business",
+    "label": "Business"
+  }, {
+    "key": "design",
+    "label": "Design"
+  }, {
+    "key": "engineering",
+    "label": "Engineering"
+  }, {
+    "key": "operations",
+    "label": "Operations"
+  }, {
+    "key": "support",
+    "label": "Support"
+  }]
+}
+```
+
+Checkbox input type.
+
+#### `radio`
+
+```json
+{
+  "key": "office",
+  "label": "Office",
+  "type": "radio",
+  "fields": [{
+    "key": "dc",
+    "label": "DC"
+  }, {
+    "key": "sf",
+    "label": "SF"
+  }, {
+    "key": "ayacucho",
+    "label": "Peru"
+  }, {
+    "key": "bengaluru",
+    "label": "India"
+  }]
+}
+```
+
+Radio input type
+
+#### `number`
+
+```json
+{
+  "key": "call",
+  "label": "Mobile number",
+  "type": "number"
+}
+```
+
+Number input type.
+
+#### `date`
+
+```json
+}
+  "key": "birthday",
+  "label": "Birthday",
+  "type": "date"
+}
+```
+
+Date input type.
 
 ## Advanced configuration
 
@@ -88,7 +198,7 @@ key attribute in the form data and the `sort` function should return the sorted
 array when complete.
 
 ```js
-var directions = (document.getElementById('app'), options);
+var directions = TeamDirectory(document.getElementById('app'), options);
 
 directions.sorts = [{
     key: 'date',
@@ -104,4 +214,92 @@ directions.sorts = [{
     });
   }
 }];
+```
+
+#### `TeamDirectory.validators`
+
+Custom validation that's called before a team member is created or updated.
+The validators function is passed two arguments: `obj` The team member object &
+`callback` A function that's called in your code with either a string messsage
+describing a validation error found or `null` (no error found). Team member
+data will not be submitted until validation passes.
+
+```js
+var directions = TeamDirectory(document.getElementById('app'), options);
+
+directions.validators = function(obj, callback) {
+ if (obj.office === 'other' && !obj.city) {
+   return callback('If the office selected is other, please enter your city');
+ }
+
+ // No validation errors if it gets here
+ return callback(null);
+});
+```
+
+#### `TeamDirectory.normalizers`
+
+Format/normalize fields a user before its submitted. The normalizer function is
+passed two arguments: `obj` The team member object & `callback` A function
+that's called at the end of the function containing the new normalized/formatted
+user object. Team member data will not be submitted until this callback is called.
+
+```js
+var directions = TeamDirectory(document.getElementById('app'), options);
+
+directions.normalization = function(obj, callback) {
+ return callback(obj.map(function(data) {
+
+   // Remove any capitalization from an entered username.
+   data.username = data.username.toLowerCase();
+   return data;
+ });
+});
+```
+
+#### `TeamDirectory.listingTemplate`
+
+Create a custom listing template for team members. The listingTemplate is a
+function passed one argument: `obj` the current user in a list drawn out to
+the main page. The function must return [jsx template](https://facebook.github.io/jsx/).
+
+```js
+var directions = TeamDirectory(document.getElementById('app'), options);
+
+directions.listingTemplate = function(obj) {
+ var fullName = obj.fname + ' ' + obj.lname;
+
+ return (
+   <div>
+     <strong>{fullName}</strong>
+     <em>{obj.birthday}</em>
+   </div>
+ );
+});
+```
+
+#### `TeamDirectory.statsTemplate`
+
+Evaluate team user data and present a template of found statistics. The
+statsTemplate is passed one argument: `team` the team array of users. The
+function must return [jsx template](https://facebook.github.io/jsx/). If no
+statsTemplate is provided, the teamStats link and modal will not be present
+on the listing page.
+
+```js
+var directions = TeamDirectory(document.getElementById('app'), options);
+
+directions.statsTemplate = function(team) {
+ var length = team.length;
+ var phones = team.filter(function(member) {
+   return member.phone;
+ }).length;
+
+ return (
+   <div>
+     <h2>Team stats</h2>
+     <p>There are {length} total team members and {phones} have phones.
+   </div>
+ );
+});
 ```

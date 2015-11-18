@@ -57,119 +57,21 @@ export default class TeamDirectory {
     return this;
   }
 
-  /*
-   * TeamDirectory.validators
-   * Custom validation that's called before a team member is created or updated.
-   *
-   * @param {function} validation This function receives two arguments:
-   * - `obj` The team member object.
-   * - `callback` A callback function called in your code with either a
-   * string messsage describing a validation error found or `null`
-   * (no error found). Team member data will not be created/updated until
-   * validation passes.
-   * @returns this
-   *
-   * @example
-   * var directions = (document.getElementById('app'), options);
-   *
-   * directions.validators = function(obj, callback) {
-   *  if (obj.office === 'other' && !obj.city) {
-   *    return callback('If the office selected is other, please enter your city');
-   *  }
-   *
-   *  // No validation errors if it gets here
-   *  return callback(null);
-   * });
-  */
   validators(fn) {
     store.dispatch(setValidators(fn));
     return this;
   }
 
-  /*
-   * TeamDirectory.normalizers
-   * Format/normalize fields in a team member object before its created or updated.
-   *
-   * @param {function} normalization This function receives two arguments:
-   * - `obj` The team member object
-   * - `callback` A callback function called at the end of the function containing
-   * a new normalized/formatted object. Team member data will not be
-   * created/updated until this callback is called.
-   * @returns this
-   *
-   * @example
-   * var directions = (document.getElementById('app'), options);
-   *
-   * directions.normalization = function(obj, callback) {
-   *  return callback(obj.map(function(data) {
-   *
-   *    // Remove any capitalization from an entered username.
-   *    data.username = data.username.toLowerCase();
-   *    return data;
-   *  });
-   * });
-  */
   normalizers(fn) {
     store.dispatch(setNormalizers(fn));
     return this;
   }
 
-  /*
-   * TeamDirectory.listingTemplate
-   * Creates a custom listing while called on each team member.
-   *
-   * @param {function} template This function recieves one argument:
-   * - `obj` the current user in the list the template should be building out.
-   * The return value of this function must be a `jsx` template.
-   * @returns this
-   *
-   * @example
-   * var directions = (document.getElementById('app'), options);
-   *
-   * directions.listingTemplate = function(obj) {
-   *  var fullName = obj.fname + ' ' + obj.lname;
-   *
-   *  return (
-   *    <div>
-   *      <strong>{fullName}</strong>
-   *      <em>{obj.birthday}</em>
-   *    </div>
-   *  );
-   * });
-  */
   listingTemplate(fn) {
     store.dispatch(setListingTemplate(fn));
     return this;
   }
 
-  /*
-   * TeamDirectory.statsTemplate
-   * Evaluate team user data and present a template of found statistics.
-   *
-   * @param {function} template This function recieves one argument:
-   * - `team` the team array of users.
-   * The return value of this function must be a `jsx` template. if no
-   * statsTemplate is provided, the teamStats link and modal will no be present
-   * on the listing page.
-   * @returns this
-   *
-   * @example
-   * var directions = (document.getElementById('app'), options);
-   *
-   * directions.statsTemplate = function(team) {
-   *  var length = team.length;
-   *  var phones = team.filter(function(member) {
-   *    return member.phone;
-   *  }).length;
-   *
-   *  return (
-   *    <div>
-   *      <h2>Team stats</h2>
-   *      <p>There are {length} total team members and {phones} have phones.
-   *    </div>
-   *  );
-   * });
-  */
   statsTemplate(fn) {
     store.dispatch(setStatsTemplate(fn));
     return this;
