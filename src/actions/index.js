@@ -105,6 +105,7 @@ export function addUser(obj, cb) {
         .then(() => {
           dispatch(setFilter(dataFromGitHub));
           dispatch(setTeam(dataFromGitHub));
+          dispatch(eventEmit('user.created', { user: obj }));
           cb(null);
         }).catch((err) => { cb(err); });
     }).catch((err) => { cb(err); });
@@ -132,6 +133,7 @@ export function updateUser(obj, cb) {
         .then(() => {
           dispatch(setFilter(dataFromGitHub));
           dispatch(setTeam(dataFromGitHub));
+          dispatch(eventEmit('user.updated', { user: obj }));
           cb(null);
         }).catch((err) => { cb(err); });
     }).catch((err) => { cb(err); });
@@ -142,9 +144,14 @@ export function removeUser(username, cb) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
     repo.contents(options.team).fetch().then((res) => {
-
+      let user;
       const dataFromGitHub = JSON.parse(Base64.decode(res.content)).filter((d) => {
-        return username.toLowerCase() !== d.github.toLowerCase();
+        if (username.toLowerCase() === d.github.toLowerCase()) {
+          user = d;
+          return false;
+        } else {
+          return true;
+        }
       });
 
       const payload = JSON.stringify(dataFromGitHub, null, 2) + '\n';
@@ -158,6 +165,7 @@ export function removeUser(username, cb) {
         .then(() => {
           dispatch(setFilter(dataFromGitHub));
           dispatch(setTeam(dataFromGitHub));
+          dispatch(eventEmit('user.removed', { user: user }));
           cb(null);
         }).catch((err) => { cb(err); });
       }).catch((err) => { cb(err); });

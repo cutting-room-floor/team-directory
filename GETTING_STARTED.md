@@ -12,6 +12,7 @@
   - [Normalizers](#teamdirectorynormalizers)
   - [Listing Template](#teamdirectorylistingtemplate)
   - [Stats Template](#teamdirectorystatstemplate)
+- [Events](#events)
 
 ### Quick start
 
@@ -310,3 +311,25 @@ directions.statsTemplate = function(team) {
  );
 });
 ```
+
+### Events
+
+___`TeamDirectory.on(type, function)`___
+
+Clients can subscribe to events that happen in the application.
+
+```js
+var directions = TeamDirectory(document.getElementById('app'), options);
+
+// Get team data when it's available on the page
+directions.on('load', function(ev) {
+    console.log(ev.team);
+});
+```
+
+Available types are as follows:
+
+- `load`
+- `user.created`
+- `user.updated`
+- `user.removed`
