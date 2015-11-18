@@ -6,12 +6,11 @@
     "email": "tristen.brown@gmail.com",
     "sex": "xy",
     "birthday": "1912-11-26",
-    "office": "sf",
+    "office": "dc",
     "homeaddress": "3524A 14TH ST NW",
     "teams": [
       "design",
-      "engineering",
-      "operations"
+      "engineering"
     ],
     "twitter": "fallsemo",
     "github": "tristen",
