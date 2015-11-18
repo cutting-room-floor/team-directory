@@ -54,6 +54,14 @@ class NewUser extends Component {
   }
 }
 
+NewUser.propTypes = {
+  directory: PropTypes.object.isRequired,
+  addUser: PropTypes.func.isRequired,
+  setMessage: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired,
+  reRoute: PropTypes.func.isRequired
+};
+
 function mapStateToProps(state) {
   return state;
 }

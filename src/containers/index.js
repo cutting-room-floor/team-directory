@@ -147,6 +147,14 @@ class Index extends Component {
   }
 }
 
+Index.propTypes = {
+  directory: PropTypes.object.isRequired,
+  teamFilter: PropTypes.func.isRequired,
+  teamSort: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+  reRoute: PropTypes.func.isRequired
+};
+
 function mapStateToProps(state) {
   return state;
 }

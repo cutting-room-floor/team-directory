@@ -46,8 +46,7 @@ class App extends Component {
         </div>}
         <ErrorDialog
           dismissError={dismissError}
-          error={error}>
-          </ErrorDialog>
+          error={error} />
         <Modal
           isOpen={!!message}
           style={modalStyle}
@@ -68,9 +67,12 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: PropTypes.node,
-  dismissModal: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  dismissModal: PropTypes.func.isRequired,
+  dismissError: PropTypes.func.isRequired,
   loadTeam: PropTypes.func.isRequired,
+  loadForm: PropTypes.func.isRequired,
+  directory: PropTypes.object.isRequired,
   message: PropTypes.string
 };
 

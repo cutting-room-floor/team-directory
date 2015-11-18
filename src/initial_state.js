@@ -1,3 +1,6 @@
+/*eslint-disable react/display-name */
+/*eslint-disable react/no-multi-comp */
+
 import React from 'react';
 import md5 from 'md5-jkmyers';
 import VCard from 'vcf';

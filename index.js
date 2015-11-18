@@ -4,8 +4,8 @@ function Directory(id, options) {
   return new TeamDirectory(id, options);
 }
 
-if (window) {
-  window.TeamDirectory = Directory;
-} else if (typeof module !== 'undefined') {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = Directory;
+} else {
+  window.TeamDirectory = Directory;
 }

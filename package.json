@@ -5,13 +5,14 @@
   "main": "index.js",
   "browserify": {
     "transform": [
+      "envify",
       "babelify"
     ]
   },
   "scripts": {
     "start": "budo index.js --serve=dist/team-directory.js --live -d --pushstate | bistre",
     "build": "browserify index.js | uglifyjs -c -m > dist/team-directory.js",
-    "test": "npm run lint && browserify test/test.js | smokestack -b firefox | tap-status",
+    "test": ". ./.env.sh ; npm run lint && browserify test/test.js | smokestack -b firefox | tap-status",
     "lint": "eslint --no-eslintrc -c .eslintrc index.js src test"
   },
   "repository": {
@@ -31,15 +32,18 @@
   "homepage": "https://github.com/mapbox/team-directory#readme",
   "devDependencies": {
     "babel-core": "^5.8.25",
+    "babel-eslint": "^4.1.5",
     "babel-plugin-object-assign": "^1.2.1",
     "babelify": "^6.3.0",
     "bistre": "^1.0.1",
     "browserify": "^11.2.0",
     "budo": "^6.0.2",
+    "envify": "^3.4.0",
     "eslint": "^1.7.2",
     "eslint-plugin-react": "^3.6.3",
     "smokestack": "^3.4.1",
-    "tap-status": "^1.0.1"
+    "tap-status": "^1.0.1",
+    "tape": "^4.2.2"
   },
   "dependencies": {
     "diacritics": "^1.2.3",

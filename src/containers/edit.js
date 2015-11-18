@@ -92,6 +92,17 @@ class EditUser extends Component {
   }
 }
 
+EditUser.propTypes = {
+  directory: PropTypes.object.isRequired,
+  reRoute: PropTypes.func.isRequired,
+  routeParams: PropTypes.object.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  removeUser: PropTypes.func.isRequired,
+  setMessage: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired
+};
+
 function mapStateToProps(state) {
   return state;
 }
