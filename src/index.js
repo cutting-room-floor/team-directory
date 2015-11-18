@@ -17,7 +17,7 @@ import Index from './containers/index';
 import Edit from './containers/edit';
 import New from './containers/new';
 import NotFound from './components/notfound';
-import { setOptions, setValidators, setNormalizers } from './actions';
+import { setOptions, setValidators, setNormalizers, eventSubscribe } from './actions';
 
 const reducer = combineReducers(Object.assign({}, { directory: reducers }, {
   routing: routeReducer
@@ -73,7 +73,7 @@ export default class TeamDirectory {
   }
 
   statsTemplate(fn) {
-    store.dispatch(setStatsTemplate(fn));
+    store.dispatch(setstatstemplate(fn));
     return this;
   }
 
@@ -87,9 +87,7 @@ export default class TeamDirectory {
    * @returns this
   */
   on(type, fn) {
-    this._events = this._events || {};
-    this._events[type] = this._events[type] || [];
-    this._events[type].push(fn);
+    store.dispatch(eventSubscribe(type, fn));
     return this;
   }
 }

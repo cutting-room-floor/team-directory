@@ -219,6 +219,7 @@ export function loadTeam(query) {
             dispatch(setActor(user));
             dispatch(setFilter(data));
             dispatch(setTeam(data));
+            dispatch(eventEmit('load', { team: data, user: user }));
           });
       })
       .catch((err) => {
@@ -296,4 +297,35 @@ export function dismissModal() {
   return (dispatch) => {
     dispatch(setMessage(''));
   };
+}
+
+export function eventSubscribe(type, fn) {
+  return (dispatch, getState) => {
+    const { events } = getState().directory;
+    events[type] = events[type] || [];
+    events[type].push(fn);
+    return {
+      type: types.EVENTS,
+      events
+    };
+  }
+}
+
+export function eventEmit(type, data) {
+  return (dispatch, getState) => {
+    const { events } = getState().directory;
+
+    if (!events[type]) {
+      return {
+        type: types.EVENTS,
+        events
+      }
+    }
+
+    const listeners = events[type].slice();
+
+    for (var i = 0; i < listeners.length; i++) {
+      listeners[i].call(this, data);
+    }
+  }
 }

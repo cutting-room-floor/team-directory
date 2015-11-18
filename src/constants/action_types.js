@@ -12,3 +12,4 @@ export const FILTER_LIST = 'FILTER_LIST';
 export const FORM = 'FORM';
 export const MESSAGE = 'MESSAGE';
 export const ERROR = 'ERROR';
+export const EVENTS = 'EVENTS';

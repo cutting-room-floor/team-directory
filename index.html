@@ -16,6 +16,10 @@
       team: 'team.json',
       form: 'data/form.json'
     });
+
+    Directory.on('load', function(e) {
+      console.log('data', e);
+    });
   </script>
 </body>
 </html>

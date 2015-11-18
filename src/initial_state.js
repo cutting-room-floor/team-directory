@@ -13,6 +13,7 @@ const initialState = {
     form: '',
     filterKeys: ['github']
   },
+  events: {},
   form: [],
   links: [],
   actor: null,
