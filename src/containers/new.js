@@ -44,7 +44,7 @@ class NewUser extends Component {
               data={form} />
           </div> : <div>
             <div className='center pad2y'>
-              <h2>No form directory found.</h2>
+              <h2>No form document found.</h2>
               <p>Check your configuration settings.</p>
             </div>
           </div>}

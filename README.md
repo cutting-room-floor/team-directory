@@ -22,10 +22,10 @@ for which ones are used in a template.
 
 ##### Light admin access
 
-If an admin key is set to true on a user they are granted special access.
+If an admin key is set to true on a user they are granted additional features:
 
 - View/edit all users
-- Download all fields from the team list as a csv document
+- Download all fields from the team list as a CSV document.
 
 ---
 

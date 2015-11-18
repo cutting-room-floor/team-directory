@@ -52,34 +52,6 @@ export default class TeamDirectory {
     );
   }
 
-  /*
-   * TeamDirectory.sorts
-   * Provide custom sort functions on the listings page.
-   *
-   * @param {array} sorts An array of objects containing a `key` name as string
-   * and a sort function that receives a current filtered list. The `key` must
-   * correspond to a key attribute in the form data and the `sort` function
-   * should return the sorted array when complete.
-   * @returns this
-   *
-   * @example
-   * var directions = (document.getElementById('app'), options);
-   *
-   * directions.sorts = [{
-   *     key: 'date',
-   *     sort: function(team) {
-   *       return team.sort((a, b) => {
-   *         return new Date(b.birthday).getTime() - new Date(a.birthday).getTime();
-   *       });
-   *     }
-   *   }, {
-   *     key: 'name',
-   *     return team.sort((a, b) => {
-   *       return a.localeCompare(b);
-   *     });
-   *   }
-   * }];
-  */
   sorts(fn) {
     store.dispatch(setSorts(fn));
     return this;

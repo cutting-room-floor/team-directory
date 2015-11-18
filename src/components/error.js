@@ -1,16 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class ErrorDialog extends Component {
-  componentWillMount() {
-    const { dismissError } = this.props;
-    window.setTimeout(() => {
-      dismissError();
-    }, 3000);
-  }
-
   render() {
     const { error, dismissError } = this.props;
     const active = (error) ? 'active' : '';
+    if (active) window.setTimeout(dismissError, 3000);
     return (
       <div>
         <div className={`fixed-bottomleft z10 col3 offcanvas-bottom animate pad1 ${active}`}>
