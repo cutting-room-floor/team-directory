@@ -78,7 +78,7 @@ export function setNormalizers(normalizers) {
 
 export function setOptions(options) {
   client = new Octokat({ token: options.GitHubToken });
-  repo = client.repos(options.org, options.repo);
+  repo = client.repos(options.account, options.repo);
 
   return {
     type: types.OPTIONS,

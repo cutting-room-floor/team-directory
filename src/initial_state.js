@@ -7,7 +7,7 @@ const initialState = {
   message: '',
   error: '',
   options: {
-    org: '',
+    account: '',
     repo: '',
     team: '',
     form: '',

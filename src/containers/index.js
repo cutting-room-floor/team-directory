@@ -81,7 +81,7 @@ class Index extends Component {
       card.push((new VCard())
         .set('N', d.lname + ';' + d.fname)
         .set('EMAIL', d.email)
-        .set('ORG', directory.options.org)
+        .set('ORG', directory.options.account)
         .set('TEL', d.cell)
         .toString());
     });
