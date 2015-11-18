@@ -11,6 +11,7 @@ const initialState = {
     repo: '',
     team: '',
     form: '',
+    branch: '',
     filterKeys: ['github']
   },
   events: {},

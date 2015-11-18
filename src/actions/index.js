@@ -101,6 +101,8 @@ export function addUser(obj, cb) {
         sha: res.sha
       };
 
+      if (options.branch) putData.branch = options.branch;
+
       repo.contents(options.team).add(putData)
         .then(() => {
           dispatch(setFilter(dataFromGitHub));
@@ -128,6 +130,8 @@ export function updateUser(obj, cb) {
         content: Base64.encode(payload),
         sha: res.sha
       };
+
+      if (options.branch) putData.branch = options.branch;
 
       repo.contents(options.team).add(putData)
         .then(() => {
@@ -160,6 +164,8 @@ export function removeUser(username, cb) {
         content: Base64.encode(payload),
         sha: res.sha
       };
+
+      if (options.branch) putData.branch = options.branch;
 
       repo.contents(options.team).add(putData)
         .then(() => {

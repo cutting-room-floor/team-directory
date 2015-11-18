@@ -1,7 +1,7 @@
 {
   "name": "team-directory",
   "version": "1.0.0",
-  "description": "A rolodex",
+  "description": "A rolodex for teams",
   "main": "index.js",
   "browserify": {
     "transform": [
