@@ -9,9 +9,11 @@
     "office": "sf",
     "homeaddress": "3524A 14TH ST NW",
     "teams": [
+      "business",
       "design",
       "engineering",
-      "operations"
+      "operations",
+      "support"
     ],
     "twitter": "fallsemo",
     "github": "tristen",

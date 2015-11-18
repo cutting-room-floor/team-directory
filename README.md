@@ -1,7 +1,11 @@
 Team directory
 ---
 
-A read/write interface for team data with data managed on GitHub. Features include:
+A read/write interface for team data with data managed on GitHub. 
+
+![demo](http://i.imgur.com/r3vq8yN.gif)
+
+Features include:
 
 - List filtering/sorting with stored params
 - [vCard](https://en.wikipedia.org/wiki/VCard) downloads (single or entire team)
