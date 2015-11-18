@@ -53,7 +53,7 @@ class App extends Component {
           style={modalStyle}
           onRequestClose={dismissModal}>
           <div className='clearfix'>
-            <div className='pad4x pad2y'>
+            <div className='pad4x pad2y center'>
               <h3>{message.title}</h3>
               <p className='space-top1 quiet'>{message.content}</p>
             </div>

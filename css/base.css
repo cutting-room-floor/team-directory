@@ -1228,19 +1228,6 @@ img.inline, .inline           { display:inline-block; }
   overflow:hidden;
   }
 
-/* Small Screen Layout
-------------------------------------------------------- */
-@media only screen and (max-width:900px) {
-  .limiter { width: 100%; padding: 0 20px;}
-}
-
-/* Tablet Layout
-------------------------------------------------------- */
-@media only screen and (max-width:770px) {
-  .hide-tablet { display:none; }
-  .show-tablet { display:block; }
-}
-
 /* Mobile Layout
 ------------------------------------------------------- */
 @media only screen and (max-width:640px) {

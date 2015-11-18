@@ -31,13 +31,15 @@ If an admin key is set to true on a user they are granted additional features:
 
 ## Getting started
 
-Read [GETTING_STARTED.md](https://github.com/mapbox/team-directory/blob/master/GETTING_STARTED.md)
-to learn more.
+Read [Getting started][] to learn more.
 
-## Contributing
+## Developing
 
-Clone a copy of this project, change into the project directory from the terminal
-and install dependencies with `npm install`. When installation is complete run
-`npm start` to start a server on `http://localhost:9966/` you'll want to verify
-you have the right credentials entered as options when instantiating TeamDirectory.
-See the [index file for an example](https://github.com/mapbox/team-directory/blob/master/index.html).
+- Clone a copy of this project
+- Change into the project directory from terminal and install dependencies via `npm install`.
+- Add your credentials as options when instantiating `TeamDirectory`. See this projects [index][] example and read [Getting started][] to learn more.
+- Run `npm start` to start a server on `http://localhost:9966/`.
+
+[Getting started]: https://github.com/mapbox/team-directory/blob/master/GETTING_STARTED.md
+[index]: https://github.com/mapbox/team-directory/blob/master/index.html
+
