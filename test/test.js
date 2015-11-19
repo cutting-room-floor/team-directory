@@ -17,8 +17,13 @@ function createDirectory() {
 
 test('initialize', function(t) {
   var directory = createDirectory();
+  t.plan(2);
+
+  directory.on('load', function(e) {
+    t.ok(e, 'data loaded');
+  });
+
   t.ok(directory, 'directory was initialized');
-  t.end();
 });
 
 // close the smokestack window once tests are complete
