@@ -5,7 +5,7 @@ Team directory
 
 A read/write interface for team data with data managed on GitHub. 
 
-![demo](http://i.imgur.com/r3vq8yN.gif)
+![demo](https://i.imgur.com/LdW1GCz.gif)
 
 Features include:
 

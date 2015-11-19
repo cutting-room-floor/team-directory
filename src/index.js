@@ -77,15 +77,6 @@ export default class TeamDirectory {
     return this;
   }
 
-  /*
-   * Subscribe to a specified event with a listener function the latter gets
-   * the data object that was passed to `fire` and additionally `target` and
-   * `type` properties
-   *
-   * @param {string} type Event type
-   * @param {Function} listener Function to be called when the event is fired
-   * @returns this
-  */
   on(type, fn) {
     store.dispatch(eventSubscribe(type, fn));
     return this;

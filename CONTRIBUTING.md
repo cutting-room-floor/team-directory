@@ -31,7 +31,7 @@ Run tests via
 ## Deploying
 
 - `git run build`
-- Commit the build to and push
+- Commit the build to git and push
 - `git tag -a vX.X.X -m 'vX.X.X'`
 - `git push --tags`
 - `npm publish`
