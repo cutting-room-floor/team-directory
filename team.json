@@ -6,7 +6,7 @@
     "email": "tristen.brown@gmail.com",
     "sex": "xy",
     "birthday": "1912-11-26",
-    "office": "sf",
+    "office": "dc",
     "homeaddress": "3524A 14TH ST NW",
     "teams": [
       "business",
@@ -17,7 +17,13 @@
     ],
     "twitter": "fallsemo",
     "github": "tristen",
-    "foursquare": "fallsemo"
+    "foursquare": "fallsemo",
+    "other-links": [
+      {
+        "name": "instagram",
+        "value": "tristen"
+      }
+    ]
   },
   {
     "fname": "Freddie",
