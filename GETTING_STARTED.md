@@ -89,7 +89,7 @@ as an object with specific key/value pairings. There are a few as follows:
 | fields | string | &#x2713; for some type attributes | Specific to checkboxes and radios, fields are an array of objects with `key` and `label` properties |
 | type | string | | If this value isnt provided, it defaults to 'text' See below for form types and their structures |
 
-#### form.js types
+#### form.json types
 
 ##### `add`
 

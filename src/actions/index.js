@@ -181,7 +181,10 @@ export function removeUser(username, cb) {
 export function loadForm() {
   return (dispatch, getState) => {
     const { options } = getState().directory;
-    repo.contents(options.form).read()
+    const config = {};
+    if (options.branch) config.ref = options.branch;
+
+    repo.contents(options.form).read(config)
       .then((res) => {
         res = JSON.parse(res);
         let data = [];
@@ -217,7 +220,10 @@ export function loadUser(u) {
 export function loadTeam(query) {
   return (dispatch, getState) => {
     const { options } = getState().directory;
-    repo.contents(options.team).read()
+    const config = {};
+    if (options.branch) config.ref = options.branch;
+
+    repo.contents(options.team).read(config)
       .then((data) => {
         data = JSON.parse(data);
 
