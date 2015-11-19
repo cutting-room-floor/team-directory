@@ -27,3 +27,11 @@ specific branch.
 Run tests via
 
     npm run test-local
+
+## Deploying
+
+- `git run build`
+- Commit the build to and push
+- `git tag -a vX.X.X -m 'vX.X.X'`
+- `git push --tags`
+- `npm publish`
