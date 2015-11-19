@@ -86,6 +86,7 @@ as an object with specific key/value pairings. There are a few as follows:
 | key | String | &#x2713; | A unique key name |
 | label | String | | Form label shown above the field element |
 | required | Boolean | | If a form field is required the form won't submit for the user until a value has been passed. |
+| required | Boolean | | Form field is only present if the user editing has `admin: true` set in their user object. |
 | fields | string | &#x2713; for some type attributes | Specific to checkboxes and radios, fields are an array of objects with `key` and `label` properties |
 | type | string | | If this value isnt provided, it defaults to 'text' See below for form types and their structures |
 
