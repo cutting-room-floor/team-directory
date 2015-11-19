@@ -1,6 +1,8 @@
 Team directory
 ---
 
+[![Circle CI](https://circleci.com/gh/mapbox/team-directory.svg?style=svg)](https://circleci.com/gh/mapbox/team-directory)
+
 A read/write interface for team data with data managed on GitHub. 
 
 ![demo](http://i.imgur.com/r3vq8yN.gif)
@@ -33,17 +35,9 @@ If an admin key is set to true on a user they are granted additional features:
 
 ---
 
-## Getting started
+## [Getting started][]
+## [Contributing][]
 
-Read [Getting started][] to learn more.
-
-## Developing
-
-- Clone a copy of this project
-- Change into the project directory from the terminal and install dependencies via `npm install`.
-- Add your credentials as options when instantiating `TeamDirectory`. See this projects [index][] as example and read [Getting started][] to learn more.
-- Run `npm start` to start a server on `http://localhost:9966/`.
-
+[Contributing]: https://github.com/mapbox/team-directory/blob/master/CONTRIBUTING.md
 [Getting started]: https://github.com/mapbox/team-directory/blob/master/GETTING_STARTED.md
 [index]: https://github.com/mapbox/team-directory/blob/master/index.html
-

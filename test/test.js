@@ -2,14 +2,16 @@ var test = require('tape');
 var TeamDirectory = require('../');
 
 function createDirectory() {
-  var Directory = TeamDirectory(document.createElement('div'), {
-    GitHubToken: 'process.env.GitHubToken',
-    account: 'mapbox',
-    repo: 'team-directory',
-    team: 'team.json',
-    form: 'data/form.json'
-  });
+  var options = {
+    GitHubToken: process.env.GitHubToken,
+    account: process.env.account,
+    repo: process.env.repo,
+    team: process.env.team,
+    form: process.env.form
+  }
 
+  if (process.env.branch) options.branch = process.env.branch;
+  var Directory = TeamDirectory(document.createElement('div'), options);
   return Directory;
 }
 
