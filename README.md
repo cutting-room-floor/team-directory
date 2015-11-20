@@ -7,7 +7,7 @@ A read/write interface for team data with data managed on GitHub.
 
 ![demo](https://i.imgur.com/LdW1GCz.gif)
 
-Features include:
+### Features
 
 - List filtering/sorting with stored params
 - [vCard](https://en.wikipedia.org/wiki/VCard) downloads (single or entire team)
@@ -35,8 +35,8 @@ If an admin key is set to true on a user they are granted additional features:
 
 ---
 
-## [Getting started][]
-## [Contributing][]
+## &#9755; [Getting started][]
+## &#9755; [Contributing][]
 
 [Contributing]: https://github.com/mapbox/team-directory/blob/master/CONTRIBUTING.md
 [Getting started]: https://github.com/mapbox/team-directory/blob/master/GETTING_STARTED.md
