@@ -1,4 +1,8 @@
-### v1.0.2
+### v1.0.4
+
+- [bug] Corrected documentation and function call for `sorts`.
+
+### v1.0.3
 
 - [bug] Corrected documentation and function calls for `listingTemplate` & `statsTemplate`.
 
