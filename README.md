@@ -3,7 +3,7 @@ Team directory
 
 [![Circle CI](https://circleci.com/gh/mapbox/team-directory.svg?style=svg)](https://circleci.com/gh/mapbox/team-directory)
 
-A read/write interface for team data with data managed on GitHub. 
+A read/write interface for team data managed on GitHub.
 
 ![demo](https://i.imgur.com/LdW1GCz.gif)
 

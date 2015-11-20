@@ -276,7 +276,7 @@ the main page. The function must return [jsx template](https://facebook.github.i
 ```js
 var directory = TeamDirectory(document.getElementById('app'), options);
 
-directory.listingTemplate = function(obj) {
+directory.listingTemplate(function(obj) {
  var fullName = obj.fname + ' ' + obj.lname;
 
  return (
@@ -299,7 +299,7 @@ on the listing page.
 ```js
 var directory = TeamDirectory(document.getElementById('app'), options);
 
-directory.statsTemplate = function(team) {
+directory.statsTemplate(function(team) {
  var length = team.length;
  var phones = team.filter(function(member) {
    return member.phone;

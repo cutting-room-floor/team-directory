@@ -55,14 +55,14 @@ export function setValidators(validators) {
   };
 }
 
-export function setStatsRenderer(statsTemplate) {
+export function setStatsTemplate(statsTemplate) {
   return {
     type: types.STATS_TEMPLATE,
     statsTemplate
   };
 }
 
-export function setListingRenderer(listingTemplate) {
+export function setListingTemplate(listingTemplate) {
   return {
     type: types.LISTING_TEMPLATE,
     listingTemplate
