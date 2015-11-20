@@ -208,9 +208,9 @@ key attribute in the form data and the `sort` function should return the sorted
 array when complete.
 
 ```js
-var directions = TeamDirectory(document.getElementById('app'), options);
+var directory = TeamDirectory(document.getElementById('app'), options);
 
-directions.sorts = [{
+directory.sorts = [{
     key: 'date',
     sort: function(team) {
       return team.sort((a, b) => {
@@ -235,9 +235,9 @@ describing a validation error found or `null` (no error found). Team member
 data will not be submitted until validation passes.
 
 ```js
-var directions = TeamDirectory(document.getElementById('app'), options);
+var directory = TeamDirectory(document.getElementById('app'), options);
 
-directions.validators = function(obj, callback) {
+directory.validators = function(obj, callback) {
  if (obj.office === 'other' && !obj.city) {
    return callback('If the office selected is other, please enter your city');
  }
@@ -255,9 +255,9 @@ that's called at the end of the function containing the new normalized/formatted
 user object. Team member data will not be submitted until this callback is called.
 
 ```js
-var directions = TeamDirectory(document.getElementById('app'), options);
+var directory = TeamDirectory(document.getElementById('app'), options);
 
-directions.normalization = function(obj, callback) {
+directory.normalization = function(obj, callback) {
  return callback(obj.map(function(data) {
 
    // Remove any capitalization from an entered username.
@@ -274,9 +274,9 @@ function passed one argument: `obj` the current user in a list drawn out to
 the main page. The function must return [jsx template](https://facebook.github.io/jsx/).
 
 ```js
-var directions = TeamDirectory(document.getElementById('app'), options);
+var directory = TeamDirectory(document.getElementById('app'), options);
 
-directions.listingTemplate = function(obj) {
+directory.listingTemplate = function(obj) {
  var fullName = obj.fname + ' ' + obj.lname;
 
  return (
@@ -297,9 +297,9 @@ statsTemplate is provided, the teamStats link and modal will not be present
 on the listing page.
 
 ```js
-var directions = TeamDirectory(document.getElementById('app'), options);
+var directory = TeamDirectory(document.getElementById('app'), options);
 
-directions.statsTemplate = function(team) {
+directory.statsTemplate = function(team) {
  var length = team.length;
  var phones = team.filter(function(member) {
    return member.phone;
@@ -321,10 +321,10 @@ ___`TeamDirectory.on(type, function)`___
 Clients can subscribe to events that happen in the application.
 
 ```js
-var directions = TeamDirectory(document.getElementById('app'), options);
+var directory = TeamDirectory(document.getElementById('app'), options);
 
 // Get team data when it's available on the page
-directions.on('load', function(ev) {
+directory.on('load', function(ev) {
     console.log(ev.team);
 });
 ```
