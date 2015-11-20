@@ -239,7 +239,7 @@ data will not be submitted until validation passes.
 ```js
 var directory = TeamDirectory(document.getElementById('app'), options);
 
-directory.validators = function(obj, callback) {
+directory.validators(function(obj, callback) {
  if (obj.office === 'other' && !obj.city) {
    return callback('If the office selected is other, please enter your city');
  }
@@ -259,7 +259,7 @@ user object. Team member data will not be submitted until this callback is calle
 ```js
 var directory = TeamDirectory(document.getElementById('app'), options);
 
-directory.normalization = function(obj, callback) {
+directory.normalization(function(obj, callback) {
  return callback(obj.map(function(data) {
 
    // Remove any capitalization from an entered username.
