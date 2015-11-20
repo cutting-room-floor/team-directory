@@ -210,20 +210,22 @@ array when complete.
 ```js
 var directory = TeamDirectory(document.getElementById('app'), options);
 
-directory.sorts = [{
-    key: 'date',
-    sort: function(team) {
+directory.sorts(function() {
+  return [{
+      key: 'date',
+      sort: function(team) {
+        return team.sort((a, b) => {
+          return new Date(b.birthday).getTime() - new Date(a.birthday).getTime();
+        });
+      }
+    }, {
+      key: 'name',
       return team.sort((a, b) => {
-        return new Date(b.birthday).getTime() - new Date(a.birthday).getTime();
+        return a.localeCompare(b);
       });
     }
-  }, {
-    key: 'name',
-    return team.sort((a, b) => {
-      return a.localeCompare(b);
-    });
-  }
-}];
+  ];
+});
 ```
 
 #### `TeamDirectory.validators`

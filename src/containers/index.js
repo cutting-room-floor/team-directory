@@ -124,7 +124,7 @@ class Index extends Component {
             const access = (actor.admin || d.github.toLowerCase() === actor.login.toLowerCase()) ? true : false;
             return (
               <div key={index} className='clip small contain mobile-cols pad0y col12 clearfix keyline-bottom no-last-keyline'>
-                {access && <div className='space pin-topright quiet pad1y'>
+                {access && <div className='space pin-topright quiet pad1y z1'>
                   <a
                     className='quiet'
                     href={`edit/${d.github}`}>

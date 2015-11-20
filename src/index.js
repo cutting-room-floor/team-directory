@@ -18,6 +18,7 @@ import Edit from './containers/edit';
 import New from './containers/new';
 import NotFound from './components/notfound';
 import {
+  setSorts,
   setOptions,
   setValidators,
   setNormalizers,
