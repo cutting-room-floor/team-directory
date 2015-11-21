@@ -292,19 +292,21 @@ function sorts(sorts) {
   };
 }
 
-function sortKeys() {
+function sortKeys(sortKeys) {
   return {
     type: types.SORT_KEYS,
     sortKeys
   };
 }
 
-export function setSorts(sorts) {
-  dispatch(sorts(sorts));
-  dispatch(sortKeys(sorts.reduce((memo, sort) => {
-    memo.push(sort.key);
-    return memo;
-  }, [])));
+export function setSorts(arr) {
+  return (dispatch) => {
+    dispatch(sorts(arr));
+    dispatch(sortKeys(arr.reduce((memo, sort) => {
+      memo.push(sort.key);
+      return memo;
+    }, [])));
+  }
 }
 
 export function dismissError() {

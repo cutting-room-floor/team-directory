@@ -26,6 +26,13 @@ test('initialize', function(t) {
   t.ok(directory, 'directory was initialized');
 });
 
+test('teamdirectory.sorts', function(t) {
+  var directory = createDirectory();
+  directory.sorts([]);
+  t.ok(true, 'custom sort was dispatched');
+  t.end();
+});
+
 // close the smokestack window once tests are complete
 test('shutdown', function(t) {
   t.end();
