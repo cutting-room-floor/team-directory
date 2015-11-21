@@ -1,3 +1,7 @@
+### v1.0.5
+
+- [bug] Fix error on `sorts` dispatching.
+
 ### v1.0.4
 
 - [bug] Corrected documentation and function call for `sorts`.

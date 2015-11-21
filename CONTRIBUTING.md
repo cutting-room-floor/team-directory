@@ -31,7 +31,8 @@ Run tests via
 ## Deploying
 
 - `git run build`
-- Commit the build to git and push
+- Add entry to [CHANGELOG](https://github.com/mapbox/team-directory/blob/master/CHANGELOG.md)
+- Commit and push
 - `git tag -a vX.X.X -m 'vX.X.X'`
 - `git push --tags`
 - `npm publish`
