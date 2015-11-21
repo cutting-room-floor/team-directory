@@ -309,7 +309,7 @@ directory.statsTemplate(function(team) {
  return (
    <div>
      <h2>Team stats</h2>
-     <p>There are {length} total team members and {phones} have phones.
+     <p>There are {length} total team members and {phones} have phones.</p>
    </div>
  );
 });
