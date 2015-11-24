@@ -1,3 +1,7 @@
+### v1.2.1
+
+- [bug] Explicty pass `basePath` to all routes and use a base tag in index.html.
+
 ### v1.2.0
 
 - [feature] Added optional `basePath` parameter to support root paths other than `'/'`.
