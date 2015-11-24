@@ -69,5 +69,15 @@
     "twitter": "ingridjensen",
     "github": "ingridjensen",
     "foursquare": "ingridjensen"
+  },
+  {
+    "fname": "foo",
+    "lname": "foo",
+    "email": "foo@foo.com",
+    "sex": "xy",
+    "teams": [
+      "engineering"
+    ],
+    "github": "foo"
   }
 ]
