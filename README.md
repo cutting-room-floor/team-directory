@@ -1,7 +1,7 @@
 Team directory
 ---
 
-[![Circle CI](https://circleci.com/gh/mapbox/team-directory.svg?style=svg)](https://circleci.com/gh/mapbox/team-directory)
+[![npm version](http://img.shields.io/npm/v/team-directory.svg)](https://npmjs.org/package/team-directory) [![Circle CI](https://circleci.com/gh/mapbox/team-directory.svg?style=svg)](https://circleci.com/gh/mapbox/team-directory)
 
 A read/write interface for team data managed on GitHub.
 
