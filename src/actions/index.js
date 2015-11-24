@@ -41,13 +41,13 @@ export function setMessage(message) {
 }
 
 export function setError(error) {
-  return (dispatch, getState) => {
-    dispatch(isLoading(false));
+  return (dispatch) => {
     if (typeof error === 'object') error = JSON.parse(error.message).message;
-    return {
+    dispatch(isLoading(false));
+    dispatch({
       type: types.ERROR,
       error
-    };
+    });
   }
 }
 
