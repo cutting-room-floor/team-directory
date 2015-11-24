@@ -1,3 +1,7 @@
+### v1.2.0
+
+- [feature] Added optional `basePath` parameter to support root paths other than `'/'`.
+
 ### v1.1.0
 
 - [feature] Added `user.edit` event
