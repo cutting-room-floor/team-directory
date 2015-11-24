@@ -80,15 +80,5 @@
       "engineering"
     ],
     "github": "foo"
-  },
-  {
-    "fname": "foo",
-    "lname": "foo",
-    "email": "foo@foo.com",
-    "sex": "xy",
-    "teams": [
-      "design"
-    ],
-    "github": "foobar"
   }
 ]
