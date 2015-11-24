@@ -334,5 +334,6 @@ Available types are as follows:
 
 - `load`
 - `user.created`
+- `user.editing`
 - `user.updated`
 - `user.removed`

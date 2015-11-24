@@ -210,6 +210,7 @@ export function loadUser(u) {
       return u.toLowerCase() === d.github.toLowerCase();
     })[0];
 
+    dispatch(eventEmit('user.editing', { user: user }));
     dispatch({
       type: types.USER,
       user
