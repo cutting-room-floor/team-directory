@@ -34,7 +34,7 @@ class EditUser extends Component {
           action: 'Okay',
           onClickHandler: () => {
             setMessage('');
-            reRoute(`/`);
+            reRoute('/');
           }
         });
       });
@@ -44,14 +44,17 @@ class EditUser extends Component {
   }
 
   editUser(obj) {
-    const { updateUser, setMessage, setError } = this.props;
+    const { updateUser, setMessage, setError, reRoute } = this.props;
     updateUser(obj, (err) => {
       if (err) return setError(err);
       setMessage({
         title: `${obj.github} updated!`,
         content: 'Record has been saved.',
         action: 'Okay',
-        onClickHandler: () => { setMessage(''); }
+        onClickHandler: () => {
+          setMessage('');
+          reRoute('/');
+        }
       });
     });
   }

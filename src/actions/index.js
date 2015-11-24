@@ -92,9 +92,12 @@ export function setOptions(options) {
 export function addUser(obj, cb) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
+    const config = {};
+    if (options.branch) config.ref = options.branch;
+
     dispatch(isLoading(true));
 
-    repo.contents(options.team).fetch().then((res) => {
+    repo.contents(options.team).fetch(config).then((res) => {
 
       const dataFromGitHub = JSON.parse(Base64.decode(res.content));
       dataFromGitHub.push(obj); // New record
@@ -123,9 +126,11 @@ export function addUser(obj, cb) {
 export function updateUser(obj, cb) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
+    const config = {};
+    if (options.branch) config.ref = options.branch;
     dispatch(isLoading(true));
 
-    repo.contents(options.team).fetch().then((res) => {
+    repo.contents(options.team).fetch(config).then((res) => {
       const dataFromGitHub = JSON.parse(Base64.decode(res.content)).map((d) => {
         if (obj.github.toLowerCase() === d.github.toLowerCase()) d = obj;
         return d;
@@ -155,9 +160,11 @@ export function updateUser(obj, cb) {
 export function removeUser(username, cb) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
+    const config = {};
+    if (options.branch) config.ref = options.branch;
     dispatch(isLoading(true));
 
-    repo.contents(options.team).fetch().then((res) => {
+    repo.contents(options.team).fetch(config).then((res) => {
       let user;
       const dataFromGitHub = JSON.parse(Base64.decode(res.content)).filter((d) => {
         if (username.toLowerCase() === d.github.toLowerCase()) {
@@ -241,7 +248,7 @@ export function loadTeam(query) {
       .then((data) => {
         data = JSON.parse(data);
 
-        client.user.fetch()
+        client.user.fetch(config)
           .then((user) => {
 
             data.forEach((d) => {

@@ -117,6 +117,8 @@ nav.primary a {
     padding:0;
     }
 
+.error-console { word-wrap:break-word; }
+
 @media only screen and (max-width:640px) {
   .link a { padding:2.5px 0; }
   .pill:not(.mobile-cols) .react:first-of-type > * {

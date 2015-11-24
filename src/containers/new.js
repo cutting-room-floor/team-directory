@@ -17,7 +17,7 @@ class NewUser extends Component {
         action: 'Okay',
         onClickHandler: () => {
           setMessage('');
-          reRoute(`/edit/${obj.github}`);
+          reRoute('/');
         }
       });
     });
