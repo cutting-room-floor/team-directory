@@ -10,7 +10,13 @@ export default class Filter extends Component {
   componentWillMount() {
     const { query, filter, sort, sortKeys } = this.props;
     if (query.filter) filter(query.filter);
-    if (query.sort) sort(sortKeys.indexOf(query.sort));
+    if (sortKeys.length) {
+      if (query.sort) {
+        sort(sortKeys.indexOf(query.sort));
+      } else {
+        sort(sortKeys.indexOf(sortKeys[0]));
+      }
+    }
   }
 
   sort(e) {
