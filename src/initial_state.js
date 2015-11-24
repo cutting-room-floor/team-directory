@@ -15,6 +15,7 @@ const initialState = {
     team: '',
     form: '',
     branch: '',
+    basePath: '/',
     filterKeys: ['github']
   },
   events: {},

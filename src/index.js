@@ -48,7 +48,7 @@ export default class TeamDirectory {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <Route path='/' component={App}>
+          <Route path={options.basePath || '/'} component={App}>
             <IndexRoute component={Index} />
             <Route path='/edit/:user' component={Edit} />
             <Route path='/new' component={New} />
