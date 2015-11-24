@@ -17,12 +17,12 @@ class App extends Component {
 
   render() {
     const { children, directory, dismissModal, dismissError } = this.props;
-    const { message, error, team, form } = directory;
+    const { message, error, team, form, loading } = directory;
     const fetched = team && form;
-    const loading = fetched ? '' : 'loading';
+    const loadClass = loading ? 'loading' : '';
 
     return (
-      <div className={`contain min-containment ${loading}`}>
+      <div className={`contain min-containment ${loadClass}`}>
         <nav className='col12 fill-navy dark z10'>
           <div className='limiter'>
             <nav className='primary'>

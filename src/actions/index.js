@@ -41,11 +41,14 @@ export function setMessage(message) {
 }
 
 export function setError(error) {
-  if (typeof error === 'object') error = JSON.parse(error.message).message;
-  return {
-    type: types.ERROR,
-    error
-  };
+  return (dispatch, getState) => {
+    dispatch(isLoading(false));
+    if (typeof error === 'object') error = JSON.parse(error.message).message;
+    return {
+      type: types.ERROR,
+      error
+    };
+  }
 }
 
 export function setValidators(validators) {
@@ -89,6 +92,8 @@ export function setOptions(options) {
 export function addUser(obj, cb) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
+    dispatch(isLoading(true));
+
     repo.contents(options.team).fetch().then((res) => {
 
       const dataFromGitHub = JSON.parse(Base64.decode(res.content));
@@ -108,6 +113,7 @@ export function addUser(obj, cb) {
           dispatch(setFilter(dataFromGitHub));
           dispatch(setTeam(dataFromGitHub));
           dispatch(eventEmit('user.created', { user: obj }));
+          dispatch(isLoading(false));
           cb(null);
         }).catch((err) => { cb(err); });
     }).catch((err) => { cb(err); });
@@ -117,8 +123,9 @@ export function addUser(obj, cb) {
 export function updateUser(obj, cb) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
-    repo.contents(options.team).fetch().then((res) => {
+    dispatch(isLoading(true));
 
+    repo.contents(options.team).fetch().then((res) => {
       const dataFromGitHub = JSON.parse(Base64.decode(res.content)).map((d) => {
         if (obj.github.toLowerCase() === d.github.toLowerCase()) d = obj;
         return d;
@@ -138,6 +145,7 @@ export function updateUser(obj, cb) {
           dispatch(setFilter(dataFromGitHub));
           dispatch(setTeam(dataFromGitHub));
           dispatch(eventEmit('user.updated', { user: obj }));
+          dispatch(isLoading(false));
           cb(null);
         }).catch((err) => { cb(err); });
     }).catch((err) => { cb(err); });
@@ -147,6 +155,8 @@ export function updateUser(obj, cb) {
 export function removeUser(username, cb) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
+    dispatch(isLoading(true));
+
     repo.contents(options.team).fetch().then((res) => {
       let user;
       const dataFromGitHub = JSON.parse(Base64.decode(res.content)).filter((d) => {
@@ -172,6 +182,7 @@ export function removeUser(username, cb) {
           dispatch(setFilter(dataFromGitHub));
           dispatch(setTeam(dataFromGitHub));
           dispatch(eventEmit('user.removed', { user: user }));
+          dispatch(isLoading(false));
           cb(null);
         }).catch((err) => { cb(err); });
       }).catch((err) => { cb(err); });
@@ -182,6 +193,7 @@ export function loadForm() {
   return (dispatch, getState) => {
     const { options } = getState().directory;
     const config = {};
+    dispatch(isLoading(true));
     if (options.branch) config.ref = options.branch;
 
     repo.contents(options.form).read(config)
@@ -195,6 +207,7 @@ export function loadForm() {
           });
         }
         dispatch(setForm(data));
+        dispatch(isLoading(false));
       })
       .catch((err) => {
         dispatch(setError(err));
@@ -241,6 +254,7 @@ export function loadTeam(query) {
             dispatch(setFilter(data));
             dispatch(setTeam(data));
             dispatch(eventEmit('load', { team: data, user: user }));
+            dispatch(isLoading(false));
           });
       })
       .catch((err) => {
@@ -351,4 +365,11 @@ export function eventEmit(type, data) {
       listeners[i].call(this, data);
     }
   }
+}
+
+export function isLoading(loading) {
+  return {
+    type: types.LOADING,
+    loading
+  };
 }

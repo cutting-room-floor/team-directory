@@ -79,6 +79,11 @@ export default function data(state = initialState, action) {
       events: action.events
     });
 
+    case types.LOADING:
+      return Object.assign({}, state, {
+      loading: action.loading
+    });
+
     default:
       return state;
   }

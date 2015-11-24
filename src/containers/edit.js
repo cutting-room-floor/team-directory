@@ -37,8 +37,6 @@ class EditUser extends Component {
             reRoute(`/`);
           }
         });
-
-        // TODO Emit a remove event.
       });
     } else {
       setError('GitHub account name was not entered correctly.');

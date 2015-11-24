@@ -13,3 +13,4 @@ export const FORM = 'FORM';
 export const MESSAGE = 'MESSAGE';
 export const ERROR = 'ERROR';
 export const EVENTS = 'EVENTS';
+export const LOADING = 'LOADING';

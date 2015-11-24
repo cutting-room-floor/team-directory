@@ -20,6 +20,7 @@ const initialState = {
   events: {},
   form: [],
   links: [],
+  loading: true,
   actor: null,
   user: null,
   team: null,

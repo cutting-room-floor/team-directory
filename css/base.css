@@ -1357,3 +1357,8 @@ img.inline, .inline           { display:inline-block; }
       -ms-animation: rotate 1s linear infinite;
           animation: rotate 1s linear infinite;
   }
+
+@-webkit-keyframes rotate { from { -webkit-transform: rotate(0); } to { -webkit-transform: rotate(360deg); } }
+   @-moz-keyframes rotate { from { -moz-transform: rotate(0); } to { -moz-transform: rotate(360deg); } }
+    @-ms-keyframes rotate { from { -ms-transform: rotate(0); } to { -ms-transform: rotate(360deg); } }
+        @keyframes rotate { from { transform: rotate(0); } to { transform: rotate(360deg); } }
