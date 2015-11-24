@@ -32,6 +32,7 @@ Run tests via
 
 - `git run build`
 - Add entry to [CHANGELOG](https://github.com/mapbox/team-directory/blob/master/CHANGELOG.md)
+- Update the version key in [package.json](https://github.com/mapbox/team-directory/blob/master/package.json#L3)
 - Commit and push
 - `git tag -a vX.X.X -m 'vX.X.X'`
 - `git push --tags`

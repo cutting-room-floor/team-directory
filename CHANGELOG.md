@@ -1,3 +1,10 @@
+### v1.1.0
+
+- [feature] Added `user.edit` event
+- [ui] Loading state on all IO
+- [ui] Redirect to listing page after all user operations
+- [bug] Pass optional branch param to fetch parameters.
+
 ### v1.0.5
 
 - [bug] Fix error on `sorts` dispatching.
