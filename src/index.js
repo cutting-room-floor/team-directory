@@ -45,14 +45,16 @@ export default class TeamDirectory {
     const container = typeof id === 'string' ?
       document.getElementById(id) : id;
 
+    const basePath = options.basePath || '/';
+
     render(
       <Provider store={store}>
         <Router history={history}>
-          <Route path={options.basePath || '/'} component={App}>
+          <Route path={basePath} component={App}>
             <IndexRoute component={Index} />
-            <Route path='/edit/:user' component={Edit} />
-            <Route path='/new' component={New} />
-            <Route path='/*' component={NotFound} />
+            <Route path={`${basePath}edit/:user`} component={Edit} />
+            <Route path={`${basePath}new`} component={New} />
+            <Route path={`${basePath}*`} component={NotFound} />
           </Route>
         </Router>
       </Provider>,
