@@ -75,6 +75,7 @@
     "lname": "foo",
     "email": "foo@foo.com",
     "sex": "xy",
+    "office": "sf",
     "teams": [
       "engineering"
     ],
