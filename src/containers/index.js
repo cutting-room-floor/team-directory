@@ -114,6 +114,7 @@ class Index extends Component {
               </div>
             </div>
             <Filter
+              directory={directory}
               sortKeys={sortKeys}
               updatePath={reRoute}
               filter={teamFilter}
@@ -139,7 +140,7 @@ class Index extends Component {
         </div> : <div className='center'>
           <h2>No users.</h2>
           <div className='pad2y'>
-            <Link className='button pad4x' to={'/new'}>Create one?</Link>
+            <Link className='button pad4x' to={`${directory.options.basePath}new`}>Create one?</Link>
           </div>
         </div>}
       </DocumentTitle>

@@ -10,18 +10,18 @@ import Form from '../components/form';
 class EditUser extends Component {
   componentWillMount() {
     const { directory, loadUser, reRoute, routeParams } = this.props;
-    const { actor } = directory;
+    const { actor, options } = directory;
     const username = routeParams.user;
 
     if (!actor.admin) {
-      if (username.toLowerCase() !== actor.login.toLowerCase()) reRoute('/404');
+      if (username.toLowerCase() !== actor.login.toLowerCase()) reRoute(options.basePath + '404');
     }
 
     loadUser(username);
   }
 
   removeUser() {
-    const { removeUser, routeParams, setMessage, setError, reRoute } = this.props;
+    const { directory, removeUser, routeParams, setMessage, setError, reRoute } = this.props;
     const user = routeParams.user;
     const prompt = window.prompt('Are you sure? Enter their GitHub username to continue');
 
@@ -34,7 +34,7 @@ class EditUser extends Component {
           action: 'Okay',
           onClickHandler: () => {
             setMessage('');
-            reRoute('/');
+            reRoute(directory.options.basePath);
           }
         });
       });
@@ -44,7 +44,7 @@ class EditUser extends Component {
   }
 
   editUser(obj) {
-    const { updateUser, setMessage, setError, reRoute } = this.props;
+    const { directory, updateUser, setMessage, setError, reRoute } = this.props;
     updateUser(obj, (err) => {
       if (err) return setError(err);
       setMessage({
@@ -53,7 +53,7 @@ class EditUser extends Component {
         action: 'Okay',
         onClickHandler: () => {
           setMessage('');
-          reRoute('/');
+          reRoute(directory.options.basePath);
         }
       });
     });
