@@ -1,3 +1,7 @@
+### v1.2.2
+
+- [bug] added `basePath` to all `reRoute` paths.
+
 ### v1.2.1
 
 - [bug] Explicty pass `basePath` to all routes and use a base tag in index.html.
