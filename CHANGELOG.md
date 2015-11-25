@@ -1,3 +1,7 @@
+### v1.2.3
+
+- [bug] Missing basePath on conditioned filtering.
+
 ### v1.2.2
 
 - [bug] added `basePath` to all `reRoute` paths.
