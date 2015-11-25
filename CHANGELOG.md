@@ -1,3 +1,7 @@
+### v1.3.1
+
+- [bug] user form values passed by parent to the form component were not updating as `componentWillReceiveProps` was not called.
+
 ### v1.3.0
 
 - [feature] Added `pushState` as an optional flag to enable push state paths. Uses a hash prefix if this is not set.
