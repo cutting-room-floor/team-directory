@@ -20,17 +20,17 @@ export default class Filter extends Component {
   }
 
   sort(e) {
-    const { sort, updatePath, query } = this.props;
+    const { directory, sort, updatePath, query } = this.props;
     const index = encodeURIComponent(e.target.id);
     const value = encodeURIComponent(e.target.value);
-    updatePath(query.filter ? `/?filter=${query.filter}&sort=${value}` : `/?sort=${value}`);
+    updatePath(query.filter ? `${directory.options.basePath}?filter=${query.filter}&sort=${value}` : `/?sort=${value}`);
     sort(index);
   }
 
   filter(e) {
-    const { filter, updatePath, query } = this.props;
+    const { directory, filter, updatePath, query } = this.props;
     const value = encodeURIComponent(e.target.value);
-    updatePath(query.sort ? `/?filter=${value}&sort=${query.sort}` : `/?filter=${value}`);
+    updatePath(query.sort ? `${directory.options.basePath}?filter=${value}&sort=${query.sort}` : `/?filter=${value}`);
     filter(value);
   }
 
@@ -64,6 +64,7 @@ Filter.propTypes = {
   sortKeys: PropTypes.array.isRequired,
   updatePath: PropTypes.func.isRequired,
   query: PropTypes.object.isRequired,
+  directory: PropTypes.object.isRequired,
   filter: PropTypes.func.isRequired,
   sort: PropTypes.func
 };

@@ -238,7 +238,7 @@ export function loadUser(u) {
   };
 }
 
-export function loadTeam(query) {
+export function loadTeam() {
   return (dispatch, getState) => {
     const { options } = getState().directory;
     const config = {};

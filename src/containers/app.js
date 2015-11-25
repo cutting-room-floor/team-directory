@@ -29,13 +29,13 @@ class App extends Component {
               <IndexLink
                 className='strong animate pad2y pad0x'
                 activeClassName='active'
-                to='/'>
+                to={directory.options.basePath}>
                 Team listing
               </IndexLink>
               <Link
                 className='strong animate pad2y pad0x'
                 activeClassName='active'
-                to={'/new'}>
+                to={`${directory.options.basePath}new`}>
                 New member
               </Link>
             </nav>

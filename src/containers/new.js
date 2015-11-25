@@ -8,7 +8,7 @@ import Form from '../components/form';
 
 class NewUser extends Component {
   addNewUser(obj) {
-    const { addUser, setMessage, setError, reRoute } = this.props;
+    const { directory, addUser, setMessage, setError, reRoute } = this.props;
     addUser(obj, (err) => {
       if (err) return setError(err);
       setMessage({
@@ -17,7 +17,7 @@ class NewUser extends Component {
         action: 'Okay',
         onClickHandler: () => {
           setMessage('');
-          reRoute('/');
+          reRoute(directory.options.basePath);
         }
       });
     });
