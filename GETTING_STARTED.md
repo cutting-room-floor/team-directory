@@ -48,6 +48,7 @@ ___`TeamDirectory(el, options)`___
 | team | String | &#x2713; | | the path and filename in `repo` where team data is written out to |
 | form | String | &#x2713; | | the path and filename in `repo` where form data is read from |
 | branch | String | | | Specify a specific branch found in `repo` |
+| pushState | Boolean | | `false`| Set to `true` to enable `history.pushstate` Defaults to hash prefixed paths. |
 | basePath | String | | `'/'`| Pass an alternate path team-directory should be built from |
 | filterKeys | Array | | `['github']` | An array of string keys that must correspond to a key property found in the form data. If an array is passed the two values are concatenated together (i.e. `['github', ['fname', 'lname']]`) |
 

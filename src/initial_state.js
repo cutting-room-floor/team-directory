@@ -16,6 +16,7 @@ const initialState = {
     form: '',
     branch: '',
     basePath: '/',
+    pushState: false,
     filterKeys: ['github']
   },
   events: {},
