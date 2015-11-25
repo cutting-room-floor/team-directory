@@ -23,14 +23,16 @@ export default class Filter extends Component {
     const { directory, sort, updatePath, query } = this.props;
     const index = encodeURIComponent(e.target.id);
     const value = encodeURIComponent(e.target.value);
-    updatePath(query.filter ? `${directory.options.basePath}?filter=${query.filter}&sort=${value}` : `/?sort=${value}`);
+    const bp = directory.options.basePath;
+    updatePath(query.filter ? `${bp}?filter=${query.filter}&sort=${value}` : `${bp}?sort=${value}`);
     sort(index);
   }
 
   filter(e) {
     const { directory, filter, updatePath, query } = this.props;
     const value = encodeURIComponent(e.target.value);
-    updatePath(query.sort ? `${directory.options.basePath}?filter=${value}&sort=${query.sort}` : `/?filter=${value}`);
+    const bp = directory.options.basePath;
+    updatePath(query.sort ? `${bp}?filter=${value}&sort=${query.sort}` : `${bp}?filter=${value}`);
     filter(value);
   }
 
