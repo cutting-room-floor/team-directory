@@ -1,10 +1,14 @@
+### v1.3.0
+
+- [feature] Added `pushState` as an optional flag to enable push state paths. Uses a hash prefix if this is not set.
+
 ### v1.2.3
 
 - [bug] Missing basePath on conditioned filtering.
 
 ### v1.2.2
 
-- [bug] added `basePath` to all `reRoute` paths.
+- [bug] Added `basePath` to all `reRoute` paths.
 
 ### v1.2.1
 
