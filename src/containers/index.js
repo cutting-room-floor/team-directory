@@ -91,6 +91,7 @@ class Index extends Component {
   render() {
     const { directory, teamFilter, teamSort, reRoute, location} = this.props;
     const { team, filterList, sortKeys, actor, options, listingTemplate, statsTemplate } = directory;
+    const bp = directory.options.basePath;
 
     return (
       <DocumentTitle title={'Team listing'}>
@@ -126,11 +127,10 @@ class Index extends Component {
             return (
               <div key={index} className='clip small contain mobile-cols pad0y col12 clearfix keyline-bottom no-last-keyline'>
                 {access && <div className='space pin-topright quiet pad1y z1'>
-                  <a
-                    className='quiet'
-                    href={`edit/${d.github}`}>
-                    Edit
-                  </a>
+                  <Link className='quiet'
+                    to={`${bp}edit/${d.github}`}>
+                  Edit
+                  </Link>
                 </div>}
                 {listingTemplate(d)}
               </div>
@@ -140,7 +140,7 @@ class Index extends Component {
         </div> : <div className='center'>
           <h2>No users.</h2>
           <div className='pad2y'>
-            <Link className='button pad4x' to={`${directory.options.basePath}new`}>Create one?</Link>
+            <Link className='button pad4x' to={`${bp}new`}>Create one?</Link>
           </div>
         </div>}
       </DocumentTitle>

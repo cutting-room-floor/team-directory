@@ -7,7 +7,9 @@ import { Router, Route, IndexRoute } from 'react-router';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
+import createHashHistory from 'history/lib/createHashHistory';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
+
 import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
@@ -32,12 +34,16 @@ const reducer = combineReducers(Object.assign({}, { directory: reducers }, {
 }));
 
 const store = applyMiddleware(thunk)(createStore)(reducer);
-const history = createBrowserHistory();
 
 export default class TeamDirectory {
   constructor(id, options) {
-    syncReduxAndRouter(history, store);
     options = options || {};
+
+    const history = options.pushState ?
+      createBrowserHistory() :
+      createHashHistory({ queryKey: false });
+
+    syncReduxAndRouter(history, store);
 
     // Sets options passed from client
     store.dispatch(setOptions(options));

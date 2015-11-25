@@ -1,7 +1,8 @@
 var test = require('tape');
 var TeamDirectory = require('../');
 
-function createDirectory() {
+function createDirectory(config) {
+
   var options = {
     GitHubToken: process.env.GitHubToken,
     account: process.env.account,
@@ -11,19 +12,25 @@ function createDirectory() {
   }
 
   if (process.env.branch) options.branch = process.env.branch;
-  var Directory = TeamDirectory(document.createElement('div'), options);
+  var Directory = TeamDirectory(document.createElement('div'), Object.assign(options, config));
   return Directory;
 }
 
-test('initialize', function(t) {
-  var directory = createDirectory();
+test('initialize and pushState', function(t) {
+  var directory = createDirectory({ pushState:true });
   t.plan(2);
 
   directory.on('load', function(e) {
     t.ok(e, 'data loaded');
   });
 
-  t.ok(directory, 'directory was initialized');
+  t.notOk(window.location.hash, 'hash is not present in the url');
+});
+
+test('hash prefix', function(t) {
+  var directory = createDirectory();
+  t.ok(window.location.hash, 'hash is present in the url');
+  t.end();
 });
 
 test('teamdirectory.sorts', function(t) {
