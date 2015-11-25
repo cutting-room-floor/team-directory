@@ -7,7 +7,7 @@ import DocumentTitle from 'react-document-title';
 
 export default class NotFound extends Component {
   render() {
-  var { directory } = this.props
+    var { directory } = this.props
     return (
       <DocumentTitle title='Not found | Us'>
       <div className='center'>
@@ -23,7 +23,7 @@ export default class NotFound extends Component {
   }
 }
 
-NotFound.PropTypes = {
+NotFound.propTypes = {
   directory: PropTypes.object.isRequired,
 }
 

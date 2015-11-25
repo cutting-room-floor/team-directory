@@ -16,7 +16,7 @@ import App from './containers/app';
 import Index from './containers/index';
 import Edit from './containers/edit';
 import New from './containers/new';
-import NotFound from './components/notfound';
+import NotFound from './containers/notfound';
 import {
   setSorts,
   setOptions,
