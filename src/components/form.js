@@ -6,8 +6,16 @@ export default class Form extends Component {
   constructor(props, context) {
     super(props, context);
     const { user, data } = this.props;
+    this.state = this.mapUser(user, data);
+  }
 
-    this.state = data.reduce((memo, section) => {
+  componentWillReceiveProps(next) {
+    const { user, data } = next;
+    this.setState(this.mapUser(user, data));
+  }
+
+  mapUser(user, data) {
+    return data.reduce((memo, section) => {
       section.data.forEach((field) => {
         memo[field.key] = (user && user[field.key]) ? user[field.key] : '';
       });
