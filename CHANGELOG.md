@@ -1,6 +1,11 @@
+### v1.4.0
+
+- [feature] Add fuzzy filtering [#9](https://github.com/mapbox/team-directory/pull/9)
+- [bug] Prolong loading until team data is fetched [#8](https://github.com/mapbox/team-directory/issues/8)
+
 ### v1.3.1
 
-- [bug] user form values passed by parent to the form component were not updating as `componentWillReceiveProps` was not called.
+- [bug] User form values passed by parent to the form component were not updating as `componentWillReceiveProps` was not called.
 
 ### v1.3.0
 
