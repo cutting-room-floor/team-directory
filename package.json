@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "start": "budo index.js --serve=dist/team-directory.js --live -d --pushstate | bistre",
+    "start": "budo index.js --serve=dist/team-directory.js --live -d --pushstate",
     "build": "browserify index.js | uglifyjs -c -m > dist/team-directory.js",
     "test": "npm run lint && browserify test/test.js | smokestack -b firefox | tap-status",
     "test-local": "./.env.sh ; npm run lint && browserify test/test.js | smokestack -b firefox | tap-status",
@@ -32,13 +32,12 @@
   },
   "homepage": "https://github.com/mapbox/team-directory#readme",
   "devDependencies": {
+    "budo": "^7.0.2",
     "babel-core": "^5.8.25",
     "babel-eslint": "^4.1.5",
     "babel-plugin-object-assign": "^1.2.1",
     "babelify": "^6.3.0",
-    "bistre": "^1.0.1",
     "browserify": "^11.2.0",
-    "budo": "^6.0.2",
     "envify": "^3.4.0",
     "eslint": "^1.7.2",
     "eslint-plugin-react": "^3.10.0",
