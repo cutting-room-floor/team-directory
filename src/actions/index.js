@@ -199,7 +199,6 @@ export function loadForm() {
   return (dispatch, getState) => {
     const { options } = getState().directory;
     const config = {};
-    dispatch(isLoading(true));
     if (options.branch) config.ref = options.branch;
 
     repo.contents(options.form).read(config)
@@ -213,7 +212,6 @@ export function loadForm() {
           });
         }
         dispatch(setForm(data));
-        dispatch(isLoading(false));
       })
       .catch((err) => {
         dispatch(setError(err));
@@ -239,6 +237,7 @@ export function loadUser(u) {
 
 export function loadTeam() {
   return (dispatch, getState) => {
+    dispatch(isLoading(true));
     const { options } = getState().directory;
     const config = {};
     if (options.branch) config.ref = options.branch;
