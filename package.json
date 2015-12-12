@@ -32,24 +32,24 @@
   },
   "homepage": "https://github.com/mapbox/team-directory#readme",
   "devDependencies": {
-    "budo": "^7.0.2",
     "babel-core": "^5.8.25",
     "babel-eslint": "^4.1.5",
     "babel-plugin-object-assign": "^1.2.1",
     "babelify": "^6.3.0",
     "browserify": "^11.2.0",
+    "budo": "^7.0.2",
     "envify": "^3.4.0",
     "eslint": "^1.7.2",
     "eslint-plugin-react": "^3.10.0",
     "smokestack": "^3.4.1",
     "tap-status": "^1.0.1",
-    "tape": "^4.2.2"
+    "tape": "^4.2.2",
+    "uglify-js": "^2.6.1"
   },
   "dependencies": {
-    "diacritics": "^1.2.3",
     "filesaver.js": "^0.2.0",
     "fuzzy": "^0.1.1",
-    "history": "^1.12.5",
+    "history": "^1.13.1",
     "js-base64": "^2.1.9",
     "md5-jkmyers": "0.0.1",
     "octokat": "^0.4.13",
