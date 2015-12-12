@@ -1,8 +1,7 @@
 import * as types from '../constants/action_types';
 import Octokat from 'octokat';
 import { Base64 } from 'js-base64';
-import diacritics from 'diacritics';
-const removeDiacritics = diacritics.remove;
+import fuzzy from 'fuzzy';
 let client, repo, config = {};
 
 function setActor(actor) {
@@ -282,24 +281,30 @@ export function teamSort(sortIndex) {
 export function teamFilter(query) {
   return (dispatch, getState) => {
     const { options, team } = getState().directory;
+    query = decodeURIComponent(query.toLowerCase());
 
     if (query.length > 2) {
-      query = decodeURIComponent(removeDiacritics(query.toLowerCase()));
-      dispatch(setFilter(team.filter((d) => {
-        const contains = options.filterKeys.some((field) => {
-          if (typeof field === 'object') {
+      const results = fuzzy.filter(query, team, {
+        extract: function(d) {
+          const lookup = [];
 
-            let value = '';
-            field.forEach(function(f) {
-              if (d[f]) value += d[f] + ' ';
-            });
+          // Combine keys found in`options.filterKeys`
+          options.filterKeys.forEach(function(key) {
+            if (typeof key === 'object') {
+              // TODO Keeping this around for now to avoid a breaking change.
+              key.forEach(function(k) {
+                lookup.push(d[k]);
+              });
+            }
+            lookup.push(d[key]);
+          });
 
-            return removeDiacritics(value.toLowerCase()).indexOf(query) > -1;
-          } else {
-            return d[field] && removeDiacritics(d[field].toLowerCase()).indexOf(query) > -1;
-          }
-        });
-        return contains;
+          return lookup.join(' ');
+        }
+      });
+
+      dispatch(setFilter(results.map(function(d) {
+        return d.original;
       })));
     } else {
       dispatch(setFilter(team));

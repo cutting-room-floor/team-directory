@@ -48,6 +48,7 @@
   "dependencies": {
     "diacritics": "^1.2.3",
     "filesaver.js": "^0.2.0",
+    "fuzzy": "^0.1.1",
     "history": "^1.12.5",
     "js-base64": "^2.1.9",
     "md5-jkmyers": "0.0.1",
