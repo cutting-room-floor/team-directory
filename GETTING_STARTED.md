@@ -50,7 +50,7 @@ ___`TeamDirectory(el, options)`___
 | branch | String | | | Specify a specific branch found in `repo` |
 | pushState | Boolean | | `false`| Set to `true` to enable `history.pushstate` Defaults to hash prefixed paths. |
 | basePath | String | | `'/'`| Pass an alternate path team-directory should be built from |
-| filterKeys | Array | | `['github']` | An array of string keys that must correspond to a key property found in the form data. If an array is passed the two values are concatenated together (i.e. `['github', ['fname', 'lname']]`) |
+| filterKeys | Array | | `['github', 'fname']` | An array of keys as strings that correspond to a key property names found in your form data. |
 
 #### form.json
 

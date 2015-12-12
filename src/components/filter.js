@@ -44,7 +44,7 @@ export default class Filter extends Component {
     return (
       <div className='with-icon space-bottom1'>
         <span className='icon search'></span>
-        <input onChange={this.filter.bind(this)} className='col12' placeholder='filter' type='text' value={filterValue} />
+        <input onChange={this.filter.bind(this)} className='col12' placeholder='Filter' type='text' value={filterValue} />
         {sortKeys.length && <div className='pin-right pad0x'>
           <form onChange={this.sort.bind(this)} className='rounded-toggle'>
             {sortKeys.map((sort, i) => {
