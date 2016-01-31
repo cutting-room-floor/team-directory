@@ -23,17 +23,17 @@ class App extends Component {
 
     return (
       <div className={`contain min-containment ${loadClass}`}>
-        <nav className='col12 fill-navy dark z10'>
+        <nav className='col12 fill-grey z10'>
           <div className='limiter'>
             <nav className='primary'>
               <IndexLink
-                className='strong animate pad2y pad0x'
+                className='strong animate pad2y pad0x quiet'
                 activeClassName='active'
                 to={directory.options.basePath}>
                 Team listing
               </IndexLink>
               <Link
-                className='strong animate pad2y pad0x'
+                className='strong animate pad2y pad0x quiet'
                 activeClassName='active'
                 to={`${directory.options.basePath}new`}>
                 New member

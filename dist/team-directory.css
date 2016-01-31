@@ -98,10 +98,10 @@ nav.primary a {
   box-shadow:inset 0 -5px 0 transparent;
   }
   nav.primary a:hover {
-    box-shadow:inset 0 -5px 0 rgba(0,0,0,0.5);
+    box-shadow:inset 0 -5px 0 rgba(0,0,0,0.10);
     }
   nav.primary a.active {
-    box-shadow:inset 0 -5px 0 #3887be;
+    box-shadow:inset 0 -5px 0 #142736;
     }
 
 .rounded-toggle label {
