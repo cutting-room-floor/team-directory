@@ -1,3 +1,7 @@
+### v1.4.1
+
+- [UI] Style admin fields differently [#11](https://github.com/mapbox/team-directory/issues/11)
+
 ### v1.4.0
 
 - [feature] Add fuzzy filtering [#9](https://github.com/mapbox/team-directory/pull/9)
