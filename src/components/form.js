@@ -250,7 +250,13 @@ export default class Form extends Component {
       if (d.admin && !actor.admin) return;
       return (
         <fieldset id={d.key} key={i} className={`col6 pad1x ${hidden}`}>
-          <label>{d.label} {d.required && <span className='question' title='Field is required'>*</span>}</label>
+          <label>{d.label}
+            {d.required && <span className='question' title='Field is required'>*</span>}
+            {d.admin && <span
+              className='inline fill-yellow quiet space-left0 strong pad0x round keyline-all'
+              title='Admin only field'>admin</span>
+            }
+          </label>
           {type === 'textarea' && <textarea
             className='col12'
             placeholder={d.label}

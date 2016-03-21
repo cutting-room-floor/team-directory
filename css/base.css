@@ -1182,6 +1182,7 @@ Details: http://www.positioniseverything.net/easyclearing.html
 .fill-purple      { background-color:#8a8acb; }
 .fill-light       { background-color:#f8f8f8; }
 .fill-red         { background-color:#e55e5e; }
+.fill-yellow      { background-color:#f1f075; }
 .fill-gray,
 .fill-grey        { background:#eee; }
 .fill-darken1     { background-color:rgba(0,0,0,0.25); }
@@ -1203,10 +1204,19 @@ Details: http://www.positioniseverything.net/easyclearing.html
 .space > *                    { margin-right:5px; }
 .space-bottom0                { margin-bottom:  5px;}
 .space-bottom1                { margin-bottom: 10px;}
-.space-bottom, /* deprecated, use space-bottom2 */
 .space-bottom2                { margin-bottom: 20px;}
 .space-bottom4                { margin-bottom: 40px;}
 .space-bottom8                { margin-bottom: 80px;}
+.space-left0                  { margin-left:  5px;}
+.space-left1                  { margin-left: 10px;}
+.space-left2                  { margin-left: 20px;}
+.space-left4                  { margin-left: 40px;}
+.space-left8                  { margin-left: 80px;}
+.space-right0                 { margin-right:  5px;}
+.space-right1                 { margin-right: 10px;}
+.space-right2                 { margin-right: 20px;}
+.space-right4                 { margin-right: 40px;}
+.space-right8                 { margin-right: 80px;}
 .hide-tablet, .hide-mobile    { display:block; }
 .show-tablet, .show-mobile    { display:none; }
 .show-mobile                  { display:none; }
