@@ -258,7 +258,7 @@ export default class Form extends Component {
             data-index={i}
             style={{width: '40px'}}
             onClick={component.removeFromAdd.bind(component)}
-            className='icon close pin-right round-right'
+            className='icon close pin-right round-right button'
           />
           <input
             type='text'
@@ -284,7 +284,7 @@ export default class Form extends Component {
             data-index={i}
             style={{width: '40px'}}
             onClick={component.removeFromAdd.bind(component)}
-            className='icon close pin-right round-right'
+            className='icon close pin-right round-right button'
           />
           <input
             type='text'
