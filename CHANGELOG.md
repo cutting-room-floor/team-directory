@@ -1,3 +1,8 @@
+### v1.5.1
+
+- [UI] Add dismiss links to `add` form fields [#14](https://github.com/mapbox/team-directory/pull/14)
+- [Feature] Add a `add-single` form field [#16](https://github.com/mapbox/team-directory/pull/16)
+
 ### v1.4.1
 
 - [UI] Style admin fields differently [#11](https://github.com/mapbox/team-directory/issues/11)
