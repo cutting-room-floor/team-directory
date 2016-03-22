@@ -170,6 +170,14 @@ export default class Form extends Component {
     this.setState(obj);
   }
 
+  removeFromAddGroup(e) {
+    e.preventDefault();
+    const index = parseInt(e.target.getAttribute('data-index'), 10);
+    var obj = {};
+    obj[e.target.name] = this.state[e.target.name].filter((_, i) => i !== index);
+    this.setState(obj, this.render);
+  }
+
   render() {
     const { data, actor, user, onDelete } = this.props;
 
@@ -219,13 +227,23 @@ export default class Form extends Component {
 
     const renderAddGroup = function(component, field, i) {
       return (
-        <div style={{marginBottom: '1px'}} className='col12 clearfix' key={i}>
+        <div
+          key={i}
+          className='col12 clearfix contain'
+          style={{marginBottom: '2px', paddingRight: '40px' }}>
+          <button
+            name={this.key}
+            data-index={i}
+            style={{width: '40px'}}
+            onClick={component.removeFromAddGroup.bind(component)}
+            className='icon close pin-right round-right'
+          />
           <input
             type='text'
             className='col6'
             name={this.key}
             placeholder='Name'
-            defaultValue={field.name}
+            value={field.name}
             onChange={component.addGroupOnChange.bind(component)}
           />
           <input
@@ -233,7 +251,7 @@ export default class Form extends Component {
             name={this.key}
             className='col6'
             placeholder='Value'
-            defaultValue={field.value}
+            value={field.value}
             onChange={component.addGroupOnChange.bind(component)}
           />
         </div>
