@@ -87,6 +87,23 @@
       "key": "support",
       "label": "Support"
     }]
+  }, {
+    "key": "languages",
+    "label": "Languages spoken",
+    "type": "select",
+    "options": [{
+      "label": "English",
+      "key": "en"
+    }, {
+      "label": "Español",
+      "key": "es"
+    }, {
+      "label": "German",
+      "key": "de"
+    }, {
+      "label": "French",
+      "key": "fr"
+    }]
   }],
   "Social links": [{
     "key": "twitter",
