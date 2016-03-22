@@ -22,11 +22,11 @@
       {
         "name": "instagram",
         "value": "tristen"
-      },
-      {
-        "name": "b",
-        "value": "b"
       }
+    ],
+    "tags": [
+      "foo",
+      "bar"
     ]
   },
   {
