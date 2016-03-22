@@ -104,8 +104,20 @@ as an object with specific key/value pairings. There are a few as follows:
 }
 ```
 
-A unique form field for adding multiple entries.
+A form field for adding multiple name/value pairings. Stored as an array of objects
+with `name` and `value` properties.
 
+##### `add-single`
+
+```json
+{
+  "key": "tags",
+  "label": "Add tags",
+  "type": "add-single"
+}
+```
+
+A form field for adding multiple values. Stored as an array of strings.
 
 ##### `textarea`
 

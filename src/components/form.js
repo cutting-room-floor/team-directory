@@ -170,12 +170,34 @@ export default class Form extends Component {
     this.setState(obj);
   }
 
-  removeFromAddGroup(e) {
+  addtoAddSingle(e) {
+    e.preventDefault();
+    const addGroup = this.state[e.target.name] ?
+      this.state[e.target.name] : [];
+    addGroup.push('');
+
+    const obj = {};
+    obj[e.target.name] = addGroup;
+    this.setState(obj);
+  }
+
+  addSingleOnChange(e) {
+    const index = parseInt(e.target.getAttribute('data-index'), 10);
+    this.state[e.target.name];
+    var obj = {};
+    obj[e.target.name] = this.state[e.target.name].map((d, i) => {
+      if (i === index) d = e.target.value;
+      return d;
+    });
+    this.setState(obj);
+  }
+
+  removeFromAdd(e) {
     e.preventDefault();
     const index = parseInt(e.target.getAttribute('data-index'), 10);
     var obj = {};
     obj[e.target.name] = this.state[e.target.name].filter((_, i) => i !== index);
-    this.setState(obj, this.render);
+    this.setState(obj);
   }
 
   render() {
@@ -225,6 +247,32 @@ export default class Form extends Component {
       );
     };
 
+    const renderAdd = function(component, value, i) {
+      return (
+        <div
+          key={i}
+          className='contain'
+          style={{marginBottom: '2px', paddingRight: '40px' }}>
+          <button
+            name={this.key}
+            data-index={i}
+            style={{width: '40px'}}
+            onClick={component.removeFromAdd.bind(component)}
+            className='icon close pin-right round-right'
+          />
+          <input
+            type='text'
+            className='col12'
+            name={this.key}
+            data-index={i}
+            placeholder='Name'
+            value={value}
+            onChange={component.addSingleOnChange.bind(component)}
+          />
+        </div>
+      );
+    };
+
     const renderAddGroup = function(component, field, i) {
       return (
         <div
@@ -235,7 +283,7 @@ export default class Form extends Component {
             name={this.key}
             data-index={i}
             style={{width: '40px'}}
-            onClick={component.removeFromAddGroup.bind(component)}
+            onClick={component.removeFromAdd.bind(component)}
             className='icon close pin-right round-right'
           />
           <input
@@ -300,6 +348,15 @@ export default class Form extends Component {
             <button
               name={d.key}
               onClick={this.addtoAddGroup.bind(this)}
+              className='button icon plus col12'>
+              Add
+            </button>
+          </fieldset>}
+          {type === 'add-single' && <fieldset ref={d.key}>
+            {linkState(this, d.key).value && linkState(this, d.key).value.map(renderAdd.bind(d, this))}
+            <button
+              name={d.key}
+              onClick={this.addtoAddSingle.bind(this)}
               className='button icon plus col12'>
               Add
             </button>
