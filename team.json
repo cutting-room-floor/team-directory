@@ -6,15 +6,23 @@
     "email": "tristen@tristen.ca",
     "sex": "xy",
     "birthday": "1915-11-26",
-    "office": "dc",
-    "homeaddress": "3524A 14TH ST NW",
+    "call": "6478316402",
+    "office": "sf",
+    "homeaddress": "1714 14TH ST NW (rear entrance)",
     "teams": [
       "design",
-      "engineering"
+      "engineering",
+      "support"
+    ],
+    "languages": [
+      {
+        "label": "English",
+        "key": "en"
+      }
     ],
     "twitter": "fallsemo",
     "github": "tristen",
-    "foursquare": "fallsemofallsemo",
+    "foursquare": "fallsemo",
     "other-links": [
       {
         "name": "instagram",
@@ -26,8 +34,7 @@
       }
     ],
     "tags": [
-      "foo",
-      "qux"
+      "foo"
     ]
   },
   {
