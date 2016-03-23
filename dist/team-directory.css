@@ -124,14 +124,11 @@ nav.primary a {
   position:relative;
   }
 .react-autosuggest__input {
-  width:240px;
-  height:30px;
-  padding:10px 20px;
-  font-family:Helvetica, sans-serif;
-  font-weight:300;
-  font-size:16px;
-  border:1px solid #aaa;
-  border-radius:4px;
+  width:100%;
+  height:40px;
+  padding:10px;
+  border:1px solid rgba(0,0,0,0.25);
+  border-radius:3px;
   }
 .react-autosuggest__input:focus {
   outline:none;
@@ -142,27 +139,25 @@ nav.primary a {
   }
 .react-autosuggest__suggestions-container {
   position:absolute;
-  top:51px;
-  width:280px;
+  top:41px;
+  width:100%;
   margin:0;
   padding:0;
   list-style-type:none;
-  border:1px solid #aaa;
+  border:1px solid rgba(0,0,0,0.25);
   background-color:#fff;
-  font-family:Helvetica, sans-serif;
-  font-weight:300;
-  font-size:16px;
   border-bottom-left-radius:3px;
   border-bottom-right-radius:3px;
   z-index:2;
   }
 .react-autosuggest__suggestion {
   cursor:pointer;
-  padding:10px 20px;
+  padding:10px;
   }
 .react-autosuggest__suggestion--focused {
-  background-color:#ddd;
+  background-color:rgba(0,0,0,0.1);
   }
+
 
 @media only screen and (max-width:640px) {
   .link a { padding:2.5px 0; }
