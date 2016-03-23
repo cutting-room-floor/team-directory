@@ -3,30 +3,31 @@
     "admin": true,
     "fname": "Tristen",
     "lname": "Brown",
-    "email": "tristen.brown@gmail.com",
+    "email": "tristen@tristen.ca",
     "sex": "xy",
-    "birthday": "1912-11-26",
+    "birthday": "1915-11-26",
     "office": "dc",
     "homeaddress": "3524A 14TH ST NW",
     "teams": [
-      "business",
       "design",
-      "engineering",
-      "operations",
-      "support"
+      "engineering"
     ],
     "twitter": "fallsemo",
     "github": "tristen",
-    "foursquare": "fallsemo",
+    "foursquare": "fallsemofallsemo",
     "other-links": [
       {
         "name": "instagram",
         "value": "tristen"
+      },
+      {
+        "name": "another",
+        "value": "value"
       }
     ],
     "tags": [
       "foo",
-      "bar"
+      "qux"
     ]
   },
   {
