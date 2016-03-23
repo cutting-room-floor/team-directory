@@ -119,6 +119,31 @@ with `name` and `value` properties.
 
 A form field for adding multiple values. Stored as an array of strings.
 
+##### `select`
+
+```json
+{
+  "key": "languages",
+  "label": "Languages spoken",
+  "type": "select",
+  "options": [{
+    "label": "English",
+    "key": "en"
+  }, {
+    "label": "Español",
+    "key": "es"
+  }, {
+    "label": "German",
+    "key": "de"
+  }, {
+    "label": "French",
+    "key": "fr"
+  }]
+}
+```
+
+A autocomplete form field for adding multiple values from a defined list.
+
 ##### `textarea`
 
 ```json

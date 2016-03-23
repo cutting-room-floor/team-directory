@@ -1,6 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import linkState from 'react-link-state';
+
+// Form components
+import Textarea from './form_types/textarea';
+import Native from './form_types/native';
+import Radio from './form_types/radio';
+import Checkbox from './form_types/checkbox';
+import Add from './form_types/add';
+import AddSingle from './form_types/add_single';
+import Select from './form_types/select';
 
 export default class Form extends Component {
   constructor(props, context) {
@@ -15,6 +23,7 @@ export default class Form extends Component {
   }
 
   mapUser(user, data) {
+    // Map any existing user data to form properties.
     return data.reduce((memo, section) => {
       section.data.forEach((field) => {
         memo[field.key] = (user && user[field.key]) ? user[field.key] : '';
@@ -112,208 +121,25 @@ export default class Form extends Component {
     });
   }
 
-  radioOnChange(e) {
-    const obj = {};
-    let val = e.target.id;
-    if (val === 'true') val = true;
-    if (val === 'false') val = false;
-    obj[e.target.name] = val;
-    this.setState(obj);
-  }
-
-  checkboxOnChange(e) {
-    const group = ReactDOM.findDOMNode(this.refs[e.target.name]).getElementsByTagName('input');
-    const checked = [];
-    Array.prototype.forEach.call(group, (el) => {
-      if (el.checked) checked.push(el.id);
-    });
-
-    const obj = {};
-    obj[e.target.name] = checked;
-    this.setState(obj);
-  }
-
-  addGroupOnChange(e) {
-    const group = ReactDOM.findDOMNode(this.refs[e.target.name]).getElementsByTagName('div');
-    const groupSet = [];
-
-    Array.prototype.forEach.call(group, (el) => {
-      const item = el.getElementsByTagName('input');
-      const pairings = [];
-
-      // Name/Value pairings
-      Array.prototype.forEach.call(item, (itm) => {
-        pairings.push(itm.value);
-      });
-
-      if (pairings[0] || pairings[1]) {
-        groupSet.push({
-          name: pairings[0],
-          value: pairings[1]
-        });
-      }
-    });
-
-    const obj = {};
-    obj[e.target.name] = groupSet;
-    this.setState(obj);
-  }
-
-  addtoAddGroup(e) {
-    e.preventDefault();
-    const addGroup = this.state[e.target.name] ?
-      this.state[e.target.name] : [];
-    addGroup.push({name: '', value: ''});
-
-    const obj = {};
-    obj[e.target.name] = addGroup;
-    this.setState(obj);
-  }
-
-  addtoAddSingle(e) {
-    e.preventDefault();
-    const addGroup = this.state[e.target.name] ?
-      this.state[e.target.name] : [];
-    addGroup.push('');
-
-    const obj = {};
-    obj[e.target.name] = addGroup;
-    this.setState(obj);
-  }
-
-  addSingleOnChange(e) {
-    const index = parseInt(e.target.getAttribute('data-index'), 10);
-    this.state[e.target.name];
+  setFormValue(k, v) {
     var obj = {};
-    obj[e.target.name] = this.state[e.target.name].map((d, i) => {
-      if (i === index) d = e.target.value;
-      return d;
-    });
-    this.setState(obj);
-  }
-
-  removeFromAdd(e) {
-    e.preventDefault();
-    const index = parseInt(e.target.getAttribute('data-index'), 10);
-    var obj = {};
-    obj[e.target.name] = this.state[e.target.name].filter((_, i) => i !== index);
+    obj[k] = v;
     this.setState(obj);
   }
 
   render() {
     const { data, actor, user, onDelete } = this.props;
-
-    const colN = function(length) {
-      if (length === 2) return 6;
-      if (length === 3) return 4;
-      if (length === 4) return 3;
-      if (length > 4 || length === 1) return 12;
-    };
-
-    const renderRadioGroup = function(component, field, i) {
-      const n = colN(this.fields.length);
-      const labelClass = 'button icon check col' + n;
-      const containerClass = 'react set' + n;
-      return (
-        <div className={containerClass} key={i}>
-          <input
-            type='radio'
-            name={this.key}
-            id={field.key}
-            defaultChecked={component.state[this.key] === field.key}
-            onChange={component.radioOnChange.bind(component)}
-          />
-          <label htmlFor={field.key} className={labelClass}>{field.label}</label>
-        </div>
-      );
-    };
-
-    const renderCheckGroup = function(component, field, i) {
-      const n = colN(this.fields.length);
-      const labelClass = 'button icon check col' + n;
-      const containerClass = 'react set' + n;
-
-      return (
-        <div className={containerClass} key={i}>
-          <input
-            type='checkbox'
-            name={this.key}
-            id={field.key}
-            defaultChecked={component.state[this.key].indexOf(field.key) > -1}
-            onChange={component.checkboxOnChange.bind(component)}
-          />
-          <label htmlFor={field.key} className={labelClass}>{field.label}</label>
-        </div>
-      );
-    };
-
-    const renderAdd = function(component, value, i) {
-      return (
-        <div
-          key={i}
-          className='contain'
-          style={{marginBottom: '2px', paddingRight: '40px' }}>
-          <button
-            name={this.key}
-            data-index={i}
-            style={{width: '40px'}}
-            onClick={component.removeFromAdd.bind(component)}
-            className='icon close pin-right round-right button'
-          />
-          <input
-            type='text'
-            className='col12'
-            name={this.key}
-            data-index={i}
-            placeholder='Name'
-            value={value}
-            onChange={component.addSingleOnChange.bind(component)}
-          />
-        </div>
-      );
-    };
-
-    const renderAddGroup = function(component, field, i) {
-      return (
-        <div
-          key={i}
-          className='col12 clearfix contain'
-          style={{marginBottom: '2px', paddingRight: '40px' }}>
-          <button
-            name={this.key}
-            data-index={i}
-            style={{width: '40px'}}
-            onClick={component.removeFromAdd.bind(component)}
-            className='icon close pin-right round-right button'
-          />
-          <input
-            type='text'
-            className='col6'
-            name={this.key}
-            placeholder='Name'
-            value={field.name}
-            onChange={component.addGroupOnChange.bind(component)}
-          />
-          <input
-            type='text'
-            name={this.key}
-            className='col6'
-            placeholder='Value'
-            value={field.value}
-            onChange={component.addGroupOnChange.bind(component)}
-          />
-        </div>
-      );
-    };
-
     const addFields = function(d, i) {
+      const placeholder = (d.placeholder) ? d.placeholder : d.label ? d.label : '';
       const type = (d.type) ? d.type : 'text';
       const hidden = (type === 'hidden') ? 'hidden' : false;
       const defaultRenderer = (type === 'text' ||
-                               type ==='date' ||
+                               type === 'date' ||
+                               type === 'hidden' ||
                                type === 'number');
 
       if (d.admin && !actor.admin) return;
+
       return (
         <fieldset id={d.key} key={i} className={`col6 pad1x ${hidden}`}>
           <label>{d.label}
@@ -323,50 +149,50 @@ export default class Form extends Component {
               title='Admin only field'>admin</span>
             }
           </label>
-          {type === 'textarea' && <textarea
-            className='col12'
-            placeholder={d.label}
+          {type === 'textarea' && <Textarea
+            id={d.key}
+            placeholder={placeholder}
+            onChange={this.setFormValue.bind(this)}
+            value={this.state[d.key]}
             required={d.required}
-            valueLink={linkState(this, d.key)}
           />}
-          {type === 'hidden' && <input
-            type={type}
-            className='hidden'
-            valueLink={linkState(this, d.key)}
+          {type === 'radio' && <Radio
+            id={d.key}
+            onChange={this.setFormValue.bind(this)}
+            value={this.state[d.key]}
+            fields={d.fields}
           />}
-          {type === 'radio' && <fieldset
-            className='radio-pill pill clearfix col12'>
-            {d.fields.map(renderRadioGroup.bind(d, this))}
-          </fieldset>}
-          {type === 'checkbox' && <fieldset
-            ref={d.key}
-            className='checkbox-pill pill clearfix col12'>
-            {d.fields.map(renderCheckGroup.bind(d, this))}
-          </fieldset>}
-          {type === 'add' && <fieldset ref={d.key}>
-            {linkState(this, d.key).value && linkState(this, d.key).value.map(renderAddGroup.bind(d, this))}
-            <button
-              name={d.key}
-              onClick={this.addtoAddGroup.bind(this)}
-              className='button icon plus col12'>
-              Add
-            </button>
-          </fieldset>}
-          {type === 'add-single' && <fieldset ref={d.key}>
-            {linkState(this, d.key).value && linkState(this, d.key).value.map(renderAdd.bind(d, this))}
-            <button
-              name={d.key}
-              onClick={this.addtoAddSingle.bind(this)}
-              className='button icon plus col12'>
-              Add
-            </button>
-          </fieldset>}
-          {defaultRenderer && <input
+          {type === 'checkbox' && <Checkbox
+            id={d.key}
+            onChange={this.setFormValue.bind(this)}
+            value={this.state[d.key]}
+            fields={d.fields}
+          />}
+          {type === 'add' && <Add
+            id={d.key}
+            onChange={this.setFormValue.bind(this)}
+            value={this.state[d.key]}
+          />}
+          {type === 'add-single' && <AddSingle
+            id={d.key}
+            onChange={this.setFormValue.bind(this)}
+            value={this.state[d.key]}
+            placeholder={placeholder}
+          />}
+          {type === 'select' && <Select
+            id={d.key}
+            onChange={this.setFormValue.bind(this)}
+            value={this.state[d.key]}
+            options={d.options}
+            placeholder={placeholder}
+          />}
+          {defaultRenderer && <Native
+            id={d.key}
             type={type}
-            className='col12'
-            placeholder={d.label}
+            placeholder={placeholder}
+            onChange={this.setFormValue.bind(this)}
+            value={this.state[d.key]}
             required={d.required}
-            valueLink={linkState(this, d.key)}
           />}
         </fieldset>
       );
