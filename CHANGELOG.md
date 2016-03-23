@@ -1,3 +1,8 @@
+### v1.6.0
+
+- [Feature] Add a autocomplete select from defined list form type [#17](https://github.com/mapbox/team-directory/issues/17)
+- [Internal] Break form items into components [#13](https://github.com/mapbox/team-directory/issues/13)
+
 ### v1.5.0
 
 - [UI] Add dismiss links to `add` form fields [#14](https://github.com/mapbox/team-directory/pull/14)
