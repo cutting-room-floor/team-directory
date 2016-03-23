@@ -85,7 +85,10 @@ export default class AddSingle extends Component {
 
 AddSingle.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.array.isRequired,
+  value: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.array
+  ]),
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string
 }

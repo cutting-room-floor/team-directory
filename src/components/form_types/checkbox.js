@@ -56,7 +56,10 @@ export default class Checkbox extends Component {
 
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.array.isRequired,
+  value: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.array
+  ]),
   fields: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired
 }

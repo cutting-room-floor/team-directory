@@ -107,6 +107,9 @@ export default class Add extends Component {
 
 Add.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.array.isRequired,
+  value: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.array
+  ]),
   onChange: PropTypes.func.isRequired
 }

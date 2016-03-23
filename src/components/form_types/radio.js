@@ -53,8 +53,8 @@ Radio.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.array.isRequired,
   value: React.PropTypes.oneOfType([
-    React.PropTypes.string.isRequired,
-    React.PropTypes.bool.isRequired
+    React.PropTypes.string,
+    React.PropTypes.bool
   ]),
   onChange: PropTypes.func.isRequired
 }
