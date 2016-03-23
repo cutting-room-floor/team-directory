@@ -71,7 +71,7 @@ export default class AddSingle extends Component {
 
     return (
       <fieldset>
-        {value.length && value.map(addToList)}
+        {value && value.map(addToList)}
         <button
           name={id}
           onClick={this.add}

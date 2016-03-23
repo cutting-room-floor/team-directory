@@ -93,7 +93,7 @@ export default class Add extends Component {
 
     return (
       <fieldset ref='node'>
-        {value.length && value.map(addToList)}
+        {value && value.map(addToList)}
         <button
           name={id}
           onClick={this.add}
