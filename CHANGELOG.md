@@ -1,3 +1,9 @@
+### v1.6.1
+
+- [bug] Better handling of `boolean` values
+- [ui] Clear the select form type after selection
+- [ui] Style autocomplete to better align with existing style
+
 ### v1.6.0
 
 - [Feature] Add a autocomplete select from defined list form type [#17](https://github.com/mapbox/team-directory/issues/17)
