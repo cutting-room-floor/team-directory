@@ -110,7 +110,7 @@ class Index extends Component {
                 <div className='pill'>
                   {statsTemplate && <a href='#' onClick={this.showModal.bind(this)} className='short icon graph button pad4x'>Team stats</a>}
                   {actor.admin && <a href='#' onClick={this.downloadCSV.bind(this)} className='short icon down button loud button-secondary pad4x'>Download as CSV</a>}
-                  <a href={this.downloadContacts()} className='short button button-secondary loud icon down pad4x'>Download contacts</a>
+                  <a href={this.downloadContacts()} className='short button button-secondary loud icon down pad4x'>Download all contacts</a>
                 </div>
               </div>
             </div>

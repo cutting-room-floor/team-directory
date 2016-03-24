@@ -28,7 +28,7 @@ export default class Radio extends Component {
             type='radio'
             name={id}
             id={`${id}-${field.key}`}
-            defaultChecked={value.toString() === field.key.toString()}
+            defaultChecked={value === field.key}
             onChange={this.change}
           />
           <label
