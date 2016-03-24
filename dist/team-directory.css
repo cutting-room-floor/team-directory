@@ -95,13 +95,13 @@ fieldset:target > input {
 nav.primary a {
   display:inline-block;
   margin-right:10px;
-  box-shadow:inset 0 -5px 0 transparent;
+  box-shadow:inset 0 -3px 0 transparent;
   }
   nav.primary a:hover {
-    box-shadow:inset 0 -5px 0 rgba(0,0,0,0.10);
+    box-shadow:inset 0 -3px 0 rgba(0,0,0,0.10);
     }
   nav.primary a.active {
-    box-shadow:inset 0 -5px 0 #142736;
+    box-shadow:inset 0 -3px 0 #142736;
     }
 
 .rounded-toggle label {
