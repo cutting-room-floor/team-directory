@@ -1,3 +1,8 @@
+### v1.6.2
+
+- [bug] Drop `toString` method on `defaultChecked` condition in radio elements
+- [ui] Better label to describe downloading all contacts on listing page
+
 ### v1.6.1
 
 - [bug] Better handling of `boolean` values
