@@ -33,6 +33,7 @@ Native.propTypes = {
   type: PropTypes.string.isRequired,
   value: React.PropTypes.oneOfType([
     React.PropTypes.string,
+    React.PropTypes.number,
     React.PropTypes.bool
   ]),
   placeholder: PropTypes.string.isRequired,

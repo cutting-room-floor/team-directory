@@ -19,14 +19,19 @@ export default class Form extends Component {
 
   componentWillReceiveProps(next) {
     const { user, data } = next;
-    this.setState(this.mapUser(user, data));
+    if (!this.submission) this.setState(this.mapUser(user, data));
   }
 
   mapUser(user, data) {
     // Map any existing user data to form properties.
     return data.reduce((memo, section) => {
       section.data.forEach((field) => {
-        memo[field.key] = (user && user[field.key]) ? user[field.key] : '';
+        memo[field.key] = '';
+        if (user) {
+          if (user[field.key] || typeof user[field.key] === 'boolean') {
+            memo[field.key] = user[field.key];
+          }
+        }
       });
       return memo;
     }, {});
@@ -57,6 +62,8 @@ export default class Form extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.submission = true;
+
     const data = this.state;
     const { setError, onSubmit, user, validators, normalizers } = this.props;
 
@@ -70,13 +77,15 @@ export default class Form extends Component {
       return d.required;
     }).filter((d) => {
       let contains;
-
-      for (let key in data) {
-        let value;
-        if (data[key] && data[d.key]) value = data[d.key];
-        if (typeof value === 'string' && value ||
-            typeof value === 'object' && value.length) contains = true;
-      }
+      Object.keys(data).forEach(key => {
+        // If the key we are looking falls under required
+        if (key === d.key) {
+          const value = data[key];
+          if (typeof value === 'string' && value ||
+              typeof value === 'boolean' ||
+              typeof value === 'object' && value.length) contains = true;
+        }
+      });
 
       return !contains;
     });
@@ -98,7 +107,9 @@ export default class Form extends Component {
       for (const key in data) {
 
         // Remove unfilled values
-        if (!data[key]) delete data[key];
+        if (!data[key]) {
+          if (typeof data[key] !== 'boolean') delete data[key];
+        }
 
         if (typeof data[key] === 'object') {
 

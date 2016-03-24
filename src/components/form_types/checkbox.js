@@ -12,7 +12,7 @@ export default class Checkbox extends Component {
   change(e) {
     const { onChange, id, value } = this.props;
     const checked = value ? value : [];
-    const v = e.target.id;
+    const v = e.target.id.replace(id + '-', '');
     const index = checked.indexOf(v);
 
     if (index > -1) {
@@ -20,6 +20,7 @@ export default class Checkbox extends Component {
     } else {
       checked.push(v);
     }
+
     onChange(id, checked);
   }
 
@@ -33,12 +34,12 @@ export default class Checkbox extends Component {
           <input
             type='checkbox'
             name={id}
-            id={field.key}
+            id={`${id}-${field.key}`}
             defaultChecked={value.indexOf(field.key) > -1}
             onChange={this.change}
           />
           <label
-            htmlFor={field.key}
+            htmlFor={`${id}-${field.key}`}
             className={`button icon check col${n}`}>
             {field.label}
           </label>

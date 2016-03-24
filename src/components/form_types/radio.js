@@ -12,7 +12,7 @@ export default class Radio extends Component {
   change(e) {
     const { onChange, id } = this.props;
     const obj = {};
-    let val = e.target.id;
+    let val = e.target.id.replace(id + '-', '');
     if (val === 'true') val = true;
     if (val === 'false') val = false;
     onChange(id, val);
@@ -20,7 +20,6 @@ export default class Radio extends Component {
 
   render() {
     const { id, fields, value } = this.props;
-
     const renderFields = function(field, i) {
       const n = colN(fields.length);
       return (
@@ -28,12 +27,12 @@ export default class Radio extends Component {
           <input
             type='radio'
             name={id}
-            id={field.key}
-            defaultChecked={value === field.key}
+            id={`${id}-${field.key}`}
+            defaultChecked={value.toString() === field.key.toString()}
             onChange={this.change}
           />
           <label
-            htmlFor={field.key}
+            htmlFor={`${id}-${field.key}`}
             className={`button icon check col${n}`}>
             {field.label}
           </label>
