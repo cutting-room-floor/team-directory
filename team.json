@@ -6,7 +6,7 @@
     "email": "tristen@tristen.ca",
     "sex": "xy",
     "birthday": "2014-11-26",
-    "random": true,
+    "random": false,
     "office": "sf",
     "homeaddress": "1714 14TH ST NW (rear entrance)",
     "teams": [
