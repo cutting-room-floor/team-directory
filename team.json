@@ -80,5 +80,15 @@
     "twitter": "ingridjensen",
     "github": "ingridjensen",
     "foursquare": "ingridjensen"
+  },
+  {
+    "fname": "fallsemo",
+    "lname": "fallsemo",
+    "email": "f@f.ca",
+    "office": "dc",
+    "teams": [
+      "design"
+    ],
+    "github": "fallsemo"
   }
 ]
