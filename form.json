@@ -46,6 +46,18 @@
       "label": "False"
     }]
   }, {
+    "key": "random",
+    "label": "Random true or false",
+    "required": true,
+    "type": "radio",
+    "fields": [{
+      "key": true,
+      "label": "True"
+    }, {
+      "key": false,
+      "label": "False"
+    }]
+  }, {
     "key": "office",
     "label": "Office",
     "required": true,
