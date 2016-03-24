@@ -48,6 +48,7 @@
   }, {
     "key": "office",
     "label": "Office",
+    "required": true,
     "type": "radio",
     "fields": [{
       "key": "dc",
