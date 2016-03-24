@@ -52,16 +52,24 @@
     "foursquare": "freddiehubbard"
   },
   {
+    "admin": false,
     "fname": "Miles",
     "lname": "Davis",
     "email": "milesdavis@gmail.com",
     "sex": "xy",
     "birthday": "1926-05-26",
     "call": "2025908953",
-    "office": "dc",
+    "random": true,
+    "office": "bengaluru",
     "homeaddress": "123 St",
     "teams": [
       "design"
+    ],
+    "languages": [
+      {
+        "label": "English",
+        "key": "en"
+      }
     ],
     "twitter": "milesdavis",
     "github": "milesdavis",
