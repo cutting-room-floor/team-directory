@@ -60,6 +60,9 @@ export default class Select extends Component {
     let group = value ? value : [];
     group.push(v.suggestion);
     onChange(id, group);
+
+    // Clear input value
+    this.setState({inputValue: ''});
   }
 
   render() {
