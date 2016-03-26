@@ -78,14 +78,15 @@ class Index extends Component {
     const { directory } = this.props;
     const card = [];
     directory.team.forEach((d) => {
+      const nameIsAscii = (d.lname + d.fname).match(/[^ -~]/) === null;
       card.push((new VCard())
-        .set('N', d.lname + ';' + d.fname)
+        .set('N', d.lname + ';' + d.fname, nameIsAscii ? {} : {charset: 'UTF-8'})
         .set('EMAIL', d.email)
         .set('ORG', directory.options.account)
         .set('TEL', d.cell)
         .toString());
     });
-    return 'data:text/vcard;base64,' + Base64.encode(card.join('\n'));
+    return 'data:text/vcard;charset=utf-8;base64,' + Base64.encode(card.join('\n'));
   }
 
   render() {
