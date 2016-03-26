@@ -37,7 +37,7 @@ function vCard(d) {
     .set('TEL', d.cell)
     .toString();
 
-  return 'data:text/vcard;base64,' + Base64.encode(card);
+  return 'data:text/vcard;charset=utf-8;base64,' + Base64.encode(card);
 }
 
 const links = [{
