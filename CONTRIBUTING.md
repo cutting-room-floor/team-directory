@@ -2,7 +2,8 @@
 
 - Clone a copy of this project
 - Change into the project directory from the terminal and install dependencies via `npm install`.
-- Add your credentials as options when instantiating `TeamDirectory`. See this projects [index][] as example and read [Getting started][] to learn more.
+- Replace all the credentials found in [index][] with your own. Read [Getting started][] to learn more.
+
 - Run `npm start` to start a server on `http://localhost:9966/`.
 
 [Getting started]: https://github.com/mapbox/team-directory/blob/master/GETTING_STARTED.md
