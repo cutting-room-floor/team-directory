@@ -1,3 +1,7 @@
+### v1.6.3
+
+- [bug] UTF-8 encode non-ASCII names in vCards [#22](https://github.com/mapbox/team-directory/pull/22)
+
 ### v1.6.2
 
 - [bug] Drop `toString` method on `defaultChecked` condition in radio elements
