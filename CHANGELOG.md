@@ -1,3 +1,8 @@
+### v1.6.4
+
+- [bug] Fix cases where the response returned from GitHub is not a Base64 encoded
+string.
+
 ### v1.6.3
 
 - [bug] UTF-8 encode non-ASCII names in vCards [#22](https://github.com/mapbox/team-directory/pull/22)
