@@ -98,7 +98,7 @@ export function addUser(obj, cb) {
 
     repo.contents(options.team).fetch(config).then((res) => {
 
-      const dataFromGitHub = JSON.parse(Base64.decode(res.content));
+      let dataFromGitHub = res.content ? JSON.parse(Base64.decode(res.content)) : res;
       dataFromGitHub.push(obj); // New record
 
       const payload = JSON.stringify(dataFromGitHub, null, 2) + '\n';
@@ -130,7 +130,8 @@ export function updateUser(obj, cb) {
     dispatch(isLoading(true));
 
     repo.contents(options.team).fetch(config).then((res) => {
-      const dataFromGitHub = JSON.parse(Base64.decode(res.content)).map((d) => {
+      let dataFromGitHub = res.content ? JSON.parse(Base64.decode(res.content)) : res;
+      dataFromGitHub = dataFromGitHub.map((d) => {
         if (obj.github.toLowerCase() === d.github.toLowerCase()) d = obj;
         return d;
       });
@@ -165,7 +166,9 @@ export function removeUser(username, cb) {
 
     repo.contents(options.team).fetch(config).then((res) => {
       let user;
-      const dataFromGitHub = JSON.parse(Base64.decode(res.content)).filter((d) => {
+      let dataFromGitHub = res.content ? JSON.parse(Base64.decode(res.content)) : res;
+
+      dataFromGitHub = dataFromGitHub.filter((d) => {
         if (username.toLowerCase() === d.github.toLowerCase()) {
           user = d;
           return false;
