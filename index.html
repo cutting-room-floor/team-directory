@@ -13,9 +13,10 @@
     var Directory = TeamDirectory(document.getElementById('app'), {
       GitHubToken: localStorage.getItem('GitHubToken'),
       account: 'mapbox',
-      repo: 'us',
-      team: 'people.json',
-      form: 'data/form.json',
+      repo: 'team-directory',
+      branch: 'test-data',
+      team: 'team.json',
+      form: 'form.json',
       filterKeys: ['github', 'fname', 'lname']
     });
   </script>
