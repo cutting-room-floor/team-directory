@@ -1,3 +1,7 @@
+### v1.6.5
+
+- [bug] Fix bad output when exporting JSON to CSV
+
 ### v1.6.4
 
 - [bug] Fix cases where the response returned from GitHub is not a Base64 encoded
