@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import * as actions from '../actions';
+import { csvBuffered } from 'json-csv';
 import VCard from 'vcf';
 import { saveAs } from 'filesaver.js';
 import { Base64 } from 'js-base64';
@@ -31,47 +32,44 @@ class Index extends Component {
   downloadCSV(e) {
     e.preventDefault();
     const { team, form } = this.props.directory;
-    let header = [];
+    let fields = [];
 
     // Build a header from the key values in form
     form.forEach((section) => {
       section.data.forEach((item) => {
-        header.push(item.key);
-      });
-    });
-
-    let csv = header.join(', ') + '\n';
-
-    team.forEach((d) => {
-      let user = [];
-      header.forEach((h) => {
-        let val = '';
-        if (d[h]) {
-          if (typeof d[h] === 'object') {
-            if (typeof d[h][0] === 'object') {
-              val = '';
-              d[h].forEach((v) => {
-                for (let key in v) {
-                  val += JSON.stringify(v[key]) + ' ';
-                }
-              });
-            } else {
-              val = '"' + d[h].join(', ') + '"';
+        fields.push({
+          name: item.key,
+          label: item.label,
+          filter: function(d) {
+            if (typeof d === 'object' && d.length) {
+              if (typeof d[0] === 'object') {
+                var value = [];
+                d.forEach(function(d) {
+                  if (d.name && d.value) {
+                    value.push(d.name + ': ' + d.value);
+                  } else {
+                    value.push(d.label);
+                  }
+                })
+                return value.join(', ');
+              } else {
+                return d.join(', ');
+              }
             }
-          } else {
-            val = '"' + d[h] + '"';
+            return d;
           }
-        }
-
-        user.push(val);
+        });
       });
-
-      csv += user.join(', ') + '\n';
     });
 
-    saveAs(new Blob([csv], {
-      type: 'text/csv;base64'
-    }), 'team.csv');
+    csvBuffered(team, {
+      fields: fields
+    }, function(err, csv) {
+      if (err) return console.warn(err);
+      saveAs(new Blob([csv], {
+        type: 'text/csv;base64'
+      }), 'team.csv');
+    });
   }
 
   downloadContacts() {
