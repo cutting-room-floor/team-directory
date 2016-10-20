@@ -32,9 +32,9 @@ const initialState = {
 function vCard(d) {
   const nameIsAscii = (d.lname + d.fname).match(/[^ -~]/) === null;
   const card = (new VCard())
-    .set('N', d.lname + ';' + d.fname, nameIsAscii ? {} : {charset: 'UTF-8'})
-    .set('EMAIL', d.email)
-    .set('TEL', d.cell)
+    .set('n', d.lname + ';' + d.fname, nameIsAscii ? {} : {charset: 'UTF-8'})
+    .set('email', d.email)
+    .set('tel', d.cell)
     .toString();
 
   return 'data:text/vcard;charset=utf-8;base64,' + Base64.encode(card);
