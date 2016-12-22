@@ -1,5 +1,5 @@
 {
-  "name": "team-directory",
+  "name": "@mapbox/team-directory",
   "version": "1.6.5",
   "description": "A rolodex for teams",
   "main": "index.js",
